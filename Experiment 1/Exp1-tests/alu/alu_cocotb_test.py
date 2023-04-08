@@ -18,7 +18,8 @@ async def alu_basic_test(dut):
     A = 10
     B = 5
     dut.A.value = A
-    dut.B.value = B
+    dut.Bls\
+        .value = B
     dut.SEL.value = 0
     await clkedge
     print('Check add: 10 + 5 ')
