@@ -1,14 +1,14 @@
 module register_with_reset_write #(parameter W=4)(
-	input clk,
-	input reset, 
-	input write_enable, 
-	input [W-1:0] data_input,
-	output reg [W-1:0] data_output
+	input CLK,
+	input RESET, 
+	input WE, 
+	input [W-1:0] data,
+	output reg [W-1:0] OUT
 );
 
-always @(posedge clk) begin
-    if (reset == 1) data_output <= 0; 
-	 else if(reset == 0 && write_enable == 1) data_output <= data_input; 
+always @(posedge CLK) begin
+    if (RESET == 1) OUT <= 0; 
+	 else if(RESET == 0 && WE == 1) OUT <= data; 
    
 end
 
