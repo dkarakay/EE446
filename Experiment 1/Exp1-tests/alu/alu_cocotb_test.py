@@ -14,21 +14,18 @@ async def alu_basic_test(dut):
     # wait until the falling edge
     await clkedge
 
-    # Check Add
-    A = 10
-    B = 5
+    # Check AND
+    A = 4
+    B = 3
     dut.A.value = A
-    dut.Bls\
-        .value = B
-    dut.SEL.value = 0
+    dut.B.value = B
+    dut.CTRL.value = 0
+    dut._log.info("my_signal_1 is %s", dut.CTRL.value)
     await clkedge
-    print('Check add: 10 + 5 ')
-    print(f'AC: {dut.AC.value}')
-    print(f'DR: {dut.DR.value}')
+    print('Check AND 0100 & 0011')
+    print(f'A: {dut.A.value} - B: {dut.B.value} - CTRL: {dut.ctrl.value}')
     print(f'OUT: {dut.OUT.value}')
-    print(f'OVF: {dut.OVF.value}')
-    print(f'CO: {dut.CO.value}')
-    assert dut.OUT.value == AC + DR
+    assert dut.OUT.value == A & B
     assert dut.OVF.value == 0
     assert dut.CO.value == 0
     print('------')

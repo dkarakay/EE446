@@ -48,3 +48,5 @@ timing
 *example*
 *sopc_*
 PLLJ_PLLSPE_INFO.txt # The generated PLL specification file
+
+*.DS_Store
