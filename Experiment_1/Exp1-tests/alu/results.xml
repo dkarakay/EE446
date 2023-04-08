@@ -1,8 +1,17 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1680961865" />
-    <testcase name="alu_and_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="7" time="0.010003089904785156" sim_time_ns="31000" ratio_time="3099042.425398036" />
-    <testcase name="alu_xor_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="71" time="0.010001659393310547" sim_time_ns="41000" ratio_time="4099319.7616209774" />
-    <testcase name="alu_subtraction_ab_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="135" time="0.008999347686767578" sim_time_ns="41000" ratio_time="4555885.762729825" />
+    <property name="random_seed" value="1680967162" />
+    <testcase name="alu_and_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="15" time="0.007957220077514648" sim_time_ns="31000" ratio_time="3895832.9288389515" />
+    <testcase name="alu_xor_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="79" time="0.008001327514648438" sim_time_ns="41000" ratio_time="5124149.702026222" />
+    <testcase name="alu_subtraction_ab_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="143" time="0.010999917984008789" sim_time_ns="41000" ratio_time="3727300.5180224115" />
+    <testcase name="alu_subtraction_ba_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="207" time="0.009985685348510742" sim_time_ns="41000" ratio_time="4105877.4204331115" />
+    <testcase name="alu_addition_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="271" time="0.01399993896484375" sim_time_ns="61000" ratio_time="4357161.852861036" />
+    <testcase name="alu_addition_cin_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="362" time="0.015006065368652344" sim_time_ns="61000" ratio_time="4065022.9424849064" />
+    <testcase name="alu_subtraction_ab_cin_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="461" time="0.016005277633666992" sim_time_ns="71000" ratio_time="4436036.763939164" />
+    <testcase name="alu_subtraction_ba_cin_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="561" time="0.014994382858276367" sim_time_ns="71000" ratio_time="4735106.517625733" />
+    <testcase name="alu_orr_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="661" time="0.009996652603149414" sim_time_ns="41000" ratio_time="4101372.8922702665" />
+    <testcase name="alu_move_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="727" time="0.008027791976928711" sim_time_ns="21000" ratio_time="2615912.328116183" />
+    <testcase name="alu_a_and_b_not_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="764" time="0.004021167755126953" sim_time_ns="21000" ratio_time="5222363.571682675" />
+    <testcase name="alu_move_not_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="802" time="0.005952596664428711" sim_time_ns="21000" ratio_time="3527872.1512396364" />
   </testsuite>
 </testsuites>

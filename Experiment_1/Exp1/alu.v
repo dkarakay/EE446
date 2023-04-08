@@ -33,20 +33,20 @@ always @(*) begin
 	 
 	
 	 
-	 if(CTRL[3:2] == 1 || CTRL == 0 || CTRL == 1)begin
+	 if(CTRL == 0 || CTRL == 1 || CTRL == 12 || CTRL == 13 || CTRL == 14 || CTRL == 15)begin
 		CO = 0;
 		OVF = 0;
 	 end
 	 
 	 
 	 if(CTRL == 2 || CTRL == 3 || CTRL == 4 || CTRL == 5 || CTRL == 6 || CTRL == 7)begin
-		if(result[W] == 1) CO = 1;
+		if(result[W] == 1 && result[W-1] == 1) CO = 1;
 		else CO = 0;
 		
 	   OVF = (result[W-1] != A[W-1] && result[W-1] != B[W-1]) ? 1 : 0;
 	 end
  
-	 Z = (result == 0) ? 1 : 0;
+	 Z = (result[W-1:0] == 0) ? 1 : 0;
 	 N = (result[W-1] == 1) ? 1 : 0;
 	 
 
