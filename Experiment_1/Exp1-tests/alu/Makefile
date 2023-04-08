@@ -12,7 +12,6 @@ TOPLEVEL_LANG ?=verilog
 
 VERILOG_SOURCES =$(CWD)/../../Exp1/alu.v
 
-
 TOPLEVEL = alu
 MODULE := alu_cocotb_test
 COCOTB_HDL_TIMEUNIT=1us

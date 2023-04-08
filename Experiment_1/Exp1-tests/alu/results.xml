@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1680961865" />
+    <testcase name="alu_and_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="7" time="0.010003089904785156" sim_time_ns="31000" ratio_time="3099042.425398036" />
+    <testcase name="alu_xor_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="71" time="0.010001659393310547" sim_time_ns="41000" ratio_time="4099319.7616209774" />
+    <testcase name="alu_subtraction_ab_tests" classname="alu_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\alu\alu_cocotb_test.py" lineno="135" time="0.008999347686767578" sim_time_ns="41000" ratio_time="4555885.762729825" />
+  </testsuite>
+</testsuites>
