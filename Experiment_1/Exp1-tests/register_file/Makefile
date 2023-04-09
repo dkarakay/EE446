@@ -13,6 +13,8 @@ TOPLEVEL_LANG ?=verilog
 VERILOG_SOURCES =$(CWD)/../../Exp1/register_file.v
 VERILOG_SOURCES +=$(CWD)/../../Exp1/decoder_four_to_sixteen.v
 VERILOG_SOURCES +=$(CWD)/../../Exp1/register_with_reset_write.v
+VERILOG_SOURCES +=$(CWD)/../../Exp1/mux_two_to_one.v
+VERILOG_SOURCES +=$(CWD)/../../Exp1/mux_sixteen_to_one.v
 
 TOPLEVEL = register_file
 MODULE := register_file_cocotb_test
