@@ -5,9 +5,6 @@ module shifter #(parameter W = 4) (
    output reg signed [W-1:0] OUT
 );
 
-
-
-
 integer i;
 always @(*) begin
    case(CTRL)

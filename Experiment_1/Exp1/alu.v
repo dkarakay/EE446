@@ -53,9 +53,5 @@ always @(*) begin
 end
 
 assign OUT = result[W-1:0];
-/*
-always @(posedge clk) begin
-    check_carry <= {CIN, resultt[W], resultt};
-end*/
 
 endmodule

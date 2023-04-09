@@ -30,10 +30,7 @@ async def register_file_tests(dut):
     """Setup testbench and run a test."""
     # Generate the clock
     await cocotb.start(Clock(dut.CLK, 10, 'us').start(start_high=False))
-
-    # set clkedge as the falling edge for triggers
     clkedge = FallingEdge(dut.CLK)
-    # wait until the falling edge
     await clkedge
 
     # Write Data to Register 1 and show the value in RD1
