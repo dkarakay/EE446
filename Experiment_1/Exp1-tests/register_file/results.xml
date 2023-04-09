@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1681038622" />
-    <testcase name="alu_and_tests" classname="register_file_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\register_file\register_file_cocotb_test.py" lineno="28" time="0.008999109268188477" sim_time_ns="41000" ratio_time="4556006.4644323755" />
+    <property name="random_seed" value="1681039209" />
+    <testcase name="register_file_tests" classname="register_file_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_1\Exp1-tests\register_file\register_file_cocotb_test.py" lineno="28" time="0.021999835968017578" sim_time_ns="101000" ratio_time="4590943.320978824" />
   </testsuite>
 </testsuites>

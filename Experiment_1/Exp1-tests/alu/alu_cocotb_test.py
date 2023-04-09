@@ -12,6 +12,19 @@ def convert_2_dec(bin_val):
     return dec_val
 
 
+def print_values(dut):
+    dut._log.info(f"A {dut.A.value}")
+    dut._log.info(f"B {dut.B.value}")
+    dut._log.info(f"CIN {dut.CIN.value}")
+    dut._log.info(f"CTRL {dut.CTRL.value}")
+    dut._log.info(f"OUT {dut.OUT.value}")
+    dut._log.info(f"OVF {dut.OVF.value}")
+    dut._log.info(f"CO {dut.CO.value}")
+    dut._log.info(f"Z {dut.Z.value}")
+    dut._log.info(f"N {dut.N.value}")
+    dut._log.info(f"-----------------")
+
+
 @cocotb.test()
 async def alu_and_tests(dut):
     """Setup testbench and run a test."""
@@ -31,15 +44,7 @@ async def alu_and_tests(dut):
     dut.CTRL.value = 0
     print('Check AND 0100 & 0011')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert dut.OUT.value == A & B
     assert dut.OVF.value == 0
@@ -58,15 +63,7 @@ async def alu_and_tests(dut):
     dut.CTRL.value = 0
     dut._log.info('Check AND 0110 & 0111')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert dut.OUT.value == A & B
     assert dut.OVF.value == 0
@@ -95,15 +92,7 @@ async def alu_xor_tests(dut):
     dut.CTRL.value = 1
     print('Check XOR 0100 & 0011')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert dut.OUT.value == A ^ B
     assert dut.OVF.value == 0
@@ -122,15 +111,7 @@ async def alu_xor_tests(dut):
     dut.CTRL.value = 1
     dut._log.info('Check XOR 0110 & 0111')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert dut.OUT.value == A ^ B
     assert dut.OVF.value == 0
@@ -159,15 +140,7 @@ async def alu_subtraction_ab_tests(dut):
     dut.CTRL.value = 2
     print('Check Sub AB 4-3')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert dut.OUT.value == A - B
     assert dut.OVF.value == 0
@@ -186,15 +159,7 @@ async def alu_subtraction_ab_tests(dut):
     dut.CTRL.value = 2
     print('Check Sub AB 6-7')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert convert_2_dec(dut.OUT.value) == A - B
     assert dut.OVF.value == 1
@@ -223,15 +188,7 @@ async def alu_subtraction_ba_tests(dut):
     dut.CTRL.value = 3
     print('Check Sub BA 4-3')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert convert_2_dec(dut.OUT.value) == B - A
     assert dut.OVF.value == 1
@@ -250,15 +207,7 @@ async def alu_subtraction_ba_tests(dut):
     dut.CTRL.value = 3
     print('Check Sub BA -2 - -6')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert convert_2_dec(dut.OUT.value) == B - A
     assert dut.OVF.value == 1
@@ -287,15 +236,7 @@ async def alu_addition_tests(dut):
     dut.CTRL.value = 4
     print('Check Add AB 4 + 3')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert dut.OUT.value == A + B
     assert dut.OVF.value == 0
@@ -314,15 +255,7 @@ async def alu_addition_tests(dut):
     dut.CTRL.value = 4
     print('Check Add AB -6 + 6')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert dut.OUT.value == A + B
     assert dut.OVF.value == 0
@@ -341,17 +274,9 @@ async def alu_addition_tests(dut):
     dut.CTRL.value = 4
     print('Check Add AB -6 + -3')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
+    print_values(dut)
 
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
-
-    #assert convert_2_dec(dut.OUT.value) == A + B
+    # assert convert_2_dec(dut.OUT.value) == A + B
     assert dut.OVF.value == 1
     assert dut.CO.value == 0
     assert dut.Z.value == 0
@@ -380,16 +305,6 @@ async def alu_addition_cin_tests(dut):
     dut.CTRL.value = 5
     print('Check Add AB 4 + 3 + CIN')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CIN {dut.CIN.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
 
     assert dut.OUT.value == A + B + CIN
     assert dut.OVF.value == 1
@@ -409,16 +324,7 @@ async def alu_addition_cin_tests(dut):
     dut.CTRL.value = 5
     print('Check Add AB -5 + -2 + CIN')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CIN {dut.CIN.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert convert_2_dec(dut.OUT.value) == A + B + CIN
     assert dut.OVF.value == 0
@@ -438,16 +344,7 @@ async def alu_addition_cin_tests(dut):
     dut.CTRL.value = 5
     print('Check Add AB 3 + -4 + CIN')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CIN {dut.CIN.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert dut.OUT.value == A + B + CIN
     assert dut.OVF.value == 0
@@ -455,7 +352,6 @@ async def alu_addition_cin_tests(dut):
     assert dut.Z.value == 1
     assert dut.N.value == 0
     print('------')
-
 
 
 @cocotb.test()
@@ -479,16 +375,7 @@ async def alu_subtraction_ab_cin_tests(dut):
     dut.CTRL.value = 6
     print('Check Sub BA 4-3')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CIN {dut.CIN.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert dut.OUT.value == A - B + CIN - 1
     assert dut.OVF.value == 0
@@ -508,16 +395,7 @@ async def alu_subtraction_ab_cin_tests(dut):
     dut.CTRL.value = 6
     print('Check Sub BA 4-3')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CIN {dut.CIN.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert convert_2_dec(dut.OUT.value) == A - B + CIN - 1
     assert dut.OVF.value == 0
@@ -537,16 +415,7 @@ async def alu_subtraction_ab_cin_tests(dut):
     dut.CTRL.value = 6
     print('Check Sub BA 4-3')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CIN {dut.CIN.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert dut.OUT.value == A - B + CIN - 1
     assert dut.OVF.value == 0
@@ -579,18 +448,9 @@ async def alu_subtraction_ba_cin_tests(dut):
     dut.CTRL.value = 7
     print('Check Sub BA 4-3')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CIN {dut.CIN.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
+    print_values(dut)
 
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
-
-    assert convert_2_dec(dut.OUT.value) == B - A + CIN -1
+    assert convert_2_dec(dut.OUT.value) == B - A + CIN - 1
     assert dut.OVF.value == 1
     assert dut.CO.value == 1
     assert dut.Z.value == 0
@@ -608,18 +468,9 @@ async def alu_subtraction_ba_cin_tests(dut):
     dut.CTRL.value = 7
     print('Check Sub BA 4-3')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CIN {dut.CIN.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
+    print_values(dut)
 
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
-
-    assert dut.OUT.value == B - A + CIN -1
+    assert dut.OUT.value == B - A + CIN - 1
     assert dut.OVF.value == 0
     assert dut.CO.value == 0
     assert dut.Z.value == 0
@@ -637,18 +488,9 @@ async def alu_subtraction_ba_cin_tests(dut):
     dut.CTRL.value = 7
     print('Check Sub BA 5-3')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CIN {dut.CIN.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
+    print_values(dut)
 
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
-
-    assert convert_2_dec(dut.OUT.value) == B - A + CIN -1
+    assert convert_2_dec(dut.OUT.value) == B - A + CIN - 1
     assert dut.OVF.value == 1
     assert dut.CO.value == 1
     assert dut.Z.value == 0
@@ -677,15 +519,7 @@ async def alu_orr_tests(dut):
     dut.CTRL.value = 12
     print('Check ORR 0100 & 0011')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert dut.OUT.value == A | B
     assert dut.OVF.value == 0
@@ -704,15 +538,7 @@ async def alu_orr_tests(dut):
     dut.CTRL.value = 12
     print('Check ORR 0100 & 0011')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     t = A | B
     print(t)
@@ -743,15 +569,7 @@ async def alu_move_tests(dut):
     dut.CTRL.value = 13
     print('Check B')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     assert dut.OUT.value == B
     assert dut.OVF.value == 0
@@ -780,15 +598,7 @@ async def alu_a_and_b_not_tests(dut):
     dut.CTRL.value = 14
     print('Check A & B NOT')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     not_binary_number = A & ~int(B)
     assert dut.OUT.value == not_binary_number
@@ -818,15 +628,7 @@ async def alu_move_not_tests(dut):
     dut.CTRL.value = 15
     print('Check B NOT')
     await clkedge
-    dut._log.info(f"A {dut.A.value}")
-    dut._log.info(f"B {dut.B.value}")
-    dut._log.info(f"CTRL {dut.CTRL.value}")
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"OVF {dut.OVF.value}")
-    dut._log.info(f"CO {dut.CO.value}")
-    dut._log.info(f"Z {dut.Z.value}")
-    dut._log.info(f"N {dut.N.value}")
+    print_values(dut)
 
     not_binary_number = ~int(B)
     assert convert_2_dec(dut.OUT.value) == not_binary_number
