@@ -1,0 +1,11 @@
+module Datapath(
+input CLK,
+input RESET,
+input INSTRUCTION,
+output OUT
+);
+
+Register_file reg_file (
+
+
+);
