@@ -1,8 +1,8 @@
 module Datapath(
 input CLK,
 input RESET,
-input RegWrite, MemWrite, ImmSrc,
-input [1:0] RegSrc,
+input RegWrite, MemWrite, 
+input [1:0] RegSrc,ImmSrc,
 output [31:0] OUT,
 output FlagZ
 

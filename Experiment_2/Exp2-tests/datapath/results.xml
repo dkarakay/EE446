@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1682199972" />
-    <testcase name="datapath_load_from_memory_add" classname="datapath_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_2\Exp2-tests\datapath\datapath_cocotb_test.py" lineno="128" time="0.13001322746276855" sim_time_ns="131000" ratio_time="1007589.78572018" />
+    <property name="random_seed" value="1682203792" />
+    <testcase name="datapath_load_from_memory_add" classname="datapath_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_2\Exp2-tests\datapath\datapath_cocotb_test.py" lineno="128" time="0.15604829788208008" sim_time_ns="171000" ratio_time="1095814.5799784267" />
   </testsuite>
 </testsuites>

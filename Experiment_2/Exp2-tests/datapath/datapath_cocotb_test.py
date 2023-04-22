@@ -244,6 +244,7 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
+    assert dut.OUT.value == 9
 
     print_all(dut)
 
@@ -296,6 +297,7 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
+    assert dut.OUT.value == 1
 
     print_all(dut)
 
@@ -349,10 +351,10 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-
+    assert dut.OUT.value == 4
     print_all(dut)
 
-    # ORR R6,R2,R3 => R2 & R3 and store in R6
+    # ORR R6,R2,R3 => R2 | R3 and store in R6
     dut._log.info(f"------------------")
     dut._log.info(f"ORR R6,R2,R3 => R2 | R3 and store in R6")
     INSTR = 0xE4026003
@@ -378,10 +380,9 @@ async def datapath_load_from_memory_add(dut):
 
     print_all(dut)
 
-    # Read R6 to check the result
+    # Read R6 to check the result -> Result comes from instruction memory
     dut._log.info(f"------------------")
-    dut._log.info(f"Read R6 to check the result")
-    INSTR = 0xE4060000
+    dut._log.info(f"Read R6 to check the result -> Result comes from instruction memory")
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -391,7 +392,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 0
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -407,7 +407,6 @@ async def datapath_load_from_memory_add(dut):
     # STR R6,[R0] => Store R5 to memory location 0
     dut._log.info(f"------------------")
     dut._log.info(f"STR R6,[R0] => Store R5 to memory location 0")
-    INSTR = 0b11100100000000000110000000000000
     INSTR = 0xE4006000
     PCSrc = 0
     MemtoReg = 0
@@ -416,7 +415,7 @@ async def datapath_load_from_memory_add(dut):
     ALUSrc = 1
     ImmSrc = 1
     RegWrite = 0
-    RegSrc = 0b10
+    RegSrc = 2
 
     dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
@@ -456,4 +455,110 @@ async def datapath_load_from_memory_add(dut):
     await clkedge
 
     print_all(dut)
+    assert dut.OUT.value == 5
+
+    # MOV R7, R8 => Move R8 to R7
+    dut._log.info(f"------------------")
+    dut._log.info(f"MOV R7, R8 => Move R8 to R7")
+    INSTR = 0xE4007008
+    PCSrc = 0
+    MemtoReg = 0
+    MemWrite = 0
+    ALUControl = 13
+    ALUSrc = 0
+    ImmSrc = 0
+    RegWrite = 1
+    RegSrc = 0
+
+    dut.INSTR.value = INSTR
+    dut.PCSrc.value = PCSrc
+    dut.MemtoReg.value = MemtoReg
+    dut.MemWrite.value = MemWrite
+    dut.ALUControl.value = ALUControl
+    dut.ALUSrc.value = ALUSrc
+    dut.ImmSrc.value = ImmSrc
+    dut.RegWrite.value = RegWrite
+    dut.RegSrc.value = RegSrc
+    await clkedge
+
+    print_all(dut)
+
+    # Read R7 to check the result
+    dut._log.info(f"------------------")
+    dut._log.info(f"Read R7 to check the result")
+    INSTR = 0xE4070000
+    PCSrc = 0
+    MemtoReg = 0
+    MemWrite = 0
+    ALUControl = 4
+    ALUSrc = 0
+    ImmSrc = 0
+    RegWrite = 0
+    RegSrc = 0
+
+    dut.INSTR.value = INSTR
+    dut.PCSrc.value = PCSrc
+    dut.MemtoReg.value = MemtoReg
+    dut.MemWrite.value = MemWrite
+    dut.ALUControl.value = ALUControl
+    dut.ALUSrc.value = ALUSrc
+    dut.ImmSrc.value = ImmSrc
+    dut.RegWrite.value = RegWrite
+    dut.RegSrc.value = RegSrc
+    await clkedge
+
+    print_all(dut)
+
+    # Branch Instruction to PC => 40
+    dut._log.info(f"------------------")
+    dut._log.info(f"Branch Instruction to PC => 40")
+    INSTR = 0xEA00000A
+    PCSrc = 1
+    MemtoReg = 0
+    MemWrite = 0
+    ALUControl = 13
+    ALUSrc = 1
+    ImmSrc = 2
+    RegWrite = 0
+    RegSrc = 0
+
+    dut.INSTR.value = INSTR
+    dut.PCSrc.value = PCSrc
+    dut.MemtoReg.value = MemtoReg
+    dut.MemWrite.value = MemWrite
+    dut.ALUControl.value = ALUControl
+    dut.ALUSrc.value = ALUSrc
+    dut.ImmSrc.value = ImmSrc
+    dut.RegWrite.value = RegWrite
+    dut.RegSrc.value = RegSrc
+    await clkedge
+    assert dut.PC.value == 40
+    print_all(dut)
+
+    # Read R6 to check the result from instruction 40
+    dut._log.info(f"------------------")
+    dut._log.info(f"Read R6 to check the result from instruction 40")
+    PCSrc = 0
+    MemtoReg = 0
+    MemWrite = 0
+    ALUControl = 4
+    ALUSrc = 0
+    ImmSrc = 0
+    RegWrite = 0
+    RegSrc = 0
+
+    dut.INSTR.value = INSTR
+    dut.PCSrc.value = PCSrc
+    dut.MemtoReg.value = MemtoReg
+    dut.MemWrite.value = MemWrite
+    dut.ALUControl.value = ALUControl
+    dut.ALUSrc.value = ALUSrc
+    dut.ImmSrc.value = ImmSrc
+    dut.RegWrite.value = RegWrite
+    dut.RegSrc.value = RegSrc
+    await clkedge
+
+    print_all(dut)
+
+
 

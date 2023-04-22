@@ -8,8 +8,10 @@ output [(BYTE_SIZE*8)-1:0] RD
 reg [31:0] mem [4095:0];
 
 initial begin
-//mem[0]<=8'h1;
-//mem[1]<=8'h2;
+/*mem[32]<=8'h0;
+mem[33]<=8'h2;
+mem[34]<=8'h3;
+mem[35]<=8'h4;*/
 $readmemh("mem_data.txt",mem);
 end
 genvar i;
