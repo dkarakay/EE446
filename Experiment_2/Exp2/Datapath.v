@@ -9,7 +9,7 @@ output FlagZ
 );
 
 wire [3:0] RA1, RA2, ALUControl;
-wire [31:0] RD1, RD2, SrcB, R15, ALUResult, ReadData; 
+wire [31:0] RD1, RD2, RD2_S, SrcB, R15, ALUResult, ReadData; 
 wire [31:0] WriteData, ExtImm,NewPC;
 wire [31:0] INSTR,PC_W,PCPlus4;
 
@@ -56,7 +56,7 @@ ALU #(32) alu (
  
 // MUX for ALU input B
 Mux_2to1 #(32) mux_b (
-    .input_0(RD2),
+    .input_0(RD2_S),
     .input_1(ExtImm),
     .select(ALUSrc),
     .output_value(SrcB)
@@ -83,15 +83,15 @@ Mux_2to1 #(32) mux_pc (
 Mux_2to1 mux_reg (
     .input_0(INSTR[3:0]),
     .input_1(INSTR[15:12]),
-    .select(RegSrc[0]),
+    .select(RegSrc[1]),
     .output_value(RA2)
 );
 
 // MUX for RegSrc[1]
 Mux_2to1 mux_reg_1 (
     .input_0(INSTR[19:16]),
-    .input_1(R15),
-    .select(RegSrc[1]),
+    .input_1(4'b1111),
+    .select(RegSrc[0]),
     .output_value(RA1)
 );
 
@@ -118,6 +118,13 @@ Register_simple #(32) reg_pc(
 	.DATA(NewPC),
 	.reset(RESET),
 	.OUT(PC)
+);
+
+shifter #(32) shift(
+	.control(INSTR[6:5]),
+	.shamt(INSTR[11:7]),
+	.DATA(RD2),
+	.OUT(RD2_S)
 );
 
 endmodule
