@@ -1,0 +1,13 @@
+module Controller(
+    input [1:0] OP,
+    input [3:0] COND,
+    input [5:0] FUNCT,
+    input [3:0] RD,
+    output reg PCSrc,
+    output reg MemtoReg,
+    output reg MemWrite,
+    output reg [2:0] ALUControl,
+    output reg ALUSrc,
+    output reg [1:0]ImmSrc,
+    output reg RegWrite
+); 

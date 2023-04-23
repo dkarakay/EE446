@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1682264796" />
-    <testcase name="datapath_load_from_memory_add" classname="subroutines_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_2\Exp2-tests\subroutines\subroutines_cocotb_test.py" lineno="34" time="0.07896804809570312" sim_time_ns="66000" ratio_time="835781.0733780977" />
+    <property name="random_seed" value="1682278760" />
+    <testcase name="subroutine_2s_complement" classname="subroutines_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_2\Exp2-tests\subroutines\subroutines_cocotb_test.py" lineno="32" time="0.07795166969299316" sim_time_ns="46000" ratio_time="590109.2328255131" />
   </testsuite>
 </testsuites>

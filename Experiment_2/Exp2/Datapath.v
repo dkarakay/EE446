@@ -1,20 +1,24 @@
 module Datapath(
 input CLK,
 input RESET,
-input RegWrite, MemWrite, 
+input PCSrc,RegWrite, MemWrite,MemtoReg, ALUSrc, 
 input [1:0] RegSrc,ImmSrc,
-output [31:0] OUT,
+input [3:0] ALUControl,
+output [31:0] INSTR,
+output [31:0] OUT,PC,
+output [3:0] RA1, RA2,
+output [31:0] RD1, RD2,
 output FlagZ
 
 );
 
-wire [3:0] RA1, RA2, ALUControl;
-wire [31:0] RD1, RD2, RD2_S, SrcB, R15, ALUResult, ReadData; 
+
+wire [31:0] RD2_S, SrcB, R15, ALUResult, ReadData; 
 wire [31:0] WriteData, ExtImm,NewPC;
-wire [31:0] INSTR,PC_W,PCPlus4;
+wire [31:0] PC_W,PCPlus4;
 
 // Program Counter
-wire [31:0] PC;
+//wire [31:0] PC;
 
 
 Register_file reg_file (

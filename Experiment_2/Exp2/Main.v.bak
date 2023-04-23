@@ -1,0 +1,16 @@
+module Main(
+	input CLK,
+	input RESET,
+	output [31:0] OUT,
+	output FlagZ
+);
+
+wire INSTR
+
+Controller controller (
+	.OP(INSTR[27:26]),
+	.COND(INSTR[31:28]),
+	.FUNCT(INSTR[25:20]),
+	.RD(INSTR[15:12]),
+
+)

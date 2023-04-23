@@ -32,7 +32,7 @@ def print_all(dut):
 
 
 @cocotb.test()
-async def datapath_load_from_memory_add(dut):
+async def datapath_operations(dut):
     """Setup testbench and run a test."""
     # Generate the clock
     await cocotb.start(Clock(dut.CLK, 10, 'us').start(start_high=False))

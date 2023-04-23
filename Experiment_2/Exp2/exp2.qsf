@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY Memory
+set_global_assignment -name TOP_LEVEL_ENTITY Main
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:45:46  APRIL 22, 2023"
 set_global_assignment -name LAST_QUARTUS_VERSION 13.1
@@ -67,6 +67,8 @@ set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name VERILOG_FILE Datapath.v
 set_global_assignment -name FLOW_ENABLE_RTL_VIEWER ON
 set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name VERILOG_FILE Controller.v
+set_global_assignment -name VERILOG_FILE Main.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

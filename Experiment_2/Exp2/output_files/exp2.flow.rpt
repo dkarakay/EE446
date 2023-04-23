@@ -1,5 +1,5 @@
 Flow report for exp2
-Sun Apr 23 01:13:36 2023
+Sun Apr 23 22:34:29 2023
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -37,24 +37,29 @@ applicable agreement for further details.
 
 
 
-+--------------------------------------------------------------------------+
-; Flow Summary                                                             ;
-+-----------------------------+--------------------------------------------+
-; Flow Status                 ; Flow Failed - Sun Apr 23 01:13:36 2023     ;
-; Quartus II 64-Bit Version   ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
-; Revision Name               ; exp2                                       ;
-; Top-level Entity Name       ; Memory                                     ;
-; Family                      ; Cyclone V                                  ;
-; Device                      ; 5CSEMA5F31C6                               ;
-; Timing Models               ; Preliminary                                ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                  ;
-; Total registers             ; N/A until Partition Merge                  ;
-; Total pins                  ; N/A until Partition Merge                  ;
-; Total virtual pins          ; N/A until Partition Merge                  ;
-; Total block memory bits     ; N/A until Partition Merge                  ;
-; Total PLLs                  ; N/A until Partition Merge                  ;
-; Total DLLs                  ; N/A until Partition Merge                  ;
-+-----------------------------+--------------------------------------------+
++------------------------------------------------------------------------------+
+; Flow Summary                                                                 ;
++---------------------------------+--------------------------------------------+
+; Flow Status                     ; Successful - Sun Apr 23 22:34:29 2023      ;
+; Quartus II 64-Bit Version       ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
+; Revision Name                   ; exp2                                       ;
+; Top-level Entity Name           ; Main                                       ;
+; Family                          ; Cyclone V                                  ;
+; Device                          ; 5CSEMA5F31C6                               ;
+; Timing Models                   ; Preliminary                                ;
+; Logic utilization (in ALMs)     ; N/A                                        ;
+; Total registers                 ; 0                                          ;
+; Total pins                      ; 35                                         ;
+; Total virtual pins              ; 0                                          ;
+; Total block memory bits         ; 0                                          ;
+; Total DSP Blocks                ; 0                                          ;
+; Total HSSI RX PCSs              ; 0                                          ;
+; Total HSSI PMA RX Deserializers ; 0                                          ;
+; Total HSSI TX PCSs              ; 0                                          ;
+; Total HSSI TX Channels          ; 0                                          ;
+; Total PLLs                      ; 0                                          ;
+; Total DLLs                      ; 0                                          ;
++---------------------------------+--------------------------------------------+
 
 
 +-----------------------------------------+
@@ -62,7 +67,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/23/2023 01:13:36 ;
+; Start date & time ; 04/23/2023 22:34:14 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; exp2                ;
 +-------------------+---------------------+
@@ -73,19 +78,19 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                                 ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+---------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 203050746497916.168220161515304       ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 203050746497916.168227845414644       ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                                  ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (VHDL)                ; <None>        ; --          ; --             ;
 ; FLOW_ENABLE_RTL_VIEWER              ; On                                    ; Off           ; --          ; --             ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                    ; --            ; --          ; --             ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                     ; --            ; --          ; --             ;
-; PARTITION_COLOR                     ; 16764057                              ; --            ; Memory      ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                 ; --            ; Memory      ; Top            ;
-; PARTITION_NETLIST_TYPE              ; SOURCE                                ; --            ; Memory      ; Top            ;
+; PARTITION_COLOR                     ; 16764057                              ; --            ; Main        ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                 ; --            ; Main        ; Top            ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                                ; --            ; Main        ; Top            ;
 ; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                   ; --            ; --          ; --             ;
 ; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW ; --            ; --          ; --             ;
 ; PROJECT_OUTPUT_DIRECTORY            ; output_files                          ; --            ; --          ; --             ;
-; TOP_LEVEL_ENTITY                    ; Memory                                ; exp2          ; --          ; --             ;
+; TOP_LEVEL_ENTITY                    ; Main                                  ; exp2          ; --          ; --             ;
 +-------------------------------------+---------------------------------------+---------------+-------------+----------------+
 
 
@@ -94,8 +99,8 @@ applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:01     ; 1.0                     ; 4642 MB             ; 00:00:01                           ;
-; Total                ; 00:00:01     ; --                      ; --                  ; 00:00:01                           ;
+; Analysis & Synthesis ; 00:00:15     ; 1.0                     ; 4782 MB             ; 00:00:14                           ;
+; Total                ; 00:00:15     ; --                      ; --                  ; 00:00:14                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

@@ -12,7 +12,7 @@ TOPLEVEL_LANG ?=verilog
 
 VERILOG_SOURCES =$(CWD)/../../Exp2/*.v
 
-TOPLEVEL = Datapath
+TOPLEVEL = Main
 MODULE := subroutines_cocotb_test
 COCOTB_HDL_TIMEUNIT=1us
 COCOTB_HDL_TIMEPRECISION=1us
