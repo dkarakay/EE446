@@ -7,15 +7,16 @@ input [3:0] ALUControl,
 output [31:0] INSTR,
 output [31:0] OUT,PC,
 output [3:0] RA1, RA2,
-output [31:0] RD1, RD2,
+output [31:0] RD1, RD2,ALUResult,
 output FlagZ
 
 );
 
 
-wire [31:0] RD2_S, SrcB, R15, ALUResult, ReadData; 
+wire [31:0] RD2_S, SrcB, R15, ReadData; 
 wire [31:0] WriteData, ExtImm,NewPC;
 wire [31:0] PC_W,PCPlus4;
+wire ZIn;
 
 // Program Counter
 //wire [31:0] PC;
@@ -54,7 +55,7 @@ ALU #(32) alu (
 	.DATA_A(RD1),
 	.DATA_B(SrcB),
 	.OUT(ALUResult),
-	.Z(FlagZ)
+	.Z(ZIn)
 );
 
  
@@ -122,6 +123,13 @@ Register_simple #(32) reg_pc(
 	.DATA(NewPC),
 	.reset(RESET),
 	.OUT(PC)
+);
+
+Register_simple #(1) reg_z(
+	.clk(CLK),
+	.DATA(ZIn),
+	.reset(RESET),
+	.OUT(FlagZ)
 );
 
 shifter #(32) shift(

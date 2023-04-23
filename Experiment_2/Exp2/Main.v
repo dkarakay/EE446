@@ -5,16 +5,19 @@ module Main(
 	output FlagZ
 );
 
-wire [31:0] INSTR,PC, RD1, RD2;
+wire [31:0] INSTR,PC, RD1, RD2, ALUResult;
 wire PCSrc, MemtoReg, MemWrite, ALUSrc, RegWrite;
 wire [3:0] ALUControl, RA1, RA2;
 wire [1:0] ImmSrc,RegSrc;
+wire CONDEX;
 
 Controller controller (
+	.CLK(CLK),
 	.OP(INSTR[27:26]),
 	.COND(INSTR[31:28]),
 	.FUNCT(INSTR[25:20]),
 	.RD(INSTR[15:12]),
+	.FlagZ(FlagZ),
 	.PCSrc(PCSrc),
 	.MemtoReg(MemtoReg),
 	.MemWrite(MemWrite),
@@ -22,7 +25,8 @@ Controller controller (
 	.ALUSrc(ALUSrc),
 	.ImmSrc(ImmSrc),
 	.RegWrite(RegWrite),
-	.RegSrc(RegSrc)
+	.RegSrc(RegSrc),
+	.CONDEX(CONDEX)
 	
 );
 
@@ -44,7 +48,8 @@ Datapath datapath (
 	.RD1(RD1),
 	.RD2(RD2),
 	.RA1(RA1),
-	.RA2(RA2)
+	.RA2(RA2),
+	.ALUResult(ALUResult)
 
 );
 
