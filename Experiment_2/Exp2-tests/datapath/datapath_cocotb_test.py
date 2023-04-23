@@ -1,6 +1,6 @@
 import cocotb
 from cocotb.clock import Clock
-from cocotb.triggers import FallingEdge
+from cocotb.triggers import RisingEdge
 
 '''
 @cocotb.test()
@@ -103,6 +103,10 @@ async def datapath_general(dut):
 
 def print_all(dut):
     dut._log.info(f"INSTR {dut.INSTR.value}")
+
+    my_signal_value = int(dut.INSTR.value)
+    dut._log.info(f"INST (HEX): {my_signal_value:x}")
+
     dut._log.info(f"PCSrc {dut.PCSrc.value}")
     dut._log.info(f"RESET {dut.RESET.value}")
     dut._log.info(f"MemtoReg {dut.MemtoReg.value}")
@@ -131,22 +135,17 @@ async def datapath_load_from_memory_add(dut):
     # Generate the clock
     await cocotb.start(Clock(dut.CLK, 10, 'us').start(start_high=False))
 
-    # set clkedge as the falling edge for triggers
-    clkedge = FallingEdge(dut.CLK)
-    # wait until the falling edge
-    await clkedge
-
+    # set clkedge as the rising edge of the clock
+    clkedge = RisingEdge(dut.CLK)
+    # wait until the clock edge
     dut.RESET.value = 1
     dut.PCSrc.value = 0
     await clkedge
-    dut.RESET.value = 0
-    print_all(dut)
 
+    dut.RESET.value = 0
+    #print_all(dut)
 
     # LDR R3, R0 => Load from memory location 0 to R3
-    dut._log.info(f"------------------")
-    dut._log.info(f"LDR R3, R0 => Load from memory location 0 to R3")
-    INSTR = 0xE4003000
     PCSrc = 0
     MemtoReg = 1
     MemWrite = 0
@@ -156,7 +155,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 1
     RegSrc = 0b00
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -166,13 +164,10 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-
+    dut._log.info(f"LDR R3, R0 => Load from memory location 0 to R3")
     print_all(dut)
 
     # LDR R2, R0, #4 => Load from memory location 1 to R2
-    dut._log.info(f"------------------")
-    dut._log.info(f"LDR R2, R0, #4 => Load from memory location 1 to R2")
-    INSTR = 0xE4002004
     PCSrc = 0
     MemtoReg = 1
     MemWrite = 0
@@ -182,7 +177,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 1
     RegSrc = 0b00
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -192,13 +186,10 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-
+    dut._log.info(f"LDR R2, R0, #4 => Load from memory location 1 to R2")
     print_all(dut)
 
     # ADD R4,R2,R3 => Add R2 and R3 and store in R4
-    dut._log.info(f"------------------")
-    dut._log.info(f"ADD R4,R2,R3 => Add R2 and R3 and store in R4")
-    INSTR = 0xE4024003
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -208,7 +199,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 1
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -218,13 +208,10 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-
+    dut._log.info(f"ADD R4,R2,R3 => Add R2 and R3 and store in R4")
     print_all(dut)
 
     # Read R4 to check the result
-    dut._log.info(f"------------------")
-    dut._log.info(f"Read R4 to check the result")
-    INSTR = 0xE4040000
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -234,7 +221,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 0
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -243,15 +229,12 @@ async def datapath_load_from_memory_add(dut):
     dut.ImmSrc.value = ImmSrc
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
-    await clkedge
     assert dut.OUT.value == 9
-
+    await clkedge
+    dut._log.info(f"Read R4 to check the result")
     print_all(dut)
 
     # SUB R5,R2,R3 => R2 - R3 and store in R5
-    dut._log.info(f"------------------")
-    dut._log.info(f"SUB R5,R2,R3 => R2 - R3 and store in R5")
-    INSTR = 0xE4025003
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -261,7 +244,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 1
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -271,13 +253,10 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-
+    dut._log.info(f"SUB R5,R2,R3 => R2 - R3 and store in R5")
     print_all(dut)
 
     # Read R5 to check the result
-    dut._log.info(f"------------------")
-    dut._log.info(f"Read R5 to check the result")
-    INSTR = 0xE4050000
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -287,7 +266,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 0
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -296,15 +274,13 @@ async def datapath_load_from_memory_add(dut):
     dut.ImmSrc.value = ImmSrc
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
-    await clkedge
     assert dut.OUT.value == 1
-
+    await clkedge
+    dut._log.info(f"Read R5 to check the result")
     print_all(dut)
 
     # AND R1,R2,R3 => R2 & R3 and store in R1
-    dut._log.info(f"------------------")
-    dut._log.info(f"AND R1,R2,R3 => R2 & R3 and store in R1")
-    INSTR = 0xE4021003
+    # INSTR = 0xE4021003
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -314,7 +290,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 1
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -324,14 +299,11 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-
+    dut._log.info(f"AND R1,R2,R3 => R2 & R3 and store in R1")
     print_all(dut)
 
-
     # Read R1 to check the result
-    dut._log.info(f"------------------")
-    dut._log.info(f"Read R1 to check the result")
-    INSTR = 0xE4010000
+    # INSTR = 0xE4010000
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -341,7 +313,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 0
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -352,12 +323,11 @@ async def datapath_load_from_memory_add(dut):
     dut.RegSrc.value = RegSrc
     await clkedge
     assert dut.OUT.value == 4
+    dut._log.info(f"Read R1 to check the result")
     print_all(dut)
 
     # ORR R6,R2,R3 => R2 | R3 and store in R6
-    dut._log.info(f"------------------")
-    dut._log.info(f"ORR R6,R2,R3 => R2 | R3 and store in R6")
-    INSTR = 0xE4026003
+    # INSTR = 0xE4026003
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -367,7 +337,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 1
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -377,12 +346,10 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-
+    dut._log.info(f"ORR R6,R2,R3 => R2 | R3 and store in R6")
     print_all(dut)
 
-    # Read R6 to check the result -> Result comes from instruction memory
-    dut._log.info(f"------------------")
-    dut._log.info(f"Read R6 to check the result -> Result comes from instruction memory")
+    # Read R6 to check the result
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -401,13 +368,11 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-
+    dut._log.info(f"Read R6 to check the result")
     print_all(dut)
 
-    # STR R6,[R0] => Store R5 to memory location 0
-    dut._log.info(f"------------------")
-    dut._log.info(f"STR R6,[R0] => Store R5 to memory location 0")
-    INSTR = 0xE4006000
+    # STR R6,[R0] => Store R6 to memory location 0
+    #INSTR = 0xE4006000
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 1
@@ -417,7 +382,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 0
     RegSrc = 2
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -427,13 +391,11 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-
+    dut._log.info(f"STR R6,[R0] => Store R6 to memory location 0")
     print_all(dut)
 
     # LDR R8, R0 => Load from memory location 0 to R8
-    dut._log.info(f"------------------")
-    dut._log.info(f"LDR R8, R0 => Load from memory location 0 to R8")
-    INSTR = 0xE4008000
+    #INSTR = 0xE4008000
     PCSrc = 0
     MemtoReg = 1
     MemWrite = 0
@@ -443,7 +405,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 1
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -453,14 +414,12 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-
+    dut._log.info(f"LDR R8, R0 => Load from memory location 0 to R8")
     print_all(dut)
     assert dut.OUT.value == 5
 
     # MOV R7, R8 => Move R8 to R7
-    dut._log.info(f"------------------")
-    dut._log.info(f"MOV R7, R8 => Move R8 to R7")
-    INSTR = 0xE4007008
+    #INSTR = 0xE4007008
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -470,7 +429,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 1
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -480,13 +438,11 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-
+    dut._log.info(f"MOV R7, R8 => Move R8 to R7")
     print_all(dut)
 
     # Read R7 to check the result
-    dut._log.info(f"------------------")
-    dut._log.info(f"Read R7 to check the result")
-    INSTR = 0xE4070000
+    #INSTR = 0xE4070000
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -496,7 +452,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 0
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -506,13 +461,12 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-
+    dut._log.info(f"Read R7 to check the result")
+    assert dut.OUT.value == 5
     print_all(dut)
 
     # Branch Instruction to PC => 40
-    dut._log.info(f"------------------")
-    dut._log.info(f"Branch Instruction to PC => 40")
-    INSTR = 0xEA00000A
+    #INSTR = 0xEA00000A
     PCSrc = 1
     MemtoReg = 0
     MemWrite = 0
@@ -522,7 +476,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 0
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -532,12 +485,11 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
-    assert dut.PC.value == 40
+    dut._log.info(f"Branch Instruction to PC => 40")
     print_all(dut)
 
-    # Read R6 to check the result from instruction 40
-    dut._log.info(f"------------------")
-    dut._log.info(f"Read R6 to check the result from instruction 40")
+    # Read R6 to check the result from instruction 36
+
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -547,7 +499,6 @@ async def datapath_load_from_memory_add(dut):
     RegWrite = 0
     RegSrc = 0
 
-    dut.INSTR.value = INSTR
     dut.PCSrc.value = PCSrc
     dut.MemtoReg.value = MemtoReg
     dut.MemWrite.value = MemWrite
@@ -557,8 +508,6 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
+    dut._log.info(f"Read R6 to check the result from instruction 36")
 
     print_all(dut)
-
-
-

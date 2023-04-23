@@ -6,10 +6,6 @@ module Instruction_memory#(parameter BYTE_SIZE=4, parameter ADDR_WIDTH=32)(
 reg [7:0] mem [4095:0];
 
 initial begin
-mem[40]<=8'h00;
-mem[41]<=8'h00;
-mem[42]<=8'h06;
-mem[43]<=8'hE4;
 
 $readmemh("mem_data_instr.txt", mem); // You will need this for real tests
 end
