@@ -2,104 +2,6 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge
 
-'''
-@cocotb.test()
-async def datapath_general(dut):
-    """Setup testbench and run a test."""
-    # Generate the clock
-    await cocotb.start(Clock(dut.CLK, 10, 'us').start(start_high=False))
-
-    # set clkedge as the falling edge for triggers
-    clkedge = FallingEdge(dut.CLK)
-    # wait until the falling edge
-    await clkedge
-
-    for i in range(4):
-        ALUResult = i * 4
-        RD2 = 0
-        MemWrite = 0
-        dut.ALUResult.value = ALUResult
-        dut.MemWrite.value = MemWrite
-        dut.RD2.value = RD2
-        await clkedge
-
-        dut._log.info(f"ReadData {dut.ReadData.value}")
-        dut._log.info(f"ALUResult {dut.ALUResult.value}")
-        dut._log.info(f"MemWrite {dut.MemWrite.value}")
-        dut._log.info(f"RD2 {dut.RD2.value}")
-
-        print('------')
-
-    hex_string = "00a00e00"  # a 32-bit hexadecimal value
-    INSTR = int(hex_string, 16)  # convert the hexadecimal string to an integer
-    RegWrite = 1
-    OUT = 13
-    dut.OUT.value = OUT
-    dut.INSTR.value = INSTR
-    dut.RegWrite.value = RegWrite
-
-    await clkedge
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"INSTR {dut.INSTR.value}")
-    dut._log.info(f"RegWrite {dut.RegWrite.value}")
-
-    await clkedge
-
-    print('------')
-
-    hex_string = "00a01e00"  # a 32-bit hexadecimal value
-    INSTR = int(hex_string, 16)  # convert the hexadecimal string to an integer
-    RegWrite = 1
-    OUT = 6
-    dut.OUT.value = OUT
-    dut.INSTR.value = INSTR
-    dut.RegWrite.value = RegWrite
-
-    await clkedge
-
-    dut._log.info(f"OUT {dut.OUT.value}")
-    dut._log.info(f"INSTR {dut.INSTR.value}")
-    dut._log.info(f"RegWrite {dut.RegWrite.value}")
-
-    await clkedge
-
-    print('------')
-
-    RegWrite = 0
-    RA1 = 0
-    dut.RegWrite.value = RegWrite
-    dut.RA1.value = RA1
-    await clkedge
-
-    dut._log.info(f"RegWrite {dut.RegWrite.value}")
-    dut._log.info(f"RA1 {dut.RA1.value}")
-    dut._log.info(f"RD1 {dut.RD1.value}")
-    await clkedge
-
-    print('------')
-
-    RegWrite = 0
-    RA1 = 1
-    RA2 = 0
-    ALUSrc = 0
-    ALUControl = 4
-    dut.RegWrite.value = RegWrite
-    dut.RA1.value = RA1
-    dut.RA2.value = RA2
-    dut.ALUSrc.value = ALUSrc
-    dut.ALUControl.value = ALUControl
-    await clkedge
-
-    dut._log.info(f"RD1 {dut.RD1.value}")
-    dut._log.info(f"RD2 {dut.RD2.value}")
-    dut._log.info(f"SrcB {dut.SrcB.value}")
-    dut._log.info(f"ALUControl {dut.ALUControl.value}")
-    dut._log.info(f"ALUSrc {dut.ALUSrc.value}")
-    dut._log.info(f"ALUResult {dut.ALUResult.value}")
-    print('-------  -------')
-'''
-
 
 def print_all(dut):
     dut._log.info(f"INSTR {dut.INSTR.value}")
@@ -143,7 +45,7 @@ async def datapath_load_from_memory_add(dut):
     await clkedge
 
     dut.RESET.value = 0
-    #print_all(dut)
+    # print_all(dut)
 
     # LDR R3, R0 => Load from memory location 0 to R3
     PCSrc = 0
@@ -372,7 +274,7 @@ async def datapath_load_from_memory_add(dut):
     print_all(dut)
 
     # STR R6,[R0] => Store R6 to memory location 0
-    #INSTR = 0xE4006000
+    # INSTR = 0xE4006000
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 1
@@ -395,7 +297,7 @@ async def datapath_load_from_memory_add(dut):
     print_all(dut)
 
     # LDR R8, R0 => Load from memory location 0 to R8
-    #INSTR = 0xE4008000
+    # INSTR = 0xE4008000
     PCSrc = 0
     MemtoReg = 1
     MemWrite = 0
@@ -419,7 +321,7 @@ async def datapath_load_from_memory_add(dut):
     assert dut.OUT.value == 5
 
     # MOV R7, R8 => Move R8 to R7
-    #INSTR = 0xE4007008
+    # INSTR = 0xE4007008
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -442,7 +344,7 @@ async def datapath_load_from_memory_add(dut):
     print_all(dut)
 
     # Read R7 to check the result
-    #INSTR = 0xE4070000
+    # INSTR = 0xE4070000
     PCSrc = 0
     MemtoReg = 0
     MemWrite = 0
@@ -466,7 +368,7 @@ async def datapath_load_from_memory_add(dut):
     print_all(dut)
 
     # Branch Instruction to PC => 40
-    #INSTR = 0xEA00000A
+    # INSTR = 0xEA00000A
     PCSrc = 1
     MemtoReg = 0
     MemWrite = 0

@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1682264796" />
+    <testcase name="datapath_load_from_memory_add" classname="subroutines_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_2\Exp2-tests\subroutines\subroutines_cocotb_test.py" lineno="34" time="0.07896804809570312" sim_time_ns="66000" ratio_time="835781.0733780977" />
+  </testsuite>
+</testsuites>
