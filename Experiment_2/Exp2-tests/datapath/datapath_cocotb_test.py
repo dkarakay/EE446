@@ -508,6 +508,7 @@ async def datapath_load_from_memory_add(dut):
     dut.RegWrite.value = RegWrite
     dut.RegSrc.value = RegSrc
     await clkedge
+    assert dut.OUT.value == 5
     dut._log.info(f"Read R6 to check the result from instruction 36")
 
     print_all(dut)
