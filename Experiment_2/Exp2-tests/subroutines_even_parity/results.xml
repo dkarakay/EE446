@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1682633616" />
+    <testcase name="subroutine_2s_complement_using_branch" classname="subroutines_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_2\Exp2-tests\subroutines_even_parity\subroutines_cocotb_test.py" lineno="39" time="9.148999214172363" sim_time_ns="326000" ratio_time="35632.312602563776" />
+  </testsuite>
+</testsuites>
