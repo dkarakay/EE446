@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1683156301" />
+    <testcase name="datapath_operations" classname="datapath_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_3\Exp3-tests\datapath\datapath_cocotb_test.py" lineno="198" time="0.07200145721435547" sim_time_ns="116000" ratio_time="1611078.504351051" />
+  </testsuite>
+</testsuites>

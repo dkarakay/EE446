@@ -1,0 +1,98 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 288 160)
+	(text "ALU" (rect 5 0 26 12)(font "Arial" ))
+	(text "inst" (rect 8 128 20 140)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "control[3..0]" (rect 0 0 46 12)(font "Arial" ))
+		(text "control[3..0]" (rect 21 27 67 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "CI" (rect 0 0 9 12)(font "Arial" ))
+		(text "CI" (rect 21 43 30 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "DATA_A[WIDTH-1..0]" (rect 0 0 97 12)(font "Arial" ))
+		(text "DATA_A[WIDTH-1..0]" (rect 21 59 118 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "DATA_B[WIDTH-1..0]" (rect 0 0 95 12)(font "Arial" ))
+		(text "DATA_B[WIDTH-1..0]" (rect 21 75 116 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 272 32)
+		(output)
+		(text "OUT[WIDTH-1..0]" (rect 0 0 74 12)(font "Arial" ))
+		(text "OUT[WIDTH-1..0]" (rect 177 27 251 39)(font "Arial" ))
+		(line (pt 272 32)(pt 256 32)(line_width 3))
+	)
+	(port
+		(pt 272 48)
+		(output)
+		(text "CO" (rect 0 0 14 12)(font "Arial" ))
+		(text "CO" (rect 237 43 251 55)(font "Arial" ))
+		(line (pt 272 48)(pt 256 48)(line_width 1))
+	)
+	(port
+		(pt 272 64)
+		(output)
+		(text "OVF" (rect 0 0 21 12)(font "Arial" ))
+		(text "OVF" (rect 230 59 251 71)(font "Arial" ))
+		(line (pt 272 64)(pt 256 64)(line_width 1))
+	)
+	(port
+		(pt 272 80)
+		(output)
+		(text "N" (rect 0 0 7 12)(font "Arial" ))
+		(text "N" (rect 244 75 251 87)(font "Arial" ))
+		(line (pt 272 80)(pt 256 80)(line_width 1))
+	)
+	(port
+		(pt 272 96)
+		(output)
+		(text "Z" (rect 0 0 7 12)(font "Arial" ))
+		(text "Z" (rect 244 91 251 103)(font "Arial" ))
+		(line (pt 272 96)(pt 256 96)(line_width 1))
+	)
+	(parameter
+		"WIDTH"
+		"8"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 256 128)(line_width 1))
+	)
+	(annotation_block (parameter)(rect 288 -64 388 16))
+)
