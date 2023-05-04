@@ -3,165 +3,54 @@ from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge
 
 
-def print_hex_dec(dut, val, cond=False):
+def print_hex_dec(dut, val, name, cond=False, only_hex=False):
+    if only_hex:
+        my = int(val)
+        dut._log.info(f"{name}: H: {my:x}")
+        return
+
     if cond or val != 0:
-        my_signal_value = int(val)
-        dut._log.info(f"{val} (HEX): {my_signal_value:x} (DEC): {my_signal_value}")
+        my = int(val)
+        dut._log.info(f"{name}: D: {my:d} H: {my:x} B: {val}")
 
 
 ## This function prints all the signals in the DUT except the ones that are zero
 # @param dut: the DUT
 def print_all(dut):
-    print_hex_dec(dut, dut.INSTR.value, cond=True)
+    print_hex_dec(dut, dut.INSTR.value, name="INSTR", only_hex=True)
 
-    print_hex_dec(dut, dut.RESET.value)
-    print_hex_dec(dut, dut.PCWrite.value)
-    print_hex_dec(dut, dut.AdSrc.value)
-    print_hex_dec(dut, dut.MemWrite.value)
-    print_hex_dec(dut, dut.IRWrite.value)
-    print_hex_dec(dut, dut.ResultSrc.value)
-    print_hex_dec(dut, dut.ALUControl.value)
-    print_hex_dec(dut, dut.ALUSrcA.value)
-    print_hex_dec(dut, dut.ALUSrcB.value)
-    print_hex_dec(dut, dut.ImmSrc.value)
-    print_hex_dec(dut, dut.RegWrite.value)
-    print_hex_dec(dut, dut.RegSrc.value)
-    print_hex_dec(dut, dut.Sel14.value)
+    print_hex_dec(dut, dut.RESET.value, name="RESET")
+    print_hex_dec(dut, dut.PCWrite.value, name="PCWrite")
+    print_hex_dec(dut, dut.AdSrc.value, name="AdSrc")
+    print_hex_dec(dut, dut.MemWrite.value, name="MemWrite")
+    print_hex_dec(dut, dut.IRWrite.value, name="IRWrite")
+    print_hex_dec(dut, dut.ResultSrc.value, name="ResultSrc")
+    print_hex_dec(dut, dut.ALUControl.value, name="ALUControl")
+    print_hex_dec(dut, dut.ALUSrcA.value, name="ALUSrcA")
+    print_hex_dec(dut, dut.ALUSrcB.value, name="ALUSrcB")
+    print_hex_dec(dut, dut.ImmSrc.value, name="ImmSrc")
+    print_hex_dec(dut, dut.RegWrite.value, name="RegWrite")
+    print_hex_dec(dut, dut.RegSrc.value, name="RegSrc")
+    print_hex_dec(dut, dut.Sel14.value, name="Sel14")
 
-    print_hex_dec(dut, dut.PC.value)
-    print_hex_dec(dut, dut.ADR.value)
-    print_hex_dec(dut, dut.ReadData.value)
-    print_hex_dec(dut, dut.ReadDataOut.value)
-    print_hex_dec(dut, dut.RA1.value)
-    print_hex_dec(dut, dut.RA2.value)
-    print_hex_dec(dut, dut.RA3.value)
-    print_hex_dec(dut, dut.RD1.value)
-    print_hex_dec(dut, dut.RD2.value)
-    print_hex_dec(dut, dut.RD1_OUT.value)
-    print_hex_dec(dut, dut.RD2_OUT.value)
-    print_hex_dec(dut, dut.SrcA.value)
-    print_hex_dec(dut, dut.SrcB.value)
-    print_hex_dec(dut, dut.ALUResult.value)
-    print_hex_dec(dut, dut.ALUOut.value)
-    
-    
+    print_hex_dec(dut, dut.PC.value, name="PC", cond=True)
 
-    if dut.PCWrite.value != 0:
-        dut._log.info(f"PCWrite {dut.PCWrite.value}")
+    print_hex_dec(dut, dut.ADR.value, name="ADR")
+    print_hex_dec(dut, dut.ReadData.value, name="ReadData")
+    print_hex_dec(dut, dut.ReadDataOut.value, name="ReadDataOut")
+    print_hex_dec(dut, dut.RA1.value, name="RA1")
+    print_hex_dec(dut, dut.RA2.value, name="RA2")
+    print_hex_dec(dut, dut.RA3.value, name="RA3")
+    print_hex_dec(dut, dut.RD1.value, name="RD1")
+    print_hex_dec(dut, dut.RD2.value, name="RD2")
+    print_hex_dec(dut, dut.RD1_OUT.value, name="RD1_OUT")
+    print_hex_dec(dut, dut.RD2_OUT.value, name="RD2_OUT")
+    print_hex_dec(dut, dut.SrcA.value, name="SrcA")
+    print_hex_dec(dut, dut.SrcB.value, name="SrcB")
+    print_hex_dec(dut, dut.ALUResult.value, name="ALUResult")
+    print_hex_dec(dut, dut.ALUOut.value, name="ALUOut")
 
-    if dut.AdSrc.value != 0:
-        dut._log.info(f"AdSrc {dut.AdSrc.value}")
-
-    if dut.MemWrite.value != 0:
-        dut._log.info(f"MemWrite {dut.MemWrite.value}")
-
-    if dut.IRWrite.value != 0:
-        dut._log.info(f"IRWrite {dut.IRWrite.value}")
-
-    if dut.ResultSrc.value != 0:
-        dut._log.info(f"ResultSrc {dut.ResultSrc.value}")
-
-    if dut.ALUControl.value != 0:
-        dut._log.info(f"ALUControl {dut.ALUControl.value}")
-
-    if dut.ALUSrcA.value != 0:
-        dut._log.info(f"ALUSrcA {dut.ALUSrcA.value}")
-
-    if dut.ALUSrcB.value != 0:
-        dut._log.info(f"ALUSrcB {dut.ALUSrcB.value}")
-
-    if dut.ImmSrc.value != 0:
-        dut._log.info(f"ImmSrc {dut.ImmSrc.value}")
-
-    if dut.RegWrite.value != 0:
-        dut._log.info(f"RegWrite {dut.RegWrite.value}")
-
-    if dut.RegSrc.value != 0:
-        dut._log.info(f"RegSrc {dut.RegSrc.value}")
-
-    if dut.Sel14.value != 0:
-        dut._log.info(f"Sel14 {dut.Sel14.value}")
-
-    dut._log.info(f"------------------")
-    my_signal_value = int(dut.PC.value)
-    dut._log.info(f"PC {dut.PC.value} (HEX): {my_signal_value:x}")
-
-    if dut.ADR.value != 0:
-        my_signal_value = int(dut.ADR.value)
-        dut._log.info(f"ADR {dut.ADR.value} (HEX): {my_signal_value:x}")
-
-    if dut.ReadData.value != 0:
-        my_signal_value = int(dut.ReadData.value)
-        dut._log.info(
-            f"ReadData {dut.ReadData.value} (HEX): {my_signal_value:x} (DEC): {my_signal_value}"
-        )
-
-    if dut.ReadDataOut.value != 0:
-        my_signal_value = int(dut.ReadDataOut.value)
-        dut._log.info(
-            f"ReadDataOut {dut.ReadDataOut.value} (HEX): {my_signal_value:x} (DEC): {my_signal_value}"
-        )
-
-    if dut.RA1.value != 0:
-        my_signal_value = int(dut.RA1.value)
-        dut._log.info(f"RA1 {dut.RA1.value} (DEC): {my_signal_value}")
-
-    if dut.RA2.value != 0:
-        my_signal_value = int(dut.RA2.value)
-        dut._log.info(f"RA2 {dut.RA2.value} (DEC): {my_signal_value}")
-
-    if dut.RA3.value != 0:
-        my_signal_value = int(dut.RA3.value)
-        dut._log.info(f"RA3 {dut.RA3.value} (DEC): {my_signal_value}")
-
-    if dut.RD1.value != 0:
-        my_signal_value = int(dut.RD1.value)
-        dut._log.info(
-            f"RD1 {dut.RD1.value} (HEX): {my_signal_value:x} (DEC): {my_signal_value}"
-        )
-
-    if dut.RD2.value != 0:
-        my_signal_value = int(dut.RD2.value)
-        dut._log.info(
-            f"RD2 {dut.RD2.value} (HEX): {my_signal_value:x} (DEC): {my_signal_value}"
-        )
-
-    if dut.RD1_OUT.value != 0:
-        my_signal_value = int(dut.RD1_OUT.value)
-        dut._log.info(
-            f"RD1_OUT {dut.RD1_OUT.value} (HEX): {my_signal_value:x} (DEC): {my_signal_value}"
-        )
-
-    if dut.RD2_OUT.value != 0:
-        my_signal_value = int(dut.RD2_OUT.value)
-        dut._log.info(
-            f"RD2_OUT {dut.RD2_OUT.value} (HEX): {my_signal_value:x} (DEC): {my_signal_value}"
-        )
-
-    if dut.SrcA.value != 0:
-        my_signal_value = int(dut.SrcA.value)
-        dut._log.info(
-            f"SrcA {dut.SrcA.value} (HEX): {my_signal_value:x} (DEC): {my_signal_value}"
-        )
-
-    if dut.SrcB.value != 0:
-        my_signal_value = int(dut.SrcB.value)
-        dut._log.info(
-            f"SrcB {dut.SrcB.value} (HEX): {my_signal_value:x}   (DEC): {my_signal_value}"
-        )
-
-    if dut.ALUResult.value != 0:
-        my_signal_value = int(dut.ALUResult.value)
-        dut._log.info(f"ALUResult {dut.ALUResult.value} (HEX): {my_signal_value:x}")
-
-    if dut.ALUOut.value != 0:
-        my_signal_value = int(dut.ALUOut.value)
-        dut._log.info(f"ALUOut {dut.ALUOut.value} (HEX): {my_signal_value:x}")
-
-    my_signal_value = int(dut.OUT.value)
-    dut._log.info(
-        f"OUT {dut.OUT.value} (HEX): {my_signal_value:x} (DEC): {my_signal_value:d}"
-    )
+    print_hex_dec(dut, dut.OUT.value, name="OUT", cond=True)
     print("------------------")
 
 
@@ -259,6 +148,12 @@ async def datapath_operations(dut):
     dut.RESET.value = 0
     await clkedge
 
+    # Check LDR
+    # LDR R3, [R0, #60] => 17
+    # 0xE410303C
+
+    dut._log.info(f"LDR R3, [R0, #60] => 17")
+
     # Fetch and decode
     await fetch_and_decode(dut, clkedge)
 
@@ -315,8 +210,68 @@ async def datapath_operations(dut):
     assert dut.ReadDataOut.value == 17
     assert dut.OUT.value == 17
 
+    # Check LDR
+    # Address 4
+    # LDR R1, [R0, #64] => R1 = 5
+    # 0xE4101040
+
+    dut._log.info(f"LDR R1, [R0, #64] => R1 = 5")
+
+    # Fetch and decode
+    await fetch_and_decode(dut, clkedge)
+
+    # Cycle 3 - MemAddr
+    ALUSrcB = 1
+    ImmSrc = 1
+    ALUControl = 4
+
+    write_data(dut, ALUSrcB=ALUSrcB, ImmSrc=ImmSrc, ALUControl=ALUControl)
+
+    await clkedge
+    dut._log.info(f"Cycle 3 - MemAddr")
+    print_all(dut)
+    assert dut.ALUResult.value == 64
+
+    # Cycle 4 - MemRead
+    AdSrc = 1
+    ImmSrc = 1
+    ALUSrcB = 1
+    ALUControl = 4
+
+    write_data(dut, AdSrc=AdSrc, ImmSrc=ImmSrc, ALUSrcB=ALUSrcB, ALUControl=ALUControl)
+
+    await clkedge
+    dut._log.info(f"Cycle 4 - MemRead")
+    print_all(dut)
+    assert dut.ReadData.value == 5
+
+    # Cycle 5 - WriteBack
+    AdSrc = 1
+    ImmSrc = 1
+    ALUSrcB = 1
+    RegWrite = 1
+    ResultSrc = 1
+    ALUControl = 4
+
+    write_data(
+        dut,
+        AdSrc=AdSrc,
+        ImmSrc=ImmSrc,
+        ALUSrcB=ALUSrcB,
+        RegWrite=RegWrite,
+        ResultSrc=ResultSrc,
+        ALUControl=ALUControl,
+    )
+
+    await clkedge
+    dut._log.info(f"Cycle 5 - WriteBack")
+    print_all(dut)
+
     # Check ADD operation
-    dut._log.info(f"Check ADD operation")
+    # Address 8
+    # ADD R6, R3, R1 -> R6 = 22 (17 + 5)
+    # 0xE0836001
+    dut._log.info(f"ADD R6, R3, R1 -> R6 = 22 (17 + 5)")
 
     # Fetch and decode cycles
     await fetch_and_decode(dut, clkedge, skip_print=True)
@@ -324,18 +279,51 @@ async def datapath_operations(dut):
     # Cycle 3 - Execute
     ResultSrc = 1
     ALUControl = 4
-
     write_data(dut, ResultSrc=ResultSrc, ALUControl=ALUControl)
     await clkedge
     dut._log.info(f"Cycle 3 - Execute")
     print_all(dut)
+    assert dut.INSTR.value == 0xE0836001
 
     # Cycle 4 - ALUWriteBack
     RegWrite = 1
     write_data(dut, RegWrite=RegWrite)
     await clkedge
-    dut._log.info(f"Cycle 4 - Wait")
+    dut._log.info(f"Cycle 4 - ALUWriteBack")
     print_all(dut)
+    assert dut.OUT.value == 22
+
+    # Cycle 5 - Wait
+    write_data(dut)
+    await clkedge
+    dut._log.info(f"Cycle 5 - Wait")
+    print_all(dut)
+
+    # Check SUB operation
+    # Address 12
+    # SUB R7, R3, R1 -> R7 = 12 (17 - 5)
+    # 0xE0437001
+    dut._log.info(f"SUB R7, R3, R1 -> R7 = 12 (17 - 5)")
+
+    # Fetch and decode cycles
+    await fetch_and_decode(dut, clkedge, skip_print=True)
+
+    # Cycle 3 - Execute
+    ResultSrc = 1
+    ALUControl = 2
+    write_data(dut, ResultSrc=ResultSrc, ALUControl=ALUControl)
+    await clkedge
+    dut._log.info(f"Cycle 3 - Execute")
+    print_all(dut)
+    assert dut.INSTR.value == 0xE0437001
+
+    # Cycle 4 - ALUWriteBack
+    RegWrite = 1
+    write_data(dut, RegWrite=RegWrite)
+    await clkedge
+    dut._log.info(f"Cycle 4 - ALUWriteBack")
+    print_all(dut)
+    assert dut.OUT.value == 12
 
     # Cycle 5 - Wait
     write_data(dut)
