@@ -7,14 +7,15 @@ input [3:0] ALUControl,
 output [31:0] INSTR, ALUOut,
 output [31:0] OUT, PC, 
 output [3:0] RA1, RA2, RA3,
-output [31:0] RD1, RD2, ALUResult,
+output [31:0] RD1, RD2, ALUResult,WD3,
 output FlagZ
 
 );
 
-wire [31:0] RD2_S, SrcB, SrcA, R15, ReadData, RD1_OUT, RD2_OUT; 
-wire [31:0] WriteData, ExtImm, ReadDataOut, ADR;
+wire [31:0] SrcB, SrcA, R15, ReadData, RD1_OUT, RD2_OUT, WriteData; 
+wire [31:0] ExtImm, ReadDataOut, ADR;
 wire ZIn;
+wire [4:0] shamt5;
 
 // REG File
 Register_file reg_file (
@@ -25,9 +26,9 @@ Register_file reg_file (
 	.Destination_select(RA3),
 	.out_0(RD1),
 	.out_1(RD2),
-	.DATA(OUT),
+	.DATA(WD3),
 	.reset(RESET),
-	.Reg_15(R15)
+	.Reg_15(OUT)
 );
 
 // MUX for BX LR
@@ -38,13 +39,21 @@ Mux_2to1 #(32) mux_alu_bx_lr (
     .output_value(RA3)
 );
 
+// MUX for BX LR2
+Mux_2to1 #(32) mux_alu_bx_lr2 (
+    .input_0(OUT),
+    .input_1(PC),
+    .select(Sel14),
+    .output_value(WD3)
+);
+
 // Memory
 Memory IDM(
 	.clk(CLK),
 	.WE(MemWrite),
 	.ADDR(ADR),
 	.RD(ReadData),
-	.WD(RD2_OUT)
+	.WD(WriteData)
 );
 
 
@@ -74,12 +83,12 @@ Register_simple #(32) reg_rd1(
 	.OUT(RD1_OUT)
 );
 
-// RD2_S after shifter
+// RD2
 Register_simple #(32) reg_rd2(
 	.clk(CLK),
-	.DATA(RD2_S),
+	.DATA(RD2),
 	.reset(RESET),
-	.OUT(RD2_OUT)
+	.OUT(WriteData)
 );
 
 
@@ -178,11 +187,13 @@ Register_simple #(1) reg_z(
 	.OUT(FlagZ)
 );
 
+assign shamt5 = (INSTR[27:26] == 2'b00) ? INSTR[11:7] : 0; 
+
 shifter #(32) shift(
 	.control(INSTR[6:5]),
-	.shamt(INSTR[11:7]),
-	.DATA(RD2),
-	.OUT(RD2_S)
+	.shamt(shamt5),
+	.DATA(WriteData),
+	.OUT(RD2_OUT)
 );
 
 endmodule
