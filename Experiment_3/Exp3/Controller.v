@@ -255,6 +255,7 @@ always @(*) begin
 					ALUSrcB = 0;
 					ImmSrc = 0;
 					RegWrite = 1;
+					if(FUNCT == 6'b010100) RegWrite = 0;
 					RegSrc = 0;
 					Sel14 = 0;
 				end

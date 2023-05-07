@@ -183,7 +183,7 @@ Extender extend(
 
 Register_sync_rw #(1) reg_z(
 	.clk(CLK),
-	.we(CYCLE != 4),
+	.we((CYCLE==2) ? 1: 0),
 	.DATA(ZIn),
 	.reset(RESET),
 	.OUT(FlagZ)

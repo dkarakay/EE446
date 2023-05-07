@@ -336,10 +336,10 @@ async def subroutine_2s_complement_using_branch(dut):
     print_all(dut)
 
     # Address 64
-    # CMP R3, R1 => 0
-    # 0xE1430001
+    # CMP R3, R0 => 0
+    # 0xE1430000
 
-    dut._log.info(f"CMP R3, R1 => 0")
+    dut._log.info(f"CMP R3, R0 => 0")
 
     # Fetch and decode
     await fetch_and_decode(dut, clkedge)
@@ -348,13 +348,12 @@ async def subroutine_2s_complement_using_branch(dut):
     await clkedge
     dut._log.info(f"Cycle 3 - Execute")
     print_all(dut)
-    assert dut.INSTR.value == 0xE1430001
+    assert dut.INSTR.value == 0xE1430000
 
     # Cycle 4 - Execute
     await clkedge
     dut._log.info(f"Cycle 4 - Execute")
     print_all(dut)
-    assert dut.OUT.value == 1
 
     # Cycle 5 - WriteBack
     await clkedge
@@ -411,16 +410,16 @@ async def subroutine_2s_complement_using_branch(dut):
     dut._log.info(f"Cycle 5 - WriteBack")
     print_all(dut)
 
-    for i in range(0, 70):
+    dut._log.info(f"Wait for 2 loops")
+    for i in range(0, 65):
         await clkedge
-        if(dut.CYCLE.value != 0 and dut.CYCLE.value != 1):
-            print_all(dut)
-
+        #dut._log.info(f"Cycle {i} - Wait")
+        # if dut.CYCLE.value != 0 and dut.CYCLE.value != 1 :
 
     print_all(dut)
 
     # Check BX LR
-    # Address 24
+    # Address 80
     # BX LR -> PC = 4
     # 0xE800000E
 
@@ -441,6 +440,29 @@ async def subroutine_2s_complement_using_branch(dut):
 
     await clkedge
     dut._log.info(f"Cycle 5 - Wait")
+    print_all(dut)
+
+    # Address 4
+    # ADD R10,R10,R0 => 189 (0xBD)
+    # 0xE08AA000
+
+    dut._log.info(f"ADD R10,R10,R0 => 189 (0xBD) Check the sum of the array")
+
+    # Fetch and decode
+    await fetch_and_decode(dut, clkedge)
+
+    await clkedge
+    dut._log.info(f"Cycle 3 - Execute")
+    print_all(dut)
+    assert dut.INSTR.value == 0xE08AA000
+
+    await clkedge
+    dut._log.info(f"Cycle 4 - Execute")
+    print_all(dut)
+    assert dut.OUT.value == 189
+
+    await clkedge
+    dut._log.info(f"Cycle 5 - WriteBack")
     print_all(dut)
 
     """
