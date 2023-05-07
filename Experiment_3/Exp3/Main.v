@@ -5,11 +5,12 @@ module Main(
 	output FlagZ
 );
 
-wire [31:0] INSTR,PC, RD1, RD2, ALUResult;
-wire PCSrc, MemtoReg, MemWrite, ALUSrc, RegWrite;
-wire [3:0] ALUControl, RA1, RA2;
-wire [1:0] ImmSrc,RegSrc;
+wire [31:0] INSTR,PC, RD1, RD2, ALUResult,ALUOut, WD3;
+wire RegWrite, MemWrite, ALUSrcA, PCWrite, AdSrc, Sel14,IRWrite;
+wire [3:0] ALUControl, RA1, RA2, RA3;
+wire [1:0] RegSrc, ImmSrc, ALUSrcB, ResultSrc;
 wire CONDEX;
+wire [2:0] CYCLE;
 
 Controller controller (
 	.CLK(CLK),
@@ -18,30 +19,39 @@ Controller controller (
 	.FUNCT(INSTR[25:20]),
 	.RD(INSTR[15:12]),
 	.FlagZ(FlagZ),
-	.PCSrc(PCSrc),
-	.MemtoReg(MemtoReg),
+	.PCWrite(PCWrite),
+	.AdSrc(AdSrc),
 	.MemWrite(MemWrite),
+	.IRWrite(IRWrite),
 	.ALUControl(ALUControl),
-	.ALUSrc(ALUSrc),
+	.ALUSrcA(ALUSrcA),
+	.ALUSrcB(ALUSrcB),
 	.ImmSrc(ImmSrc),
 	.RegWrite(RegWrite),
 	.RegSrc(RegSrc),
-	.CONDEX(CONDEX)
-	
+	.ResultSrc(ResultSrc),
+	.Sel14(Sel14),
+	.CONDEX(CONDEX),
+	.CYCLE(CYCLE),
+	.RESET(RESET)
 );
 
 Datapath datapath (
 	.CLK(CLK),
 	.RESET(RESET),
 	.INSTR(INSTR),
-	.PCSrc(PCSrc),
-	.MemtoReg(MemtoReg),
+	.PCWrite(PCWrite),
+	.AdSrc(AdSrc),
 	.MemWrite(MemWrite),
+	.IRWrite(IRWrite),
 	.ALUControl(ALUControl),
-	.ALUSrc(ALUSrc),
+	.ALUSrcA(ALUSrcA),
+	.ALUSrcB(ALUSrcB),
 	.ImmSrc(ImmSrc),
 	.RegWrite(RegWrite),
 	.RegSrc(RegSrc),
+	.ResultSrc(ResultSrc),
+	.Sel14(Sel14),
 	.OUT(OUT),
 	.FlagZ(FlagZ),
 	.PC(PC),
@@ -49,8 +59,10 @@ Datapath datapath (
 	.RD2(RD2),
 	.RA1(RA1),
 	.RA2(RA2),
-	.ALUResult(ALUResult)
-
+	.RA3(RA3),
+	.ALUResult(ALUResult),
+	.ALUOut(ALUOut),
+	.WD3(WD3)
 );
 
 endmodule

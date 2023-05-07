@@ -633,7 +633,7 @@ async def datapath_operations(dut):
 
     dut._log.info(f"BL 0x00000002 -> PC = 60 + 8 + 2*4 = 76 R14 = 64")
     # Fetch and decode
-    await fetch_and_decode(dut, clkedge, branch=True, skip_print=True)
+    await fetch_and_decode(dut, clkedge, branch=True, skip_print=False)
 
     # Cycle 3 - Branch
     ALUSrcB = 1

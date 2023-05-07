@@ -2,7 +2,7 @@ module datapath(
 	input CLK,
 	input ENABLE,
 	input [1:0] OP,
-   input [7:0] INP,
+    input [7:0] INP,
 	output[7:0] REG_OUT,
 	output reg[2:0] CYCLE,
 	input RESET
