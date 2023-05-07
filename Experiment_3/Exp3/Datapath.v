@@ -4,6 +4,7 @@ input RESET,
 input RegWrite, MemWrite, ALUSrcA, PCWrite, AdSrc, Sel14,IRWrite,
 input [1:0] RegSrc, ImmSrc, ALUSrcB, ResultSrc,
 input [3:0] ALUControl,
+input [2:0] CYCLE,
 output [31:0] INSTR, ALUOut,
 output [31:0] OUT, PC, 
 output [3:0] RA1, RA2, RA3,
@@ -180,8 +181,9 @@ Extender extend(
 );
 
 
-Register_simple #(1) reg_z(
+Register_sync_rw #(1) reg_z(
 	.clk(CLK),
+	.we(CYCLE != 4),
 	.DATA(ZIn),
 	.reset(RESET),
 	.OUT(FlagZ)

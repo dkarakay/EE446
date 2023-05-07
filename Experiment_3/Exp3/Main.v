@@ -40,6 +40,7 @@ Datapath datapath (
 	.CLK(CLK),
 	.RESET(RESET),
 	.INSTR(INSTR),
+	.CYCLE(CYCLE),
 	.PCWrite(PCWrite),
 	.AdSrc(AdSrc),
 	.MemWrite(MemWrite),

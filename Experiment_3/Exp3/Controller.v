@@ -336,7 +336,7 @@ always @(*) begin
 				RegSrc = 0;
 				Sel14 = 0;
 			end
-
+			
 			else begin
 				PCWrite = 0;
 				AdSrc = 0;

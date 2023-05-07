@@ -5,7 +5,7 @@ input [(BYTE_SIZE*8)-1:0] WD,
 output [(BYTE_SIZE*8)-1:0] RD 
 );
 
-reg [7:0] mem [135:0];
+reg [7:0] mem [300:0];
 
 initial begin
 /*mem[32]<=8'h0;
