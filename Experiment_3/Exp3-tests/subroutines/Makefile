@@ -10,7 +10,7 @@ SIM ?= icarus
 TOPLEVEL_LANG ?=verilog
 
 
-VERILOG_SOURCES =$(CWD)/../../Exp2/*.v
+VERILOG_SOURCES =$(CWD)/../../Exp3/*.v
 
 TOPLEVEL = Main
 MODULE := subroutines_cocotb_test
