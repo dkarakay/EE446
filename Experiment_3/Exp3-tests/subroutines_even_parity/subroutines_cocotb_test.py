@@ -378,8 +378,8 @@ async def subroutine_2s_complement_using_branch(dut):
     await clkedge
     dut._log.info(f"Cycle 5 - WriteBack")
     print_all(dut)
-    dut._log.info(f"Result even Parity of 0x0000000E is {dut.OUT.value}")
-    assert dut.OUT.value == 1
+    dut._log.info(f"Result even Parity of 0x0000000F is {dut.OUT.value}")
+    assert dut.OUT.value == 0
 
     # Address 152
     # BX LR => Branch to address in LR
