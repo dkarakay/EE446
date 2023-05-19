@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1683442660" />
+    <testcase name="subroutine_2s_complement_using_branch" classname="subroutines_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_3\Exp3-tests\subroutines_array_sum\subroutines_cocotb_test.py" lineno="78" time="1.2619404792785645" sim_time_ns="1366000" ratio_time="1082459.9277304467" />
+  </testsuite>
+</testsuites>

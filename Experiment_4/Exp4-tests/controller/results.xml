@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1683430509" />
+    <testcase name="main_cocotb_test" classname="main_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_3\Exp3-tests\controller\main_cocotb_test.py" lineno="74" time="0.20400214195251465" sim_time_ns="306000" ratio_time="1499984.250514523">
+      <failure />
+    </testcase>
+  </testsuite>
+</testsuites>

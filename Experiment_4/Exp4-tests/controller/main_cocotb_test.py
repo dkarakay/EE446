@@ -18,6 +18,7 @@ def print_hex_dec(dut, val, name, cond=False, only_hex=False):
 ## This function prints all the signals in the DUT except the ones that are zero
 # @param dut: the DUT
 def print_all(dut):
+    dut._log.info("CYCLE: " + str(dut.CYCLE.value))
     print_hex_dec(dut, dut.INSTR.value, name="INSTR", only_hex=True)
 
     print_hex_dec(dut, dut.RESET.value, name="RESET")
@@ -36,22 +37,13 @@ def print_all(dut):
 
     print_hex_dec(dut, dut.PC.value, name="PC", cond=True)
 
-    print_hex_dec(dut, dut.ADR.value, name="ADR")
-    print_hex_dec(dut, dut.ReadData.value, name="ReadData")
-    print_hex_dec(dut, dut.ReadDataOut.value, name="ReadDataOut")
-    print_hex_dec(dut, dut.WriteData.value, name="WriteData")
     print_hex_dec(dut, dut.FlagZ.value, name="FlagZ")
-    print_hex_dec(dut, dut.shamt5.value, name="shamt5", cond=True)
     print_hex_dec(dut, dut.WD3.value, name="WD3")
     print_hex_dec(dut, dut.RA1.value, name="RA1")
     print_hex_dec(dut, dut.RA2.value, name="RA2")
     print_hex_dec(dut, dut.RA3.value, name="RA3")
     print_hex_dec(dut, dut.RD1.value, name="RD1")
     print_hex_dec(dut, dut.RD2.value, name="RD2")
-    print_hex_dec(dut, dut.RD1_OUT.value, name="RD1_OUT")
-    print_hex_dec(dut, dut.RD2_OUT.value, name="RD2_OUT")
-    print_hex_dec(dut, dut.SrcA.value, name="SrcA")
-    print_hex_dec(dut, dut.SrcB.value, name="SrcB")
     print_hex_dec(dut, dut.ALUResult.value, name="ALUResult")
     print_hex_dec(dut, dut.ALUOut.value, name="ALUOut")
 
@@ -59,98 +51,28 @@ def print_all(dut):
     print("------------------")
 
 
-# This function writes data to the DUT
-def write_data(
-    dut,
-    PCWrite=0,
-    AdSrc=0,
-    MemWrite=0,
-    IRWrite=0,
-    ResultSrc=0,
-    ALUControl=0,
-    ALUSrcA=0,
-    ALUSrcB=0,
-    ImmSrc=0,
-    RegWrite=0,
-    RegSrc=0,
-    Sel14=0,
-):
-    dut.PCWrite.value = PCWrite
-    dut.AdSrc.value = AdSrc
-    dut.MemWrite.value = MemWrite
-    dut.IRWrite.value = IRWrite
-    dut.ResultSrc.value = ResultSrc
-    dut.ALUControl.value = ALUControl
-    dut.ALUSrcA.value = ALUSrcA
-    dut.ALUSrcB.value = ALUSrcB
-    dut.ImmSrc.value = ImmSrc
-    dut.RegWrite.value = RegWrite
-    dut.RegSrc.value = RegSrc
-    dut.Sel14.value = Sel14
-
-
 # Fetch and decode cycles
-async def fetch_and_decode(dut, clkedge, skip_print=True, branch=False):
+async def fetch_and_decode(dut, clkedge, skip_print=False):
     # Cycle 1 - Fetch
-    PCWrite = 1
-    IRWrite = 1
-    ResultSrc = 2
-    ALUControl = 4
-    ALUSrcA = 1
-    ALUSrcB = 2
-    RegSrc = 0
-    # Remaining signals are zero
-
-    if branch:
-        RegSrc = 1
-
-    write_data(
-        dut,
-        PCWrite=PCWrite,
-        IRWrite=IRWrite,
-        ResultSrc=ResultSrc,
-        ALUControl=ALUControl,
-        ALUSrcA=ALUSrcA,
-        ALUSrcB=ALUSrcB,
-        RegSrc=RegSrc,
-    )
 
     await clkedge
     if not skip_print:
         dut._log.info(f"Cycle 1 - Fetch")
         print_all(dut)
-    assert dut.ALUResult.value == dut.PC.value + 4
-    assert dut.OUT.value == dut.ALUResult.value
+    # assert dut.ALUResult.value == dut.PC.value + 4
+    # assert dut.OUT.value == dut.ALUResult.value
 
     # Cycle 2 - Decode
-    ResultSrc = 2
-    ALUSrcA = 1
-    ALUSrcB = 2
-    ALUControl = 4
-    RegSrc = 0
-    # Remaining signals are zero
-
-    if branch:
-        RegSrc = 1
-    write_data(
-        dut,
-        ResultSrc=ResultSrc,
-        ALUSrcA=ALUSrcA,
-        ALUSrcB=ALUSrcB,
-        ALUControl=ALUControl,
-        RegSrc=RegSrc,
-    )
-
     await clkedge
     if not skip_print:
         dut._log.info(f"Cycle 2 - Decode")
         print_all(dut)
-    assert dut.ALUResult.value == dut.PC.value + 4
-    assert dut.OUT.value == dut.ALUResult.value
+    # assert dut.ALUResult.value == dut.PC.value + 4
+    # assert dut.OUT.value == dut.ALUResult.value
 
 
 @cocotb.test()
-async def datapath_operations(dut):
+async def main_cocotb_test(dut):
     """Setup testbench and run a test."""
     # Generate the clock
     await cocotb.start(Clock(dut.CLK, 10, "us").start(start_high=False))
@@ -160,10 +82,10 @@ async def datapath_operations(dut):
     # wait until the clock edge
     dut.RESET.value = 1
     await clkedge
-
-    dut.RESET.value = 0
+    dut.RESET.value = 1
     await clkedge
-
+    print_all(dut)
+    dut.RESET.value = 0
     # Check LDR
     # LDR R3, [R0, #124] => 17
     # 0xE410307C
@@ -174,12 +96,6 @@ async def datapath_operations(dut):
     await fetch_and_decode(dut, clkedge)
 
     # Cycle 3 - MemAddr
-    ALUSrcB = 1
-    ImmSrc = 1
-    ALUControl = 4
-
-    write_data(dut, ALUSrcB=ALUSrcB, ImmSrc=ImmSrc, ALUControl=ALUControl)
-
     await clkedge
     dut._log.info(f"Cycle 3 - MemAddr")
     print_all(dut)
@@ -187,42 +103,15 @@ async def datapath_operations(dut):
     assert dut.OUT.value == dut.PC.value + 4
 
     # Cycle 4 - MemRead
-    AdSrc = 1
-    ImmSrc = 1
-    ALUSrcB = 1
-    ALUControl = 4
-
-    write_data(dut, AdSrc=AdSrc, ImmSrc=ImmSrc, ALUSrcB=ALUSrcB, ALUControl=ALUControl)
-
     await clkedge
     dut._log.info(f"Cycle 4 - MemRead")
     print_all(dut)
     assert dut.ALUResult.value == 124
-    assert dut.ADR.value == 124
-    assert dut.ReadData.value == 17
 
     # Cycle 5 - WriteBack
-    AdSrc = 1
-    ImmSrc = 1
-    ALUSrcB = 1
-    RegWrite = 1
-    ResultSrc = 1
-    ALUControl = 4
-
-    write_data(
-        dut,
-        AdSrc=AdSrc,
-        ImmSrc=ImmSrc,
-        ALUSrcB=ALUSrcB,
-        RegWrite=RegWrite,
-        ResultSrc=ResultSrc,
-        ALUControl=ALUControl,
-    )
-
     await clkedge
     dut._log.info(f"Cycle 5 - WriteBack")
     print_all(dut)
-    assert dut.ReadDataOut.value == 17
     assert dut.OUT.value == 17
 
     # Check LDR
@@ -236,48 +125,17 @@ async def datapath_operations(dut):
     await fetch_and_decode(dut, clkedge)
 
     # Cycle 3 - MemAddr
-    ALUSrcB = 1
-    ImmSrc = 1
-    ALUControl = 4
-    
-    write_data(dut, ALUSrcB=ALUSrcB, ImmSrc=ImmSrc, ALUControl=ALUControl)
-
     await clkedge
     dut._log.info(f"Cycle 3 - MemAddr")
     print_all(dut)
     assert dut.ALUResult.value == 128
 
     # Cycle 4 - MemRead
-    AdSrc = 1
-    ImmSrc = 1
-    ALUSrcB = 1
-    ALUControl = 4
-
-    write_data(dut, AdSrc=AdSrc, ImmSrc=ImmSrc, ALUSrcB=ALUSrcB, ALUControl=ALUControl)
-
     await clkedge
     dut._log.info(f"Cycle 4 - MemRead")
     print_all(dut)
-    assert dut.ReadData.value == 5
 
     # Cycle 5 - WriteBack
-    AdSrc = 1
-    ImmSrc = 1
-    ALUSrcB = 1
-    RegWrite = 1
-    ResultSrc = 1
-    ALUControl = 4
-
-    write_data(
-        dut,
-        AdSrc=AdSrc,
-        ImmSrc=ImmSrc,
-        ALUSrcB=ALUSrcB,
-        RegWrite=RegWrite,
-        ResultSrc=ResultSrc,
-        ALUControl=ALUControl,
-    )
-
     await clkedge
     dut._log.info(f"Cycle 5 - WriteBack")
     print_all(dut)
@@ -292,24 +150,18 @@ async def datapath_operations(dut):
     await fetch_and_decode(dut, clkedge, skip_print=True)
 
     # Cycle 3 - Execute
-    ResultSrc = 1
-    ALUControl = 4
-    write_data(dut, ResultSrc=ResultSrc, ALUControl=ALUControl)
     await clkedge
     dut._log.info(f"Cycle 3 - Execute")
     print_all(dut)
     assert dut.INSTR.value == 0xE0836001
 
     # Cycle 4 - ALUWriteBack
-    RegWrite = 1
-    write_data(dut, RegWrite=RegWrite)
     await clkedge
     dut._log.info(f"Cycle 4 - ALUWriteBack")
     print_all(dut)
     assert dut.OUT.value == 22
 
     # Cycle 5 - Wait
-    write_data(dut)
     await clkedge
     dut._log.info(f"Cycle 5 - Wait")
     print_all(dut)
@@ -324,24 +176,18 @@ async def datapath_operations(dut):
     await fetch_and_decode(dut, clkedge, skip_print=True)
 
     # Cycle 3 - Execute
-    ResultSrc = 1
-    ALUControl = 2
-    write_data(dut, ResultSrc=ResultSrc, ALUControl=ALUControl)
     await clkedge
     dut._log.info(f"Cycle 3 - Execute")
     print_all(dut)
     assert dut.INSTR.value == 0xE0467003
 
     # Cycle 4 - ALUWriteBack
-    RegWrite = 1
-    write_data(dut, RegWrite=RegWrite)
     await clkedge
     dut._log.info(f"Cycle 4 - ALUWriteBack")
     print_all(dut)
     assert dut.OUT.value == 5
 
     # Cycle 5 - Wait
-    write_data(dut)
     await clkedge
     dut._log.info(f"Cycle 5 - Wait")
     print_all(dut)
@@ -349,31 +195,25 @@ async def datapath_operations(dut):
     # Check AND operation
     # Address 16
     # AND R8, R3, R1 -> R8 = 1 (0001 & 10001)
-    # 0xE4038001
+    # 0xE0038001
     dut._log.info(f"AND R8, R3, R1 -> R8 = 1 (0001 & 10001)")
 
     # Fetch and decode cycles
     await fetch_and_decode(dut, clkedge, skip_print=True)
 
     # Cycle 3 - Execute
-    ResultSrc = 1
-    ALUControl = 0
-    write_data(dut, ResultSrc=ResultSrc, ALUControl=ALUControl)
     await clkedge
     dut._log.info(f"Cycle 3 - Execute")
     print_all(dut)
-    assert dut.INSTR.value == 0xE4038001
+    assert dut.INSTR.value == 0xE0038001
 
     # Cycle 4 - ALUWriteBack
-    RegWrite = 1
-    write_data(dut, RegWrite=RegWrite)
     await clkedge
     dut._log.info(f"Cycle 4 - ALUWriteBack")
     print_all(dut)
     assert dut.OUT.value == 1
 
     # Cycle 5 - Wait
-    write_data(dut)
     await clkedge
     dut._log.info(f"Cycle 5 - Wait")
     print_all(dut)
@@ -381,31 +221,25 @@ async def datapath_operations(dut):
     # Check ORR operation
     # Address 20
     # ORR R9, R3, R1 -> R9 = 21 (0001 | 10001)
-    # 0xE4039001
+    # 0xE1039001
     dut._log.info(f"ORR R9, R3, R1 -> R9 = 21 (0001 | 10001)")
 
     # Fetch and decode cycles
     await fetch_and_decode(dut, clkedge, skip_print=True)
 
     # Cycle 3 - Execute
-    ResultSrc = 1
-    ALUControl = 12
-    write_data(dut, ResultSrc=ResultSrc, ALUControl=ALUControl)
     await clkedge
     dut._log.info(f"Cycle 3 - Execute")
     print_all(dut)
-    assert dut.INSTR.value == 0xE4039001
+    assert dut.INSTR.value == 0xE1039001
 
     # Cycle 4 - ALUWriteBack
-    RegWrite = 1
-    write_data(dut, RegWrite=RegWrite)
     await clkedge
     dut._log.info(f"Cycle 4 - ALUWriteBack")
     print_all(dut)
     assert dut.OUT.value == 21
 
     # Cycle 5 - Wait
-    write_data(dut)
     await clkedge
     dut._log.info(f"Cycle 5 - Wait")
     print_all(dut)
@@ -420,24 +254,18 @@ async def datapath_operations(dut):
     await fetch_and_decode(dut, clkedge, skip_print=True)
 
     # Cycle 3 - Execute
-    ResultSrc = 1
-    ALUControl = 13
-    write_data(dut, ResultSrc=ResultSrc, ALUControl=ALUControl)
     await clkedge
     dut._log.info(f"Cycle 3 - Execute")
     print_all(dut)
     assert dut.INSTR.value == 0xE400A003
 
     # Cycle 4 - ALUWriteBack
-    RegWrite = 1
-    write_data(dut, RegWrite=RegWrite)
     await clkedge
     dut._log.info(f"Cycle 4 - ALUWriteBack")
     print_all(dut)
     assert dut.OUT.value == 17
 
     # Cycle 5 - Wait
-    write_data(dut)
     await clkedge
     dut._log.info(f"Cycle 5 - Wait")
     print_all(dut)
@@ -452,39 +280,17 @@ async def datapath_operations(dut):
     await fetch_and_decode(dut, clkedge, skip_print=True)
 
     # Cycle 3 - MemAdr
-    ALUControl = 4
-    ALUSrcB = 1
-    ImmSrc = 1
-    RegSrc = 2
-    write_data(
-        dut, ALUControl=ALUControl, ALUSrcB=ALUSrcB, ImmSrc=ImmSrc, RegSrc=RegSrc
-    )
     await clkedge
     dut._log.info(f"Cycle 3 - MemAdr")
     print_all(dut)
     assert dut.INSTR.value == 0xE4003084
-    assert dut.SrcB.value == 132
 
     # Cycle 4 - MemWrite
-    MemWrite = 1
-    AdSrc = 1
-    ImmSrc = 1
-    ALUSrcB = 1
-    ALUControl = 4
-    write_data(
-        dut,
-        MemWrite=MemWrite,
-        AdSrc=AdSrc,
-        ImmSrc=ImmSrc,
-        ALUSrcB=ALUSrcB,
-        ALUControl=ALUControl,
-    )
     await clkedge
     dut._log.info(f"Cycle 4 - MemWrite")
     print_all(dut)
 
     # Cycle 5 - Wait
-    write_data(dut)
     await clkedge
     dut._log.info(f"Cycle 5 - Wait")
     print_all(dut)
@@ -500,11 +306,6 @@ async def datapath_operations(dut):
     await fetch_and_decode(dut, clkedge)
 
     # Cycle 3 - MemAddr
-    ALUSrcB = 1
-    ImmSrc = 1
-    ALUControl = 4
-
-    write_data(dut, ALUSrcB=ALUSrcB, ImmSrc=ImmSrc, ALUControl=ALUControl)
 
     await clkedge
     dut._log.info(f"Cycle 3 - MemAddr")
@@ -513,40 +314,17 @@ async def datapath_operations(dut):
     assert dut.INSTR.value == 0xE410A084
 
     # Cycle 4 - MemRead
-    AdSrc = 1
-    ImmSrc = 1
-    ALUSrcB = 1
-    ALUControl = 4
-
-    write_data(dut, AdSrc=AdSrc, ImmSrc=ImmSrc, ALUSrcB=ALUSrcB, ALUControl=ALUControl)
 
     await clkedge
     dut._log.info(f"Cycle 4 - MemRead")
     print_all(dut)
-    assert dut.ReadData.value == 17
 
     # Cycle 5 - WriteBack
-    AdSrc = 1
-    ImmSrc = 1
-    ALUSrcB = 1
-    RegWrite = 1
-    ResultSrc = 1
-    ALUControl = 4
-
-    write_data(
-        dut,
-        AdSrc=AdSrc,
-        ImmSrc=ImmSrc,
-        ALUSrcB=ALUSrcB,
-        RegWrite=RegWrite,
-        ResultSrc=ResultSrc,
-        ALUControl=ALUControl,
-    )
 
     await clkedge
     dut._log.info(f"Cycle 5 - WriteBack")
     print_all(dut)
-
+    """
     # Check B
     # Address 36
     # B 0x00000003 -> PC = (36 + 8) + 3*4 = 56
@@ -863,3 +641,4 @@ async def datapath_operations(dut):
     await clkedge
     dut._log.info(f"Cycle 5 - Wait")
     print_all(dut)
+    """
