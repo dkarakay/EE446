@@ -196,6 +196,7 @@ async def main_cocotb_test(dut):
     dut._log.info(f"NOP")
     await clkedge
     print_all(dut)
+    assert dut.PCPrime.value == 44
     assert dut.ALUResultE.value == 15
     assert dut.WA3E.value == 5
 
@@ -203,14 +204,119 @@ async def main_cocotb_test(dut):
     dut._log.info(f"NOP")
     await clkedge
     print_all(dut)
+    assert dut.PCPrime.value == 48
     assert dut.ALUOutM.value == 15
     assert dut.WA3M.value == 5
+
+    # SUB R6, R3, R4 => 3
+    # 0xE0436004
+    dut._log.info(f"SUB R6, R3, R4 => 3")
+    await clkedge
+    print_all(dut)
+    assert dut.InstructionF.value == 0xE0436004
+    assert dut.PCPrime.value == 52
+    assert dut.OUT.value == 15
 
     # NOP
     dut._log.info(f"NOP")
     await clkedge
     print_all(dut)
-    assert dut.OUT.value == 15
+    assert dut.PCPrime.value == 56
+    assert dut.RegWriteD.value == 1
+    assert dut.ALUControlD.value == 2
+    assert dut.RA1D.value == 3
+    assert dut.RA2D.value == 4
+    assert dut.RD1.value == 9
+    assert dut.RD2.value == 6
+
+    # NOP
+    dut._log.info(f"NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCPrime.value == 60
+    assert dut.ALUResultE.value == 3
+    assert dut.WA3E.value == 6
+
+    # NOP
+    dut._log.info(f"NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCPrime.value == 64
+    assert dut.ALUOutM.value == 3
+    assert dut.WA3M.value == 6
+
+    # AND R7, R3, R6 => (1001 & 0011) = 1
+    # 0xE0037006
+    dut._log.info(f"AND R7, R3, R6 => (1001 & 0011) = 1")
+    await clkedge
+    print_all(dut)
+    assert dut.PCPrime.value == 68
+    assert dut.OUT.value == 3
+    assert dut.InstructionF.value == 0xE0037006
+
+    # NOP
+    dut._log.info(f"NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCPrime.value == 72
+    assert dut.RegWriteD.value == 1
+    assert dut.ALUControlD.value == 0
+
+    # NOP
+    dut._log.info(f"NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCPrime.value == 76
+    assert dut.ALUResultE.value == 1
+    assert dut.WA3E.value == 7
+
+    # NOP
+    dut._log.info(f"NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCPrime.value == 80
+    assert dut.ALUOutM.value == 1
+    assert dut.WA3M.value == 7
+
+    # MOV R10, R3 => 1001
+    # 0xE1A0A003
+    dut._log.info(f"MOV R10, R3 => 1001")
+    await clkedge
+    print_all(dut)
+    assert dut.InstructionF.value == 0xE1A0A003
+    assert dut.PCPrime.value == 84
+    assert dut.OUT.value == 1
+
+    # NOP
+    dut._log.info(f"NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCPrime.value == 88
+    assert dut.RegWriteD.value == 1
+    assert dut.ALUControlD.value == 13
+
+    # NOP
+    dut._log.info(f"NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCPrime.value == 92
+    assert dut.ALUResultE.value == 9
+    assert dut.WA3E.value == 10
+
+    # NOP
+    dut._log.info(f"NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCPrime.value == 96
+    assert dut.ALUOutM.value == 9
+    assert dut.WA3M.value == 10
+
+    # NOP
+    dut._log.info(f"NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCPrime.value == 100
+    assert dut.OUT.value == 9
 
     """
     # Fetch and decode

@@ -80,39 +80,39 @@ always @(*) begin
 				RegSrcD = 0;
 				RegWriteD = 1;			
 				
-				case (FUNCT)
-					
+				case(FUNCT)
 					// ADD 0100
 					6'b001000: begin
 						ALUControlD = 4'b0100;
 					end
 
-					// SUB 0010
-					6'b001001: begin
+					// SUB b0010
+					6'b000100: begin
 						ALUControlD = 4'b0010;
 					end
 
-					// AND 0000
-					6'b001100: begin
+					// AND b0000
+					6'b00000: begin
 						ALUControlD = 4'b0000;
 					end
 
-					// ORR 1100
-					6'b001101: begin
+					// ORR b1100
+					6'b011000: begin
 						ALUControlD = 4'b1100;
 					end
 
-					// MOV 1101
-					6'b001110: begin
+					// MOV b1101
+					6'b011010: begin
 						ALUControlD = 4'b1101;
 					end
 
-					// CMP 1010
-					6'b001011: begin
-						ALUControlD = 4'b1010;
+					// CMP b1010
+					6'b010100: begin
+						ALUControlD = 4'b0010;
 						RegWriteD = 0;
 					end
-				endcase
+
+					endcase
 			end
 
 			// Memory
