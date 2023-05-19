@@ -6,23 +6,32 @@ module Controller(
 	 input [3:0] RD,
 	 input FlagZ,
 	 input RESET,
-	 output reg PCWrite,
-	 output reg AdSrc,
-	 output reg MemWrite,
-	 output reg IRWrite,
-	 output reg [1:0]ResultSrc,
-	 output reg [3:0] ALUControl,
-	 output reg ALUSrcA,
-	 output reg [1:0]ALUSrcB,
-	 output reg [1:0]ImmSrc,
-	 output reg RegWrite,
-	 output reg [1:0]RegSrc,
+	 output reg PCSrcD,
+	 output wire PCSrcE, PCSrcM,PCSrcW,
+	 
+	 output reg RegWriteD, 
+	 output wire RegWriteE, RegWriteM, RegWriteW,
+	 
+	 output reg MemWriteD, 
+	 output wire MemWriteE, MemWriteM,
+	 
+	 output reg MemtoRegD,
+	 output wire MemtoRegE, MemtoRegM, MemtoRegW,
+
+	 output reg [3:0] ALUControlD,
+	 output wire [3:0] ALUControlE,
+	 output reg ALUSrcD, 
+	 output wire ALUSrcE,
+	 output reg [1:0]RegSrcD,
+	 output reg [1:0]ImmSrcD,
+	 output wire [3:0]CondE,
+	 output reg FlagZE,
+
 	 output reg Sel14,
 	 output reg CONDEX,
 	 output reg[2:0] CYCLE
 ); 
 
-//reg [2:0] CYCLE = 0;
 
 always @(posedge CLK) begin 
 	
@@ -46,318 +55,229 @@ always @(posedge CLK) begin
 		default: CONDEX = 1;
 	endcase
 
-	if(RESET) CYCLE <=0;
-	else if(CYCLE == 4) CYCLE <= 0;
-	else CYCLE <= CYCLE +1;	
-end
-
-
+	if(RESET) begin
+		 PCSrcD=0;
+		 RegWriteD=0;
+		 MemWriteD=0;
+		 MemtoRegD=0;
+		 ALUControlD=0;
+		 ALUSrcD=0;
+		 RegSrcD=0;
+		 ImmSrcD=0;
+	end	
+end 
 always @(*) begin
-	
-	//case(CYCLE)
-	
-		// FETCH
-		if(CYCLE == 0) begin
-			PCWrite = 1;
-			AdSrc = 0;
-			MemWrite = 0;
-			IRWrite = 1;
-			ResultSrc = 2;
-			ALUControl = 4;
-			ALUSrcA = 1;
-			ALUSrcB = 2;
-			ImmSrc = 0;
-			RegWrite = 0;
-			RegSrc = 0;
-			Sel14 = 0;
-			
-		
-			// If branch
-			if(OP == 2) RegSrc = 1;
-		end
-		
-		// DECODE
-		if(CYCLE == 1) begin
-			PCWrite = 0;
-			AdSrc = 0;
-			MemWrite = 0;
-			IRWrite = 0;
-			ResultSrc = 2;
-			ALUControl = 4;
-			ALUSrcA = 1;
-			ALUSrcB = 2;
-			ImmSrc = 0;
-			RegWrite = 0;
-			RegSrc = 0;
-			Sel14 = 0;
-			
-			// If branch
-			if(OP == 2) RegSrc = 1;
-			
-		end
 
-		// EXECUTE CYCLE 3
-		if(CYCLE == 2) begin
-			
-			case(OP)
-				// Data Processing
-				2'b00: begin
-					PCWrite = 0;
-					AdSrc = 0;
-					MemWrite = 0;
-					IRWrite = 0;
-					ResultSrc = 1;
-					ALUSrcA = 0;
-					ALUSrcB = 0;
-					ImmSrc = 0;
-					RegWrite = 0;
-					RegSrc = 0;
-					Sel14 = 0;
-
-					case(FUNCT)
-
-						// ADD 0100
-						6'b001000: begin
-							ALUControl = 4'b0100;
-						end
-
-						// SUB b0010
-						6'b000100: begin
-							ALUControl = 4'b0010;
-						end
-
-						// AND b0000
-						6'b00000: begin
-							ALUControl = 4'b0000;
-						end
-
-						// ORR b1100
-						6'b011000: begin
-							ALUControl = 4'b1100;
-						end
-
-						// MOV b1101
-						6'b011010: begin
-							ALUControl = 4'b1101;
-						end
-
-						// CMP b1010
-						6'b010100: begin
-							ALUControl = 4'b0010;
-							RegWrite = 0;
-						end
-
-					endcase
-					
-				end
-
-				// Memory
-				2'b01:begin
-					PCWrite = 0;
-					AdSrc = 0;
-					MemWrite = 0;
-					IRWrite = 0;
-					ResultSrc = 0;
-					ALUControl = 4;
-					ALUSrcA = 0;
-					ALUSrcB = 1;
-					ImmSrc = 1;
-					RegWrite = 0;
-
-					// LDR
-				 	if (FUNCT == 6'b000001) RegSrc = 0;
-					
-					// STR
-					else RegSrc = 2;
-
-					Sel14 = 0;
-				end
-
-				// Branch
-				2'b10:begin
-
-					AdSrc = 0;
-					IRWrite = 0;
-					MemWrite = 0;
-					ResultSrc = 2;
-					ALUSrcA = 0;
-
-					case(FUNCT[5:4])
-						// BX LR
-						2'b00: begin
-							PCWrite = 1;
-							ALUControl = 13;
-							ALUSrcB = 0;
-							ImmSrc = 0;
-							RegWrite = 0;
-							RegSrc = 0;
-							Sel14 = 0;
-						end
-
-						// BEQ + B
-						2'b10: begin
-							PCWrite = CONDEX ? 1 : 0;
-							ALUControl = 4;
-							ALUSrcB = 1;
-							ImmSrc = 2;
-							RegWrite = 0;
-							RegSrc = 1;
-							Sel14 = 0;
-
-						end
-
-						// BL
-						2'b11: begin
-							PCWrite = 1;
-							ALUControl = 4;
-							ALUSrcB = 1;
-							ImmSrc = 2;
-							RegWrite = 1;
-							RegSrc = 1;
-							Sel14 = 1;
-						end
-
-					endcase
-				end
-
-				// Otherwise
-			 	2'b11:begin
-					PCWrite = 0;
-					AdSrc = 0;
-					MemWrite = 0;
-					IRWrite = 0;
-					ResultSrc = 0;
-					ALUControl = 0;
-					ALUSrcA = 0;
-					ALUSrcB = 0;
-					ImmSrc = 0;
-					RegWrite = 0;
-					RegSrc = 0;
-					Sel14 = 0;
-			 	end
-
-			endcase
-		
-		end
-
-		// MEMORY CYCLE 4
-		if(CYCLE == 3) begin
-			case(OP)
-				// Data Processing
-				2'b00: begin
-					PCWrite = 0;
-					AdSrc = 0;
-					MemWrite = 0;
-					IRWrite = 0;
-					ResultSrc = 0;
-					ALUControl = 0;
-					ALUSrcA = 0;
-					ALUSrcB = 0;
-					ImmSrc = 0;
-					RegWrite = 1;
-					if(FUNCT == 6'b010100) RegWrite = 0;
-					RegSrc = 0;
-					Sel14 = 0;
-				end
+	if (COND != 4'b1111) begin
+		case(OP) 
+			// Data Processing
+			2'b00: begin
+				ALUSrcD = 0;
+				ImmSrcD = 0;
+				PCSrcD = 0;
+				MemWriteD = 0;
+				MemtoRegD = 0;
+				RegSrcD = 0;
+				RegWriteD = 1;			
 				
-				// Memory
-				2'b01: begin
-					PCWrite = 0;
-					AdSrc = 1;
-					IRWrite = 0;
-					ResultSrc = 0;
-					ALUControl = 4;
-					ALUSrcA = 0;
-					ALUSrcB = 1;
-					ImmSrc = 1;
-					RegWrite = 0;
-					RegSrc = 0;
-					Sel14 = 0;
+				case (FUNCT)
+					
+					// ADD 0100
+					6'b001000: begin
+						ALUControlD = 4'b0100;
+					end
+
+					// SUB 0010
+					6'b001001: begin
+						ALUControlD = 4'b0010;
+					end
+
+					// AND 0000
+					6'b001100: begin
+						ALUControlD = 4'b0000;
+					end
+
+					// ORR 1100
+					6'b001101: begin
+						ALUControlD = 4'b1100;
+					end
+
+					// MOV 1101
+					6'b001110: begin
+						ALUControlD = 4'b1101;
+					end
+
+					// CMP 1010
+					6'b001011: begin
+						ALUControlD = 4'b1010;
+						RegWriteD = 0;
+					end
+				endcase
+			end
+
+			// Memory
+			2'b01:begin
+
+				case(FUNCT)
 
 					// LDR
-					if (FUNCT == 6'b000001) begin
-						MemWrite = 0;
+					6'b000001: begin
+						ALUControlD = 4'b0100;
+						ALUSrcD = 1;
+						ImmSrcD = 1;
+						RegSrcD = 0;
+						RegWriteD = 1;
+						PCSrcD = 0;
+						MemWriteD = 0;
+						MemtoRegD = 1;
 					end
 
 					// STR
-					else if (FUNCT == 6'b000000) begin
-						MemWrite = 1;
+					6'b000000: begin
+						ALUControlD = 4'b0100;
+						ALUSrcD = 1;
+						ImmSrcD = 1;
+						RegSrcD = 0;
+						RegWriteD = 0;
+						PCSrcD = 0;
+						MemWriteD = 1;
+						MemtoRegD = 0;
 					end
-				end
-
-				// Branch
-				2'b10: begin
-					PCWrite = 0;
-					AdSrc = 0;
-					MemWrite = 0;
-					IRWrite = 0;
-					ResultSrc = 0;
-					ALUControl = 0;
-					ALUSrcA = 0;
-					ALUSrcB = 0;
-					ImmSrc = 0;
-					RegWrite = 0;
-					RegSrc = 0;
-					Sel14 = 0;
-				end
-
-				2'b11:begin
-					PCWrite = 0;
-					AdSrc = 0;
-					MemWrite = 0;
-					IRWrite = 0;
-					ResultSrc = 0;
-					ALUControl = 0;
-					ALUSrcA = 0;
-					ALUSrcB = 0;
-					ImmSrc = 0;
-					RegWrite = 0;
-					RegSrc = 0;
-					Sel14 = 0;
-			 	end
-
-			endcase
-
-		end
-
-		// CYCLE 5
-		if(CYCLE == 4) begin
-			// LDR
-			if(OP == 2'b01 && FUNCT == 6'b000001) begin
-				PCWrite = 0;
-				AdSrc = 1;
-				MemWrite = 0;
-				IRWrite = 0;
-				ResultSrc = 1;
-				ALUControl = 4;
-				ALUSrcA = 0;
-				ALUSrcB = 1;
-				ImmSrc = 1;
-				RegWrite = 1;
-				RegSrc = 0;
-				Sel14 = 0;
+				endcase
 			end
-			
-			else begin
-				PCWrite = 0;
-				AdSrc = 0;
-				MemWrite = 0;
-				IRWrite = 0;
-				ResultSrc = 0;
-				ALUControl = 0;
-				ALUSrcA = 0;
-				ALUSrcB = 0;
-				ImmSrc = 0;
-				RegWrite = 0;
-				RegSrc = 0;
-				Sel14 = 0;
-			end
-			
-		end
 
-		
-
+		endcase
+	end
 end
+
+
+
+
+// Define register for PCSrcD to PCSrcE
+Register_sync_rw #(1) PCSrcD2E(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(PCSrcD),
+	.we(1'b1),
+	.OUT(PCSrcE)
+);
+
+// PCSrcE to PCSrcM
+Register_sync_rw #(1) PCSrcE2M(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(PCSrcE & CONDEX),
+	.we(1'b1),
+	.OUT(PCSrcM)
+);
+
+// PCSrcM to PCSrcW
+Register_sync_rw #(1) PCSrcM2W(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(PCSrcM),
+	.we(1'b1),
+	.OUT(PCSrcW)
+);
+
+// Define register for RegWriteD to RegWriteE
+Register_sync_rw #(1) RegWriteD2E(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(RegWriteD),
+	.we(1'b1),
+	.OUT(RegWriteE)
+);
+
+// RegWriteE to RegWriteM
+Register_sync_rw #(1) RegWriteE2M(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(RegWriteE & CONDEX),
+	.we(1'b1),
+	.OUT(RegWriteM)
+);
+
+// RegWriteM to RegWriteW
+Register_sync_rw #(1) RegWriteM2W(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(RegWriteM),
+	.we(1'b1),
+	.OUT(RegWriteW)
+);
+
+// MemWriteD to MemWriteE
+Register_sync_rw #(1) MemWriteD2E(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(MemWriteD),
+	.we(1'b1),
+	.OUT(MemWriteE)
+);
+
+// MemWriteE to MemWriteM
+Register_sync_rw #(1) MemWriteE2M(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(MemWriteE & CONDEX),
+	.we(1'b1),
+	.OUT(MemWriteM)
+);
+
+// MemtoRegD to MemtoRegE
+Register_sync_rw #(1) MemtoRegD2E(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(MemtoRegD),
+	.we(1'b1),
+	.OUT(MemtoRegE)
+);
+
+// MemtoRegE to MemtoRegM
+Register_sync_rw #(1) MemtoRegE2M(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(MemtoRegE),
+	.we(1'b1),
+	.OUT(MemtoRegM)
+);
+
+// MemtoRegM to MemtoRegW
+Register_sync_rw #(1) MemtoRegM2W(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(MemtoRegM),
+	.we(1'b1),
+	.OUT(MemtoRegW)
+);
+
+// ALUControlD to ALUControlE
+Register_sync_rw #(4) ALUControlD2E(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(ALUControlD),
+	.we(1'b1),
+	.OUT(ALUControlE)
+);
+
+// ALUSrcD to ALUSrcE
+Register_sync_rw #(1) ALUSrcD2E(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(ALUSrcD),
+	.we(1'b1),
+	.OUT(ALUSrcE)
+);
+
+// COND to CondE
+Register_sync_rw #(4) COND2E(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(COND),
+	.we(1'b1),
+	.OUT(CondE)
+);
 
 
 endmodule

@@ -1,1 +1,2 @@
-Warning (10268): Verilog HDL information at Controller.v(27): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at Controller.v(41): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at Controller.v(75): always construct contains both blocking and non-blocking assignments

@@ -1,192 +1,105 @@
 module Datapath(
-input CLK,
-input RESET,
-input RegWrite, MemWrite, ALUSrcA, PCWrite, AdSrc, Sel14,IRWrite,
-input [1:0] RegSrc, ImmSrc, ALUSrcB, ResultSrc,
-input [3:0] ALUControl,
-input [2:0] CYCLE,
-output [31:0] INSTR, ALUOut,
-output [31:0] OUT, PC, 
-output [3:0] RA1, RA2, RA3,
-output [31:0] RD1, RD2, ALUResult,WD3,
-output FlagZ
-
+	input CLK,
+	input RESET,
+	input RegWriteW, MemWriteM, MemtoRegW, ALUSrcE,PCSrcW,
+	input [1:0] RegSrcD, ImmSrcD, 
+	input [3:0] ALUControlE,
+	output [31:0] INSTR, InstructionF,
+	output [31:0] ALUOutM,ALUOutW,
+	output [31:0] PCPrime, PCF,PCPlus4F,
+	output [31:0] OUT, 
+	output [3:0] RA1D, RA2D,
+	output [3:0] WA3E, WA3M, WA3W,
+	output [31:0] RD1, RD2, RD1_OUT, RD2_OUT, RD2_S,
+	output [31:0] ALUResultE, ExtImmE,ExtImmD,
+	output [31:0] SrcBE, ReadDataM, ReadDataW, WriteDataM,
+	output FlagZ
+	//input StallD, FlushD, FlushE, ForwardAE, ForwardBE,
+	//output [31:0] SrcAE, SrcBE,SrcBEIn
+	//output [31:0] PCWait,
 );
 
-wire [31:0] SrcB, SrcA, R15, ReadData, RD1_OUT, RD2_OUT, WriteData; 
-wire [31:0] ExtImm, ReadDataOut, ADR;
 wire ZIn;
 wire [4:0] shamt5;
 
 // REG File
 Register_file reg_file (
 	.clk(CLK),
-	.write_enable(RegWrite),
-	.Source_select_0(RA1),
-	.Source_select_1(RA2),
-	.Destination_select(RA3),
+	.write_enable(RegWriteW),
+	.Source_select_0(RA1D),
+	.Source_select_1(RA2D),
+	.Destination_select(WA3W),
 	.out_0(RD1),
 	.out_1(RD2),
-	.DATA(WD3),
+	.DATA(OUT),
 	.reset(RESET),
-	.Reg_15(OUT)
+	.Reg_15(PCPlus4F)
 );
 
-// MUX for BX LR
-Mux_2to1 #(32) mux_alu_bx_lr (
-    .input_0(INSTR[15:12]),
-    .input_1(14),
-    .select(Sel14),
-    .output_value(RA3)
+
+// FETCH STAGE
+
+// MUX for PCSrcW
+Mux_2to1 #(32) mux_pc(
+	.input_0(PCPlus4F),
+	.input_1(OUT),
+	.select(PCSrcW),
+	.output_value(PCPrime)
 );
 
-// MUX for BX LR2
-Mux_2to1 #(32) mux_alu_bx_lr2 (
-    .input_0(OUT),
-    .input_1(PC),
-    .select(Sel14),
-    .output_value(WD3)
-);
-
-// Memory
-Memory IDM(
+// Register for PC_prime to PCF
+Register_simple #(32) reg_pc(
 	.clk(CLK),
-	.WE(MemWrite),
-	.ADDR(ADR),
-	.RD(ReadData),
-	.WD(WriteData)
-);
-
-
-// ReadData
-Register_simple #(32) reg_read_data(
-	.clk(CLK),
-	.DATA(ReadData),
+	.DATA(PCPrime),
 	.reset(RESET),
-	.OUT(ReadDataOut)
+	.OUT(PCF)
 );
 
-// INSTR
+// Instruction memory
+Instruction_memory instruction_mem(
+	.ADDR(PCF),
+	.RD(InstructionF)
+);
+
+// Register InstructionF tp InstructionD
 Register_sync_rw #(32) reg_instr(
 	.clk(CLK),
-	.DATA(ReadData),
-	.reset(RESET),
-	.we(IRWrite),
+	.DATA(InstructionF),
+	.reset(FlushD),
+	.we(1),
 	.OUT(INSTR)
 );
 
-
-// RD1
-Register_simple #(32) reg_rd1(
-	.clk(CLK),
-	.DATA(RD1),
-	.reset(RESET),
-	.OUT(RD1_OUT)
+// PC Adder
+Adder add_pc_four(
+	.DATA_A(PCF),
+	.DATA_B(4),
+	.OUT(PCPlus4F)
 );
 
-// RD2
-Register_simple #(32) reg_rd2(
-	.clk(CLK),
-	.DATA(RD2),
-	.reset(RESET),
-	.OUT(WriteData)
-);
+// DECODE STAGE
 
-
-// MUX for ALU input A
-Mux_2to1 #(32) mux_alu_a (
-    .input_0(RD1_OUT),
-    .input_1(PC),
-    .select(ALUSrcA),
-    .output_value(SrcA)
-);
-
-// MUX for ALU input B
-Mux_4to1 #(32) mux_alu_b (
-    .input_0(RD2_OUT),
-    .input_1(ExtImm),
-	 .input_2(4),
-	 .input_3(0),
-    .select(ALUSrcB),
-    .output_value(SrcB)
-);
-
-// ALU
-ALU #(32) alu (
-	.control(ALUControl),
-	.DATA_A(SrcA),
-	.DATA_B(SrcB),
-	.OUT(ALUResult),
-	.Z(ZIn)
-);
-
-// After ALUResult
-Register_simple #(32) reg_alu(
-	.clk(CLK),
-	.DATA(ALUResult),
-	.reset(RESET),
-	.OUT(ALUOut)
-);
-
-
-// MUX for Result
-Mux_4to1 #(32) mux_result (
-    .input_0(ALUOut),
-    .input_1(ReadDataOut),
-	 .input_2(ALUResult),
-	 .input_3(0),
-    .select(ResultSrc),
-    .output_value(OUT)
-);
-
-// PC
-Register_sync_rw #(32) reg_pc(
-	.clk(CLK),
-	.DATA(OUT),
-	.reset(RESET),
-	.we(PCWrite),
-	.OUT(PC)
-);
-
-
-// MUX for Address
-Mux_2to1 #(32) mux_pc (
-    .input_0(PC),
-    .input_1(OUT),
-    .select(AdSrc),
-    .output_value(ADR)
-);
-
-
-// MUX for RegSrc[0]
+// MUX for RegSrcD[1]
 Mux_2to1 mux_reg (
     .input_0(INSTR[3:0]),
     .input_1(INSTR[15:12]),
-    .select(RegSrc[1]),
-    .output_value(RA2)
+    .select(RegSrcD[1]),
+    .output_value(RA2D)
 );
 
-// MUX for RegSrc[1]
+// MUX for RegSrcD[0]
 Mux_2to1 mux_reg_1 (
     .input_0(INSTR[19:16]),
     .input_1(4'b1111),
-    .select(RegSrc[0]),
-    .output_value(RA1)
+    .select(RegSrcD[0]),
+    .output_value(RA1D)
 );
 
+// Extender
 Extender extend(
-	.select(ImmSrc),
-	.Q(ExtImm),
+	.select(ImmSrcD),
+	.Q(ExtImmD),
 	.A(INSTR[23:0])
-);
-
-
-Register_sync_rw #(1) reg_z(
-	.clk(CLK),
-	.we((CYCLE==2) ? 1: 0),
-	.DATA(ZIn),
-	.reset(RESET),
-	.OUT(FlagZ)
 );
 
 assign shamt5 = (INSTR[27:26] == 2'b00) ? INSTR[11:7] : 0; 
@@ -194,8 +107,165 @@ assign shamt5 = (INSTR[27:26] == 2'b00) ? INSTR[11:7] : 0;
 shifter #(32) shift(
 	.control(INSTR[6:5]),
 	.shamt(shamt5),
-	.DATA(WriteData),
+	.DATA(RD2),
+	.OUT(RD2_S)
+);
+
+// EXECUTE STAGE
+
+// Register for ExtImmD to ExtImmE with FlushE
+Register_sync_rw #(32) reg_ext(
+	.clk(CLK),
+	.DATA(ExtImmD),
+	.reset(FlushE),
+	.we(1'b1),
+	.OUT(ExtImmE)
+);
+
+// Register for RD1 to RD1_OUT with FlushE
+Register_sync_rw #(32) reg_rd1(
+	.clk(CLK),
+	.DATA(RD1),
+	.reset(FlushE),
+	.we(1'b1),
+	.OUT(RD1_OUT)
+);
+
+// Register for INSTR[15:12] to WA3E with FlushE
+Register_sync_rw #(4) reg_wa3(
+	.clk(CLK),
+	.DATA(INSTR[15:12]),
+	.reset(FlushE),
+	.we(1'b1),
+	.OUT(WA3E)
+);
+
+// Register for RD2 to RD2_OUT with FlushE
+Register_sync_rw #(32) reg_rd2(
+	.clk(CLK),
+	.DATA(RD2_S),
+	.reset(FlushE),
+	.we(1'b1),
 	.OUT(RD2_OUT)
 );
+
+/*
+// MUX for RD1
+Mux_4to1 #(32) mux_rd1(
+	.input_0(RD1_OUT),
+	.input_1(OUT),
+	.input_2(ALUOutM),
+	.input_3(0),
+	.select(ForwardAE),
+	.output_value(SrcAE)
+);*/
+
+/*// MUX for RD2
+Mux_4to1 #(32) mux_rd2 (
+	.input_0(RD2_OUT),
+	.input_1(OUT),
+	.input_2(ALUOutM),
+	.input_3(0),
+	.select(ForwardBE),
+	.output_value(SrcBEIn)
+);*/
+
+// MUX for SrcBE
+Mux_2to1 #(32) mux_src_be(
+	.input_0(RD2_OUT),
+	.input_1(ExtImmE),
+	.select(ALUSrcE),
+	.output_value(SrcBE)
+);
+
+// ALU
+ALU #(32) alu (
+	.control(ALUControlE),
+	.DATA_A(RD1_OUT),
+	.DATA_B(SrcBE),
+	.OUT(ALUResultE),
+	.Z(ZIn)
+);
+
+
+// MEMORY
+
+// Register for ALUResultE to ALUResultM
+Register_sync_rw #(32) reg_alu(
+	.clk(CLK),
+	.DATA(ALUResultE),
+	.reset(RESET),
+	.we(1'b1),
+	.OUT(ALUOutM)
+);
+
+// Register for RD2_OUT to WriteDataM
+Register_sync_rw #(32) reg_wd(
+	.clk(CLK),
+	.DATA(RD2_OUT),
+	.reset(RESET),
+	.we(1'b1),
+	.OUT(WriteDataM)
+);
+
+// Register for WA3E to WA3M
+Register_sync_rw #(4) reg_wa3m(
+	.clk(CLK),
+	.DATA(WA3E),
+	.reset(RESET),
+	.we(1'b1),
+	.OUT(WA3M)
+);
+
+// Data Memory
+Memory DM(
+	.clk(CLK),
+	.WE(MemWriteM),
+	.ADDR(ALUOutM),
+	.RD(ReadDataM),
+	.WD(WriteDataM)
+);
+
+// WRITE BACK
+
+// Register ReadDataM to ReadDataW
+Register_sync_rw #(32) reg_read_data(
+	.clk(CLK),
+	.DATA(ReadDataM),
+	.reset(RESET),
+	.we(1'b1),
+	.OUT(ReadDataW)
+);
+
+// Register for WA3M to WA3W
+Register_sync_rw #(4) reg_wa3w(
+	.clk(CLK),
+	.DATA(WA3M),
+	.reset(RESET),
+	.we(1'b1),
+	.OUT(WA3W)
+);
+
+// Register for ALUOutM to ALUOutW
+Register_sync_rw #(32) reg_alu_out(
+	.clk(CLK),
+	.DATA(ALUOutM),
+	.reset(RESET),
+	.we(1'b1),
+	.OUT(ALUOutW)
+);
+
+// MUX for ReadDataW
+Mux_2to1 #(32) mux_read_data(
+	.input_0(ALUOutW),
+	.input_1(ReadDataW),
+	.select(MemtoRegW),
+	.output_value(OUT)
+);
+
+
+
+
+
 
 endmodule

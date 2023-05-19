@@ -16,87 +16,7 @@
 <TH>Output only Bidir</TH>
 </TR>
 <TR >
-<TD >datapath|shift</TD>
-<TD >39</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >32</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >datapath|reg_z</TD>
-<TD >4</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >1</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >datapath|extend</TD>
-<TD >26</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >32</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >datapath|mux_reg_1</TD>
-<TD >9</TD>
-<TD >4</TD>
-<TD >0</TD>
-<TD >4</TD>
-<TD >4</TD>
-<TD >4</TD>
-<TD >4</TD>
-<TD >4</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >datapath|mux_reg</TD>
-<TD >9</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >4</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >datapath|mux_pc</TD>
+<TD >dp|mux_pc</TD>
 <TD >65</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -112,87 +32,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_pc</TD>
-<TD >35</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >32</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >datapath|mux_result</TD>
-<TD >130</TD>
-<TD >32</TD>
-<TD >0</TD>
-<TD >32</TD>
-<TD >32</TD>
-<TD >32</TD>
-<TD >32</TD>
-<TD >32</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >datapath|reg_alu</TD>
-<TD >34</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >32</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >datapath|alu</TD>
-<TD >68</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >33</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >datapath|mux_alu_b</TD>
-<TD >130</TD>
-<TD >64</TD>
-<TD >0</TD>
-<TD >64</TD>
-<TD >32</TD>
-<TD >64</TD>
-<TD >64</TD>
-<TD >64</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >datapath|mux_alu_a</TD>
+<TD >dp|mux_read_data</TD>
 <TD >65</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -208,47 +48,15 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_rd2</TD>
-<TD >34</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >32</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >datapath|reg_rd1</TD>
-<TD >34</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >32</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >datapath|reg_instr</TD>
+<TD >dp|reg_alu_out</TD>
 <TD >35</TD>
+<TD >2</TD>
 <TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
+<TD >2</TD>
 <TD >32</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
+<TD >2</TD>
+<TD >2</TD>
+<TD >2</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -256,15 +64,15 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_read_data</TD>
-<TD >34</TD>
+<TD >dp|reg_wa3w</TD>
+<TD >7</TD>
+<TD >2</TD>
 <TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >32</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
+<TD >2</TD>
+<TD >4</TD>
+<TD >2</TD>
+<TD >2</TD>
+<TD >2</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -272,7 +80,23 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|IDM</TD>
+<TD >dp|reg_read_data</TD>
+<TD >35</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >2</TD>
+<TD >32</TD>
+<TD >2</TD>
+<TD >2</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|DM</TD>
 <TD >66</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -288,7 +112,71 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|mux_alu_bx_lr2</TD>
+<TD >dp|reg_wa3m</TD>
+<TD >7</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >2</TD>
+<TD >4</TD>
+<TD >2</TD>
+<TD >2</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|reg_wd</TD>
+<TD >35</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >2</TD>
+<TD >32</TD>
+<TD >2</TD>
+<TD >2</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|reg_alu</TD>
+<TD >35</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >2</TD>
+<TD >32</TD>
+<TD >2</TD>
+<TD >2</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|alu</TD>
+<TD >68</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >33</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|mux_src_be</TD>
 <TD >65</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -304,15 +192,15 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|mux_alu_bx_lr</TD>
-<TD >65</TD>
-<TD >88</TD>
+<TD >dp|reg_rd2</TD>
+<TD >35</TD>
+<TD >1</TD>
 <TD >0</TD>
-<TD >88</TD>
+<TD >1</TD>
 <TD >32</TD>
-<TD >88</TD>
-<TD >88</TD>
-<TD >88</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -320,7 +208,183 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|mux_1</TD>
+<TD >dp|reg_wa3</TD>
+<TD >7</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|reg_rd1</TD>
+<TD >35</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >32</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|reg_ext</TD>
+<TD >35</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >32</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|shift</TD>
+<TD >39</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >32</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|extend</TD>
+<TD >26</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >32</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|mux_reg_1</TD>
+<TD >9</TD>
+<TD >4</TD>
+<TD >0</TD>
+<TD >4</TD>
+<TD >4</TD>
+<TD >4</TD>
+<TD >4</TD>
+<TD >4</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|mux_reg</TD>
+<TD >9</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >4</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|add_pc_four</TD>
+<TD >64</TD>
+<TD >32</TD>
+<TD >0</TD>
+<TD >32</TD>
+<TD >32</TD>
+<TD >32</TD>
+<TD >32</TD>
+<TD >32</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|reg_instr</TD>
+<TD >35</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >32</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|instruction_mem</TD>
+<TD >32</TD>
+<TD >32</TD>
+<TD >32</TD>
+<TD >32</TD>
+<TD >32</TD>
+<TD >32</TD>
+<TD >32</TD>
+<TD >32</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|reg_pc</TD>
+<TD >35</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >32</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >dp|reg_file|mux_1</TD>
 <TD >516</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -336,7 +400,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|mux_0</TD>
+<TD >dp|reg_file|mux_0</TD>
 <TD >516</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -352,7 +416,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|dec</TD>
+<TD >dp|reg_file|dec</TD>
 <TD >4</TD>
 <TD >1</TD>
 <TD >0</TD>
@@ -368,7 +432,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[14].Reg</TD>
+<TD >dp|reg_file|registers[14].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -384,7 +448,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[13].Reg</TD>
+<TD >dp|reg_file|registers[13].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -400,7 +464,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[12].Reg</TD>
+<TD >dp|reg_file|registers[12].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -416,7 +480,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[11].Reg</TD>
+<TD >dp|reg_file|registers[11].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -432,7 +496,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[10].Reg</TD>
+<TD >dp|reg_file|registers[10].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -448,7 +512,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[9].Reg</TD>
+<TD >dp|reg_file|registers[9].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -464,7 +528,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[8].Reg</TD>
+<TD >dp|reg_file|registers[8].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -480,7 +544,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[7].Reg</TD>
+<TD >dp|reg_file|registers[7].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -496,7 +560,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[6].Reg</TD>
+<TD >dp|reg_file|registers[6].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -512,7 +576,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[5].Reg</TD>
+<TD >dp|reg_file|registers[5].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -528,7 +592,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[4].Reg</TD>
+<TD >dp|reg_file|registers[4].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -544,7 +608,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[3].Reg</TD>
+<TD >dp|reg_file|registers[3].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -560,7 +624,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[2].Reg</TD>
+<TD >dp|reg_file|registers[2].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -576,7 +640,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[1].Reg</TD>
+<TD >dp|reg_file|registers[1].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -592,7 +656,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file|registers[0].Reg</TD>
+<TD >dp|reg_file|registers[0].Reg</TD>
 <TD >35</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -608,7 +672,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath|reg_file</TD>
+<TD >dp|reg_file</TD>
 <TD >79</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -624,15 +688,239 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >datapath</TD>
-<TD >24</TD>
+<TD >dp</TD>
+<TD >14</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >629</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
-<TD >269</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|COND2E</TD>
+<TD >7</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|ALUSrcD2E</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|ALUControlD2E</TD>
+<TD >7</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|MemtoRegM2W</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|MemtoRegE2M</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|MemtoRegD2E</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|MemWriteE2M</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|MemWriteD2E</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|RegWriteM2W</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|RegWriteE2M</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|RegWriteD2E</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|PCSrcM2W</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|PCSrcE2M</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >controller|PCSrcD2E</TD>
+<TD >4</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -645,7 +933,7 @@
 <TD >0</TD>
 <TD >4</TD>
 <TD >0</TD>
-<TD >23</TD>
+<TD >33</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
