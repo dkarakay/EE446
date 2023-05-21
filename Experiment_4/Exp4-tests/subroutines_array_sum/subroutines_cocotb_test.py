@@ -71,6 +71,7 @@ def print_all(dut):
     print_hex_dec(dut, dut.WA3E.value, name="WA3E")
     print_hex_dec(dut, dut.WA3M.value, name="WA3M")
     print_hex_dec(dut, dut.WA3W.value, name="WA3W")
+    print_hex_dec(dut, dut.WD3.value, name="WD3")
 
     # print_hex_dec(dut, dut.ExtImmE.value, name="ExtImmE")
     print_hex_dec(dut, dut.SrcBE.value, name="SrcBE")
@@ -83,8 +84,8 @@ def print_all(dut):
     print_hex_dec(dut, dut.ALUOutM.value, name="ALUOutM")
     print_hex_dec(dut, dut.ALUOutW.value, name="ALUOutW")
 
-    print_hex_dec(dut, dut.FlagWriteD.value, name="FlagWriteD", cond=True)
-    print_hex_dec(dut, dut.FlagWriteE.value, name="FlagWriteE", cond=True)
+    print_hex_dec(dut, dut.FlagWriteD.value, name="FlagWriteD")
+    print_hex_dec(dut, dut.FlagWriteE.value, name="FlagWriteE")
 
     print_hex_dec(dut, dut.FlagZ.value, name="FlagZ", cond=True)
     print_hex_dec(dut, dut.OUT.value, name="OUT", cond=True)
@@ -92,7 +93,7 @@ def print_all(dut):
 
 
 @cocotb.test()
-async def subroutine_2s_complement_using_branch(dut):
+async def subroutine_array_sum_using_branch(dut):
     """Setup testbench and run a test."""
     # Generate the clock
     await cocotb.start(Clock(dut.CLK, 10, "us").start(start_high=False))
@@ -106,94 +107,334 @@ async def subroutine_2s_complement_using_branch(dut):
 
     dut.RESET.value = 0
 
-    # BL 0x0000000F -> PC = 0 + 8 + 15*4 = 68 R14 = 4
-    # 0xEB00000F
-    dut._log.info(f"Even parity of F = 1")
-    dut._log.info(f"0 - BL 0x0000000F -> PC = 0 + 8 + 15*4 = 68 R14 = 4")
+    # NOP
+    dut._log.info(f"0 - NOP")
     await clkedge
-    print_all(dut)
-    assert dut.PCPrime.value == 4
-    assert dut.InstructionF.value == 0xEB00000F
+    assert dut.PCF.value == 0
 
     # NOP
     dut._log.info(f"4 - NOP")
     await clkedge
-    print_all(dut)
-    assert dut.PCD.value == 4
-    assert dut.WA3D.value == 14
-    assert dut.Sel14.value == 1
+    assert dut.PCF.value == 4
 
-    # NOP
-    dut._log.info(f"8 - NOP")
+    # BL 0x0000000F -> PC = 8 + 8 + 44*4 = 192 R14 = 12
+    # 0xEB00002C
+    dut._log.info("Array Sum Test for 3 elements in array")
+    dut._log.info(f"(2A), (37), (5C) = 0xBD or in decimal 189")
+    dut._log.info(f"8 - BL 0x0000000F -> PC = 8 + 8 + 44*4 = 192 R14 = 12")
     await clkedge
     print_all(dut)
-    assert dut.PCE.value == 4
-    assert dut.WA3E.value == 14
-    assert dut.Sel14E.value == 1
+    assert dut.PCPrime.value == 12
+    assert dut.InstructionF.value == 0xEB00002C
 
     # NOP
     dut._log.info(f"12 - NOP")
     await clkedge
     print_all(dut)
-    assert dut.PCM.value == 4
-    assert dut.WA3M.value == 14
-    assert dut.Sel14M.value == 1
+    assert dut.PCD.value == 12
+    assert dut.WA3D.value == 14
+    assert dut.Sel14.value == 1
 
     # NOP
     dut._log.info(f"16 - NOP")
     await clkedge
     print_all(dut)
-    assert dut.PCW.value == 4
-    assert dut.WA3W.value == 14
-    assert dut.WD3.value == 4
-    assert dut.OUT.value == 68
-    assert dut.PCPrime.value == 68
-    assert dut.Sel14W.value == 1
+    assert dut.PCE.value == 12
+    assert dut.WA3E.value == 14
+    assert dut.Sel14E.value == 1
 
-    # LDR R3, [R0, #12] => F
-    # 0xE410300C
-    dut._log.info(f"68 - LDR R3, [R0, #12] => F")
+    # NOP
+    dut._log.info(f"20 - NOP")
     await clkedge
     print_all(dut)
-    assert dut.InstructionF.value == 0xE410300C
-    assert dut.PCF.value == 68
+    assert dut.PCM.value == 12
+    assert dut.WA3M.value == 14
+    assert dut.Sel14M.value == 1
+
+    # NOP
+    dut._log.info(f"24 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCW.value == 12
+    assert dut.WA3W.value == 14
+    assert dut.WD3.value == 12
+    assert dut.OUT.value == 192
+    assert dut.PCPrime.value == 192
+    assert dut.Sel14W.value == 1
+
+    # LDR R3, [R0, #16] => 3 Array Size
+    # 0xE4103010
+    dut._log.info(f"192 - LDR R3, [R0, #16] => 3 Array Size")
+    await clkedge
+    print_all(dut)
+    assert dut.InstructionF.value == 0xE4103010
+    assert dut.PCF.value == 192
+
+    # LDR R4, [R0, #20] => 24
+    # 0xE4104014
+    dut._log.info(f"196 - LDR R4, [R0, #20] => 24")
+    await clkedge
+    print_all(dut)
+    assert dut.InstructionF.value == 0xE4104014
+    assert dut.PCF.value == 196
 
     # LDR R2, [R0, #4] => 4
     # 0xE4102004
-    dut._log.info(f"72 - LDR R2, [R0, #4] => 4")
+    dut._log.info(f"200 - LDR R2, [R0, #4] => 4")
     await clkedge
     print_all(dut)
     assert dut.InstructionF.value == 0xE4102004
-    assert dut.PCF.value == 72
+    assert dut.PCF.value == 200
 
     # LDR R1, [R0, 0] => 1
     # 0xE4101000
-    dut._log.info(f"76 - LDR R1, [R0, 0] => 1")
+    dut._log.info(f"204 - LDR R1, [R0, 0] => 1")
     await clkedge
     print_all(dut)
     assert dut.InstructionF.value == 0xE4101000
-    assert dut.PCF.value == 76
-    assert dut.ALUResultE.value == 12
-    assert dut.WA3E.value == 3
+    assert dut.PCF.value == 204
 
     # NOP
-    dut._log.info(f"80 - NOP")
+    dut._log.info(f"208 - NOP")
     await clkedge
     print_all(dut)
-    assert dut.PCF.value == 80
-    assert dut.WA3E.value == 2
-    assert dut.ALUResultE.value == 4
-    assert dut.ReadDataM.value == 14
+    assert dut.PCF.value == 208
+    assert dut.OUT.value == 3
 
     # NOP
-    dut._log.info(f"84 - NOP")
+    dut._log.info(f"212 - NOP")
     await clkedge
     print_all(dut)
-    assert dut.PCF.value == 84
-    assert dut.WA3E.value == 1
-    assert dut.ALUResultE.value == 0
-    assert dut.ReadDataM.value == 4
-    assert dut.OUT.value == 14
+    assert dut.PCF.value == 212
+    assert dut.OUT.value == 24
+
+    # LDR R5, [R4] => 42 or 2A
+    # 0xE4145000
+    dut._log.info(f"216 - LDR R5, [R4] => 42 or 2A")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 216
+    assert dut.InstructionF.value == 0xE4145000
+    assert dut.OUT.value == 4
+
+    # NOP
+    dut._log.info(f"220 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 220
+    assert dut.OUT.value == 1
+
+    # NOP
+    dut._log.info(f"224 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 224
+
+    # ADD R4, R4, R2
+    # 0xE0844002
+    dut._log.info(f"228 - ADD R4, R4, R2")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 228
+    assert dut.InstructionF.value == 0xE0844002
+
+    # SUB R3, R3, #1
+    # 0xE0433001
+    dut._log.info(f"232 - SUB R3, R3, #1")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 232
+    assert dut.InstructionF.value == 0xE0433001
+    assert dut.OUT.value == 42
+
+    # ADD R10, R10, R5
+    # 0xE08AA005
+    dut._log.info(f"236 - ADD R10, R10, R5")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 236
+    assert dut.InstructionF.value == 0xE08AA005
+
+    # NOP
+    dut._log.info(f"240 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 240
+
+    # NOP
+    dut._log.info(f"244 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 244
+    assert dut.OUT.value == 28
+
+    # NOP
+    dut._log.info(f"248 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 248
+    assert dut.OUT.value == 2
+
+    # CMP R3, R0
+    # 0xE1430000
+    dut._log.info(f"252 - CMP R3, R0")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 252
+    assert dut.InstructionF.value == 0xE1430000
+    assert dut.OUT.value == 42
+
+    # NOP
+    dut._log.info(f"256 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 256
+
+    # NOP
+    dut._log.info(f"260 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 260
+
+    # NOP
+    dut._log.info(f"264 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 264
+    assert dut.ALUOutM.value == 2
+
+    # BEQ to 268 + 8 + 4*7 = 304
+    # 0x0A000007
+    dut._log.info(f"268 - BEQ to 268 + 8 + 4*7 = 304")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 268
+    assert dut.InstructionF.value == 0x0A000006
+
+    # NOP
+    dut._log.info(f"272 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 272
+
+    # NOP
+    dut._log.info(f"276 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 276
+
+    # NOP
+    dut._log.info(f"280 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 280
+
+    # NOP
+    dut._log.info(f"284 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 284
+
+    # B to 288 + 8 + 4*-20 = 216
+    # 0xEAFFFFEC
+    dut._log.info(f"288 - B to 288 + 8 + 4*-20 = 216")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 288
+    assert dut.InstructionF.value == 0xEAFFFFEC
+
+    # NOP
+    dut._log.info(f"292 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 292
+
+    # NOP
+    dut._log.info(f"296 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 296
+
+    # NOP
+    dut._log.info(f"300 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 300
+
+    # NOP
+    dut._log.info(f"304 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 304
+    assert dut.PCPrime.value == 216
+
+    for i in range(41):
+        await clkedge
+        # dut._log.info(f"PCF: {dut.PCF.value}")
+        # print_all(dut)
+
+    assert dut.PCPrime.value == 300
+
+    # ADD R10, R10, R0
+    # 0xE08AA000
+    dut._log.info(f"300 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 300
+    assert dut.InstructionF.value == 0xE08AA000
+
+    # NOP
+    dut._log.info(f"304 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 304
+
+    # NOP
+    dut._log.info(f"308 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 308
+
+    # BX LR PC = 12
+    # 0xE800000E
+    dut._log.info(f"312 - BX LR PC = 12")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 312
+    assert dut.InstructionF.value == 0xE800000E
+
+    # NOP
+    dut._log.info(f"316 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 316
+    assert dut.OUT.value == 189
+
+    # NOP
+    dut._log.info(f"320 - NOP")
+    await clkedge
+    assert dut.PCF.value == 320
+
+    # NOP
+    dut._log.info(f"324 - NOP")
+    await clkedge
+    assert dut.PCF.value == 324
+
+    # NOP
+    await clkedge
+    dut._log.info(f"328 - NOP")
+    print_all(dut)
+    assert dut.PCF.value == 328
+    assert dut.PCPrime.value == 12
+
+    # NOP
+    dut._log.info(f"12 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 12
+
+    # NOP
+
 
     """
     # Check LDR

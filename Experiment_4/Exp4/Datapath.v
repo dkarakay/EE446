@@ -2,9 +2,10 @@ module Datapath(
 	input CLK,
 	input RESET,
 	input RegWriteW, MemWriteM, MemtoRegW, ALUSrcE,PCSrcW,FlagWriteE,
-	input Sel14, Sel14E, Sel14M, Sel14W,
+	input Sel14, 
 	input [1:0] RegSrcD, ImmSrcD, 
 	input [3:0] ALUControlE,
+	output Sel14E, Sel14M, Sel14W,
 	output [31:0] INSTR, InstructionF,
 	output [31:0] ALUOutM,ALUOutW,
 	output [31:0] PCPrime, PCF,PCPlus4F, PCD, PCE, PCM, PCW,
@@ -125,7 +126,7 @@ shifter #(32) shift(
 // MUX for BX LR
 Mux_2to1 mux_alu_bx_lr (
     .input_0(INSTR[15:12]),
-    .input_1(14),
+    .input_1(4'b1110),
     .select(Sel14),
     .output_value(WA3D)
 );
