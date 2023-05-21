@@ -64,6 +64,7 @@ always @(posedge CLK) begin
 		 ALUSrcD=0;
 		 RegSrcD=0;
 		 ImmSrcD=0;
+		 Sel14=0;
 	end	
 end 
 always @(*) begin
@@ -137,7 +138,7 @@ always @(*) begin
 						ALUControlD = 4'b0100;
 						ALUSrcD = 1;
 						ImmSrcD = 1;
-						RegSrcD = 0;
+						RegSrcD = 2;
 						RegWriteD = 0;
 						PCSrcD = 0;
 						MemWriteD = 1;
@@ -146,7 +147,56 @@ always @(*) begin
 				endcase
 			end
 
+			// Branch
+			2'b10: begin
+				case (FUNCT[5:4])
+
+					// BX LR
+					2'b00: begin
+						PCSrcD = 1;
+						RegWriteD = 0;
+						MemtoRegD = 0;
+						ALUSrcD = 0;
+						ImmSrcD = 0;
+						RegSrcD = 0;
+						ALUControlD = 13;
+						Sel14 = 0;
+					end
+					
+					// B + BEQ
+					2'b10: begin
+						PCSrcD = 1;
+						RegWriteD = 0;
+						MemtoRegD = 0;
+						MemWriteD = 0;
+						ALUSrcD = 1;
+						ImmSrcD = 2;
+						RegSrcD = 1;
+						ALUControlD = 4;
+						Sel14 = 0;
+					end
+
+					// BL
+					2'b11: begin
+						PCSrcD = 1;
+						RegWriteD = 1;
+						MemtoRegD = 0;
+						MemWriteD = 0;
+						ALUSrcD = 1;
+						ImmSrcD = 2;
+						RegSrcD = 1;
+						ALUControlD = 4;
+						Sel14 = 1;
+					end
+				endcase
+			end
+
+
 		endcase
+	end
+	else begin
+		PCSrcD = 0;
+		Sel14 = 0;
 	end
 end
 

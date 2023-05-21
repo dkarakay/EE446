@@ -2,21 +2,19 @@ module Datapath(
 	input CLK,
 	input RESET,
 	input RegWriteW, MemWriteM, MemtoRegW, ALUSrcE,PCSrcW,
+	input Sel14, Sel14E, Sel14M, Sel14W,
 	input [1:0] RegSrcD, ImmSrcD, 
 	input [3:0] ALUControlE,
 	output [31:0] INSTR, InstructionF,
 	output [31:0] ALUOutM,ALUOutW,
-	output [31:0] PCPrime, PCF,PCPlus4F,
-	output [31:0] OUT, 
+	output [31:0] PCPrime, PCF,PCPlus4F, PCD, PCE, PCM, PCW,
+	output [31:0] OUT,WD3,
 	output [3:0] RA1D, RA2D,
-	output [3:0] WA3E, WA3M, WA3W,
+	output [3:0] WA3D, WA3E, WA3M, WA3W,
 	output [31:0] RD1, RD2, RD1_OUT, RD2_OUT, RD2_S,
 	output [31:0] ALUResultE, ExtImmE,ExtImmD,
 	output [31:0] SrcBE, ReadDataM, ReadDataW, WriteDataM,
 	output FlagZ
-	//input StallD, FlushD, FlushE, ForwardAE, ForwardBE,
-	//output [31:0] SrcAE, SrcBE,SrcBEIn
-	//output [31:0] PCWait,
 );
 
 wire ZIn;
@@ -31,10 +29,13 @@ Register_file reg_file (
 	.Destination_select(WA3W),
 	.out_0(RD1),
 	.out_1(RD2),
-	.DATA(OUT),
+	.DATA(WD3),
 	.reset(RESET),
 	.Reg_15(PCPlus4F)
 );
+
+
+
 
 
 // FETCH STAGE
@@ -65,8 +66,8 @@ Instruction_memory instruction_mem(
 Register_sync_rw #(32) reg_instr(
 	.clk(CLK),
 	.DATA(InstructionF),
-	.reset(FlushD),
-	.we(1),
+	.reset(RESET),
+	.we(1'b1),
 	.OUT(INSTR)
 );
 
@@ -77,7 +78,17 @@ Adder add_pc_four(
 	.OUT(PCPlus4F)
 );
 
+
 // DECODE STAGE
+
+// Register for PC+4 to PCD
+Register_simple #(32) reg_pc_plus_four_pcd(
+	.clk(CLK),
+	.DATA(PCPlus4F),
+	.reset(RESET),
+	.OUT(PCD)
+);
+
 
 // MUX for RegSrcD[1]
 Mux_2to1 mux_reg (
@@ -111,7 +122,33 @@ shifter #(32) shift(
 	.OUT(RD2_S)
 );
 
+// MUX for BX LR
+Mux_2to1 mux_alu_bx_lr (
+    .input_0(INSTR[15:12]),
+    .input_1(14),
+    .select(Sel14),
+    .output_value(WA3D)
+);
+
+
 // EXECUTE STAGE
+
+// Register for PCD to PCE
+Register_simple #(32) reg_pc_plus_four_pce(
+	.clk(CLK),
+	.DATA(PCD),
+	.reset(RESET),
+	.OUT(PCE)
+);
+
+// Register for Sel14 to Sel14E
+Register_sync_rw #(1) reg_sel14_1(
+	.clk(CLK),
+	.DATA(Sel14),
+	.reset(RESET),
+	.we(1'b1),
+	.OUT(Sel14E)
+);
 
 // Register for ExtImmD to ExtImmE with FlushE
 Register_sync_rw #(32) reg_ext(
@@ -134,7 +171,7 @@ Register_sync_rw #(32) reg_rd1(
 // Register for INSTR[15:12] to WA3E with FlushE
 Register_sync_rw #(4) reg_wa3(
 	.clk(CLK),
-	.DATA(INSTR[15:12]),
+	.DATA(WA3D),
 	.reset(FlushE),
 	.we(1'b1),
 	.OUT(WA3E)
@@ -148,27 +185,6 @@ Register_sync_rw #(32) reg_rd2(
 	.we(1'b1),
 	.OUT(RD2_OUT)
 );
-
-/*
-// MUX for RD1
-Mux_4to1 #(32) mux_rd1(
-	.input_0(RD1_OUT),
-	.input_1(OUT),
-	.input_2(ALUOutM),
-	.input_3(0),
-	.select(ForwardAE),
-	.output_value(SrcAE)
-);*/
-
-/*// MUX for RD2
-Mux_4to1 #(32) mux_rd2 (
-	.input_0(RD2_OUT),
-	.input_1(OUT),
-	.input_2(ALUOutM),
-	.input_3(0),
-	.select(ForwardBE),
-	.output_value(SrcBEIn)
-);*/
 
 // MUX for SrcBE
 Mux_2to1 #(32) mux_src_be(
@@ -189,6 +205,23 @@ ALU #(32) alu (
 
 
 // MEMORY
+
+// Register for PCE to PCM
+Register_simple #(32) reg_pc_plus_four_pcm(
+	.clk(CLK),
+	.DATA(PCE),
+	.reset(RESET),
+	.OUT(PCM)
+);
+
+// Register for Sel14E to Sel14M
+Register_sync_rw #(1) reg_sel14_2(
+	.clk(CLK),
+	.DATA(Sel14E),
+	.reset(RESET),
+	.we(1'b1),
+	.OUT(Sel14M)
+);
 
 // Register for ALUResultE to ALUResultM
 Register_sync_rw #(32) reg_alu(
@@ -228,6 +261,24 @@ Memory DM(
 
 // WRITE BACK
 
+// Register for PCM to PCW
+Register_simple #(32) reg_pc_plus_four_pcw(
+	.clk(CLK),
+	.DATA(PCM),
+	.reset(RESET),
+	.OUT(PCW)
+);
+
+// Register for Sel14M to Sel14W
+Register_sync_rw #(1) reg_sel14_3(
+	.clk(CLK),
+	.DATA(Sel14M),
+	.reset(RESET),
+	.we(1'b1),
+	.OUT(Sel14W)
+);
+
+
 // Register ReadDataM to ReadDataW
 Register_sync_rw #(32) reg_read_data(
 	.clk(CLK),
@@ -263,8 +314,13 @@ Mux_2to1 #(32) mux_read_data(
 	.output_value(OUT)
 );
 
-
-
+// MUX for PC+4
+Mux_2to1 #(32) mux_pc_plus_four (
+	.input_0(OUT),
+	.input_1(PCW),
+	.select(Sel14W),
+	.output_value(WD3)
+);
 
 
 

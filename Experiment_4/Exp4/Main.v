@@ -7,14 +7,14 @@ module Main(
 
 wire [31:0] INSTR, InstructionF;
 wire [31:0] ALUOutM,ALUOutW;
-wire [31:0] PCF,PCPlus4F,PCPrime;
+wire [31:0] PCF,PCPlus4F,PCPrime, PCD, PCE, PCM, PCW;
 wire [3:0] RA1D, RA2D;
 wire [31:0] RD1, RD2, RD1_OUT, RD2_OUT, RD2_S;
-wire [31:0] ALUResultE, ExtImmE, ExtImmD;
-wire [3:0] WA3E, WA3M, WA3W;
+wire [31:0] ALUResultE, ExtImmE, ExtImmD, WD3;
+wire [3:0] WA3D, WA3E, WA3M, WA3W;
 wire [31:0] SrcBE, SrcBEIn, SrcAE, ReadDataM, ReadDataW, WriteDataM;
 
-wire CONDEX;
+wire CONDEX, Sel14, Sel14E, Sel14M, Sel14W;
 wire [2:0] CYCLE;
 
 wire PCSrcD,PCSrcE,PCSrcM,PCSrcW;
@@ -55,7 +55,8 @@ Controller controller (
 	.ALUSrcE(ALUSrcE),
 	.RegSrcD(RegSrcD),
 	.ImmSrcD(ImmSrcD),
-	.CondE(CondE)
+	.CondE(CondE),
+	.Sel14(Sel14)
 );
 
 
@@ -77,7 +78,12 @@ Datapath dp (
 	.PCPrime(PCPrime),
 	.PCF(PCF),
 	.PCPlus4F(PCPlus4F),
+	.PCD(PCD),
+	.PCE(PCE),
+	.PCM(PCM),
+	.PCW(PCW),
 	.OUT(OUT),
+	.WD3(WD3),
 	.RA1D(RA1D),
 	.RA2D(RA2D),
 	.RD1(RD1),
@@ -86,6 +92,7 @@ Datapath dp (
 	.RD2_OUT(RD2_OUT),
 	.RD2_S(RD2_S),
 	.ALUResultE(ALUResultE),
+	.WA3D(WA3D),
 	.WA3E(WA3E),
 	.WA3M(WA3M),
 	.WA3W(WA3W),
@@ -95,7 +102,11 @@ Datapath dp (
 	.ReadDataM(ReadDataM),
 	.ReadDataW(ReadDataW),
 	.WriteDataM(WriteDataM),
-	.FlagZ(FlagZ)
+	.FlagZ(FlagZ),
+	.Sel14(Sel14),
+	.Sel14E(Sel14E),
+	.Sel14M(Sel14M),
+	.Sel14W(Sel14W)
 );
 
 
