@@ -23,7 +23,6 @@ def print_all(dut):
 
     print_hex_dec(dut, dut.PCPrime.value, name="PCPrime", cond=True)
     print_hex_dec(dut, dut.PCF.value, name="PCF", cond=True)
-    # print_hex_dec(dut, dut.PCPlus4F.value, name="PCPlus4F")
 
     print_hex_dec(dut, dut.RESET.value, name="RESET")
 
@@ -72,7 +71,6 @@ def print_all(dut):
     print_hex_dec(dut, dut.WA3M.value, name="WA3M")
     print_hex_dec(dut, dut.WA3W.value, name="WA3W")
 
-    # print_hex_dec(dut, dut.ExtImmE.value, name="ExtImmE")
     print_hex_dec(dut, dut.SrcBE.value, name="SrcBE")
 
     print_hex_dec(dut, dut.ReadDataM.value, name="ReadDataM")
@@ -92,7 +90,7 @@ def print_all(dut):
 
 
 @cocotb.test()
-async def subroutine_2s_complement_using_branch(dut):
+async def subroutine_even_parity(dut):
     """Setup testbench and run a test."""
     # Generate the clock
     await cocotb.start(Clock(dut.CLK, 10, "us").start(start_high=False))
@@ -363,8 +361,6 @@ async def subroutine_2s_complement_using_branch(dut):
 
     for i in range(0, 75):
         await clkedge
-        dut._log.info(f"PCF: {dut.PCF.value}")
-        print_all(dut)
 
     print_all(dut)
     assert dut.PCPrime.value == 168
