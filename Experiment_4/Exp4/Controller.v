@@ -58,6 +58,11 @@ always @(posedge CLK) begin
 		default: CONDEX = 1;
 	endcase
 
+	
+end
+ 
+always @(*) begin
+
 	if(RESET) begin
 		 PCSrcD=0;
 		 RegWriteD=0;
@@ -69,9 +74,7 @@ always @(posedge CLK) begin
 		 RegSrcD=0;
 		 ImmSrcD=0;
 		 Sel14=0;
-	end	
-end 
-always @(*) begin
+	end
 
 	if (COND != 4'b1111) begin
 		case(OP) 
@@ -199,7 +202,7 @@ always @(*) begin
 
 		endcase
 	end
-	else begin
+	if(COND == 4'b1111) begin
 		PCSrcD = 0;
 		Sel14 = 0;
 		RegWriteD=0;

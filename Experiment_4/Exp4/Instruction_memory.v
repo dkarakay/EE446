@@ -3,7 +3,7 @@ module Instruction_memory#(parameter BYTE_SIZE=4, parameter ADDR_WIDTH=32)(
 	output [(BYTE_SIZE*8)-1:0] RD 
 );
 
-reg [7:0] mem [4095:0];
+reg [7:0] mem [399:0];
 
 initial begin
 

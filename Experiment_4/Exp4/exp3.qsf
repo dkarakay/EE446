@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY Controller
+set_global_assignment -name TOP_LEVEL_ENTITY Datapath
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "21:56:12  MAY 03, 2023"
 set_global_assignment -name LAST_QUARTUS_VERSION 13.1
@@ -58,6 +58,10 @@ set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name OPTIMIZE_TIMING OFF
 set_global_assignment -name FINAL_PLACEMENT_OPTIMIZATION NEVER
 set_global_assignment -name FITTER_AGGRESSIVE_ROUTABILITY_OPTIMIZATION NEVER
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VERILOG_FILE Register_sync_rw_neg.v
 set_global_assignment -name VERILOG_FILE Instruction_memory.v
 set_global_assignment -name BDF_FILE datapath_schematic.bdf
 set_global_assignment -name VERILOG_FILE shifter.v
@@ -76,7 +80,4 @@ set_global_assignment -name VERILOG_FILE Datapath.v
 set_global_assignment -name VERILOG_FILE Controller.v
 set_global_assignment -name VERILOG_FILE ALU.v
 set_global_assignment -name VERILOG_FILE Adder.v
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for exp3
-Sat May 20 00:27:10 2023
+Mon May 22 01:55:01 2023
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -10,7 +10,84 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Inverted Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Parameter Settings for User Entity Instance: Register_file:reg_file
+ 13. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[0].Reg
+ 14. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[1].Reg
+ 15. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[2].Reg
+ 16. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[3].Reg
+ 17. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[4].Reg
+ 18. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[5].Reg
+ 19. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[6].Reg
+ 20. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[7].Reg
+ 21. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[8].Reg
+ 22. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[9].Reg
+ 23. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[10].Reg
+ 24. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[11].Reg
+ 25. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[12].Reg
+ 26. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[13].Reg
+ 27. Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[14].Reg
+ 28. Parameter Settings for User Entity Instance: Register_file:reg_file|Mux_16to1:mux_0
+ 29. Parameter Settings for User Entity Instance: Register_file:reg_file|Mux_16to1:mux_1
+ 30. Parameter Settings for User Entity Instance: Mux_2to1:mux_pc
+ 31. Parameter Settings for User Entity Instance: Register_simple:reg_pc
+ 32. Parameter Settings for User Entity Instance: Instruction_memory:instruction_mem
+ 33. Parameter Settings for User Entity Instance: Register_sync_rw:reg_instr
+ 34. Parameter Settings for User Entity Instance: Adder:add_pc_four
+ 35. Parameter Settings for User Entity Instance: Register_simple:reg_pc_plus_four_pcd
+ 36. Parameter Settings for User Entity Instance: Mux_2to1:mux_reg
+ 37. Parameter Settings for User Entity Instance: Mux_2to1:mux_reg_1
+ 38. Parameter Settings for User Entity Instance: shifter:shift
+ 39. Parameter Settings for User Entity Instance: Mux_2to1:mux_alu_bx_lr
+ 40. Parameter Settings for User Entity Instance: Register_sync_rw:reg_z
+ 41. Parameter Settings for User Entity Instance: Register_simple:reg_pc_plus_four_pce
+ 42. Parameter Settings for User Entity Instance: Register_sync_rw:reg_sel14_1
+ 43. Parameter Settings for User Entity Instance: Register_sync_rw:reg_ext
+ 44. Parameter Settings for User Entity Instance: Register_sync_rw:reg_rd1
+ 45. Parameter Settings for User Entity Instance: Register_sync_rw:reg_wa3
+ 46. Parameter Settings for User Entity Instance: Register_sync_rw:reg_rd2
+ 47. Parameter Settings for User Entity Instance: Mux_2to1:mux_src_be
+ 48. Parameter Settings for User Entity Instance: ALU:alu
+ 49. Parameter Settings for User Entity Instance: Register_simple:reg_pc_plus_four_pcm
+ 50. Parameter Settings for User Entity Instance: Register_sync_rw:reg_sel14_2
+ 51. Parameter Settings for User Entity Instance: Register_sync_rw:reg_alu
+ 52. Parameter Settings for User Entity Instance: Register_sync_rw:reg_wd
+ 53. Parameter Settings for User Entity Instance: Register_sync_rw:reg_wa3m
+ 54. Parameter Settings for User Entity Instance: Memory:DM
+ 55. Parameter Settings for User Entity Instance: Register_simple:reg_pc_plus_four_pcw
+ 56. Parameter Settings for User Entity Instance: Register_sync_rw:reg_sel14_3
+ 57. Parameter Settings for User Entity Instance: Register_sync_rw:reg_read_data
+ 58. Parameter Settings for User Entity Instance: Register_sync_rw:reg_wa3w
+ 59. Parameter Settings for User Entity Instance: Register_sync_rw:reg_alu_out
+ 60. Parameter Settings for User Entity Instance: Mux_2to1:mux_read_data
+ 61. Parameter Settings for User Entity Instance: Mux_2to1:mux_pc_plus_four
+ 62. Port Connectivity Checks: "Register_sync_rw:reg_alu_out"
+ 63. Port Connectivity Checks: "Register_sync_rw:reg_wa3w"
+ 64. Port Connectivity Checks: "Register_sync_rw:reg_read_data"
+ 65. Port Connectivity Checks: "Register_sync_rw:reg_sel14_3"
+ 66. Port Connectivity Checks: "Register_sync_rw:reg_wa3m"
+ 67. Port Connectivity Checks: "Register_sync_rw:reg_wd"
+ 68. Port Connectivity Checks: "Register_sync_rw:reg_alu"
+ 69. Port Connectivity Checks: "Register_sync_rw:reg_sel14_2"
+ 70. Port Connectivity Checks: "ALU:alu"
+ 71. Port Connectivity Checks: "Register_sync_rw:reg_rd2"
+ 72. Port Connectivity Checks: "Register_sync_rw:reg_wa3"
+ 73. Port Connectivity Checks: "Register_sync_rw:reg_rd1"
+ 74. Port Connectivity Checks: "Register_sync_rw:reg_ext"
+ 75. Port Connectivity Checks: "Register_sync_rw:reg_sel14_1"
+ 76. Port Connectivity Checks: "Mux_2to1:mux_alu_bx_lr"
+ 77. Port Connectivity Checks: "Mux_2to1:mux_reg_1"
+ 78. Port Connectivity Checks: "Adder:add_pc_four"
+ 79. Port Connectivity Checks: "Register_sync_rw:reg_instr"
+ 80. Port Connectivity Checks: "Register_file:reg_file|Decoder_4to16:dec"
+ 81. Elapsed Time Per Partition
+ 82. Analysis & Synthesis Messages
 
 
 
@@ -33,22 +110,27 @@ applicable agreement for further details.
 
 
 
-+--------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                             ;
-+-----------------------------+--------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Sat May 20 00:27:10 2023          ;
-; Quartus II 64-Bit Version   ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
-; Revision Name               ; exp3                                       ;
-; Top-level Entity Name       ; Controller                                 ;
-; Family                      ; Cyclone V                                  ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                  ;
-; Total registers             ; N/A until Partition Merge                  ;
-; Total pins                  ; N/A until Partition Merge                  ;
-; Total virtual pins          ; N/A until Partition Merge                  ;
-; Total block memory bits     ; N/A until Partition Merge                  ;
-; Total PLLs                  ; N/A until Partition Merge                  ;
-; Total DLLs                  ; N/A until Partition Merge                  ;
-+-----------------------------+--------------------------------------------+
++------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                 ;
++---------------------------------+--------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Mon May 22 01:55:01 2023      ;
+; Quartus II 64-Bit Version       ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
+; Revision Name                   ; exp3                                       ;
+; Top-level Entity Name           ; Datapath                                   ;
+; Family                          ; Cyclone V                                  ;
+; Logic utilization (in ALMs)     ; N/A                                        ;
+; Total registers                 ; 1194                                       ;
+; Total pins                      ; 845                                        ;
+; Total virtual pins              ; 0                                          ;
+; Total block memory bits         ; 0                                          ;
+; Total DSP Blocks                ; 0                                          ;
+; Total HSSI RX PCSs              ; 0                                          ;
+; Total HSSI PMA RX Deserializers ; 0                                          ;
+; Total HSSI TX PCSs              ; 0                                          ;
+; Total HSSI TX Channels          ; 0                                          ;
+; Total PLLs                      ; 0                                          ;
+; Total DLLs                      ; 0                                          ;
++---------------------------------+--------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -57,7 +139,7 @@ applicable agreement for further details.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
-; Top-level entity name                                                           ; Controller         ; exp3               ;
+; Top-level entity name                                                           ; Datapath           ; exp3               ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone IV GX      ;
 ; Use smart compilation                                                           ; On                 ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation      ; On                 ; On                 ;
@@ -149,15 +231,956 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                          ;
++----------------------------------+-----------------+------------------------+-------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                            ; Library ;
++----------------------------------+-----------------+------------------------+-------------------------------------------------------------------------+---------+
+; Register_sync_rw_neg.v           ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Register_sync_rw_neg.v ;         ;
+; Instruction_memory.v             ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Instruction_memory.v   ;         ;
+; shifter.v                        ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/shifter.v              ;         ;
+; Register_sync_rw.v               ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Register_sync_rw.v     ;         ;
+; Register_simple.v                ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Register_simple.v      ;         ;
+; Register_file.v                  ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Register_file.v        ;         ;
+; Mux_2to1.v                       ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Mux_2to1.v             ;         ;
+; Mux_16to1.v                      ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Mux_16to1.v            ;         ;
+; Memory.v                         ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Memory.v               ;         ;
+; Extender.v                       ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Extender.v             ;         ;
+; Decoder_4to16.v                  ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Decoder_4to16.v        ;         ;
+; Datapath.v                       ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Datapath.v             ;         ;
+; ALU.v                            ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/ALU.v                  ;         ;
+; Adder.v                          ; yes             ; User Verilog HDL File  ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Adder.v                ;         ;
+; mem_data.txt                     ; yes             ; Auto-Found File        ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/mem_data.txt           ;         ;
+; mem_data_instr.txt               ; yes             ; Auto-Found File        ; C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/mem_data_instr.txt     ;         ;
++----------------------------------+-----------------+------------------------+-------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 2009      ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 2501      ;
+;     -- 7 input functions                    ; 47        ;
+;     -- 6 input functions                    ; 1401      ;
+;     -- 5 input functions                    ; 190       ;
+;     -- 4 input functions                    ; 240       ;
+;     -- <=3 input functions                  ; 623       ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 1194      ;
+;                                             ;           ;
+; I/O pins                                    ; 845       ;
+; Total DSP Blocks                            ; 0         ;
+; Maximum fan-out node                        ; CLK~input ;
+; Maximum fan-out                             ; 1194      ;
+; Total fan-out                               ; 17997     ;
+; Average fan-out                             ; 3.34      ;
++---------------------------------------------+-----------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                               ;
++------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                     ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                     ; Library Name ;
++------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------+--------------+
+; |Datapath                                      ; 2501 (5)          ; 1194 (0)     ; 0                 ; 0          ; 845  ; 0            ; |Datapath                                                               ; work         ;
+;    |ALU:alu|                                   ; 237 (237)         ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|ALU:alu                                                       ; work         ;
+;    |Adder:add_pc_four|                         ; 30 (30)           ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Adder:add_pc_four                                             ; work         ;
+;    |Extender:extend|                           ; 26 (26)           ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Extender:extend                                               ; work         ;
+;    |Instruction_memory:instruction_mem|        ; 229 (229)         ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Instruction_memory:instruction_mem                            ; work         ;
+;    |Memory:DM|                                 ; 1117 (1117)       ; 288 (288)    ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Memory:DM                                                     ; work         ;
+;    |Mux_2to1:mux_alu_bx_lr|                    ; 4 (4)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Mux_2to1:mux_alu_bx_lr                                        ; work         ;
+;    |Mux_2to1:mux_pc_plus_four|                 ; 32 (32)           ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Mux_2to1:mux_pc_plus_four                                     ; work         ;
+;    |Mux_2to1:mux_pc|                           ; 32 (32)           ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Mux_2to1:mux_pc                                               ; work         ;
+;    |Mux_2to1:mux_read_data|                    ; 32 (32)           ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Mux_2to1:mux_read_data                                        ; work         ;
+;    |Mux_2to1:mux_reg_1|                        ; 4 (4)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Mux_2to1:mux_reg_1                                            ; work         ;
+;    |Mux_2to1:mux_reg|                          ; 4 (4)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Mux_2to1:mux_reg                                              ; work         ;
+;    |Mux_2to1:mux_src_be|                       ; 32 (32)           ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Mux_2to1:mux_src_be                                           ; work         ;
+;    |Register_file:reg_file|                    ; 335 (0)           ; 480 (0)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file                                        ; work         ;
+;       |Mux_16to1:mux_0|                        ; 160 (160)         ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Mux_16to1:mux_0                        ; work         ;
+;       |Mux_16to1:mux_1|                        ; 160 (160)         ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Mux_16to1:mux_1                        ; work         ;
+;       |Register_sync_rw_neg:registers[0].Reg|  ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[0].Reg  ; work         ;
+;       |Register_sync_rw_neg:registers[10].Reg| ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[10].Reg ; work         ;
+;       |Register_sync_rw_neg:registers[11].Reg| ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[11].Reg ; work         ;
+;       |Register_sync_rw_neg:registers[12].Reg| ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[12].Reg ; work         ;
+;       |Register_sync_rw_neg:registers[13].Reg| ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[13].Reg ; work         ;
+;       |Register_sync_rw_neg:registers[14].Reg| ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[14].Reg ; work         ;
+;       |Register_sync_rw_neg:registers[1].Reg|  ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[1].Reg  ; work         ;
+;       |Register_sync_rw_neg:registers[2].Reg|  ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[2].Reg  ; work         ;
+;       |Register_sync_rw_neg:registers[3].Reg|  ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[3].Reg  ; work         ;
+;       |Register_sync_rw_neg:registers[4].Reg|  ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[4].Reg  ; work         ;
+;       |Register_sync_rw_neg:registers[5].Reg|  ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[5].Reg  ; work         ;
+;       |Register_sync_rw_neg:registers[6].Reg|  ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[6].Reg  ; work         ;
+;       |Register_sync_rw_neg:registers[7].Reg|  ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[7].Reg  ; work         ;
+;       |Register_sync_rw_neg:registers[8].Reg|  ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[8].Reg  ; work         ;
+;       |Register_sync_rw_neg:registers[9].Reg|  ; 1 (1)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[9].Reg  ; work         ;
+;    |Register_simple:reg_pc_plus_four_pcd|      ; 0 (0)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_simple:reg_pc_plus_four_pcd                          ; work         ;
+;    |Register_simple:reg_pc_plus_four_pce|      ; 0 (0)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_simple:reg_pc_plus_four_pce                          ; work         ;
+;    |Register_simple:reg_pc_plus_four_pcm|      ; 0 (0)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_simple:reg_pc_plus_four_pcm                          ; work         ;
+;    |Register_simple:reg_pc_plus_four_pcw|      ; 0 (0)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_simple:reg_pc_plus_four_pcw                          ; work         ;
+;    |Register_simple:reg_pc|                    ; 0 (0)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_simple:reg_pc                                        ; work         ;
+;    |Register_sync_rw:reg_alu_out|              ; 0 (0)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_alu_out                                  ; work         ;
+;    |Register_sync_rw:reg_alu|                  ; 0 (0)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_alu                                      ; work         ;
+;    |Register_sync_rw:reg_ext|                  ; 0 (0)             ; 26 (26)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_ext                                      ; work         ;
+;    |Register_sync_rw:reg_instr|                ; 0 (0)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_instr                                    ; work         ;
+;    |Register_sync_rw:reg_rd1|                  ; 0 (0)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_rd1                                      ; work         ;
+;    |Register_sync_rw:reg_rd2|                  ; 0 (0)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_rd2                                      ; work         ;
+;    |Register_sync_rw:reg_read_data|            ; 0 (0)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_read_data                                ; work         ;
+;    |Register_sync_rw:reg_sel14_1|              ; 0 (0)             ; 1 (1)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_sel14_1                                  ; work         ;
+;    |Register_sync_rw:reg_sel14_2|              ; 0 (0)             ; 1 (1)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_sel14_2                                  ; work         ;
+;    |Register_sync_rw:reg_sel14_3|              ; 0 (0)             ; 1 (1)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_sel14_3                                  ; work         ;
+;    |Register_sync_rw:reg_wa3m|                 ; 0 (0)             ; 4 (4)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_wa3m                                     ; work         ;
+;    |Register_sync_rw:reg_wa3w|                 ; 0 (0)             ; 4 (4)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_wa3w                                     ; work         ;
+;    |Register_sync_rw:reg_wa3|                  ; 0 (0)             ; 4 (4)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_wa3                                      ; work         ;
+;    |Register_sync_rw:reg_wd|                   ; 0 (0)             ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_wd                                       ; work         ;
+;    |Register_sync_rw:reg_z|                    ; 16 (16)           ; 1 (1)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|Register_sync_rw:reg_z                                        ; work         ;
+;    |shifter:shift|                             ; 366 (366)         ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Datapath|shifter:shift                                                 ; work         ;
++------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                   ;
++---------------------------------------+----------------------------------------------+
+; Register name                         ; Reason for Removal                           ;
++---------------------------------------+----------------------------------------------+
+; Register_sync_rw:reg_ext|OUT[26..31]  ; Merged with Register_sync_rw:reg_ext|OUT[25] ;
+; Total Number of Removed Registers = 6 ;                                              ;
++---------------------------------------+----------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 1194  ;
+; Number of registers using Synchronous Clear  ; 812   ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 768   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; Memory:DM|mem[0][0]                     ; 4       ;
+; Memory:DM|mem[8][0]                     ; 3       ;
+; Memory:DM|mem[16][0]                    ; 3       ;
+; Memory:DM|mem[28][0]                    ; 3       ;
+; Memory:DM|mem[16][1]                    ; 3       ;
+; Memory:DM|mem[8][1]                     ; 3       ;
+; Memory:DM|mem[24][1]                    ; 3       ;
+; Memory:DM|mem[12][1]                    ; 3       ;
+; Memory:DM|mem[28][1]                    ; 3       ;
+; Memory:DM|mem[4][2]                     ; 4       ;
+; Memory:DM|mem[8][2]                     ; 3       ;
+; Memory:DM|mem[12][2]                    ; 3       ;
+; Memory:DM|mem[28][2]                    ; 3       ;
+; Memory:DM|mem[32][2]                    ; 4       ;
+; Memory:DM|mem[12][3]                    ; 3       ;
+; Memory:DM|mem[20][3]                    ; 3       ;
+; Memory:DM|mem[24][3]                    ; 3       ;
+; Memory:DM|mem[32][3]                    ; 4       ;
+; Memory:DM|mem[20][4]                    ; 3       ;
+; Memory:DM|mem[28][4]                    ; 3       ;
+; Memory:DM|mem[32][4]                    ; 4       ;
+; Memory:DM|mem[24][5]                    ; 3       ;
+; Memory:DM|mem[28][5]                    ; 3       ;
+; Memory:DM|mem[32][6]                    ; 4       ;
+; Total number of inverted registers = 24 ;         ;
++-----------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[0].Reg|OUT[30]  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[1].Reg|OUT[15]  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[2].Reg|OUT[26]  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[3].Reg|OUT[30]  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[4].Reg|OUT[28]  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[5].Reg|OUT[4]   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[6].Reg|OUT[30]  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[7].Reg|OUT[10]  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[8].Reg|OUT[17]  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[9].Reg|OUT[15]  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[10].Reg|OUT[25] ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[11].Reg|OUT[30] ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[12].Reg|OUT[6]  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[13].Reg|OUT[21] ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |Datapath|Register_file:reg_file|Register_sync_rw_neg:registers[14].Reg|OUT[6]  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[35][2]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[34][3]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[33][2]                                                  ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[32][1]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[31][2]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[30][0]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[29][2]                                                  ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[28][7]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[27][7]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[26][0]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[25][6]                                                  ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[24][4]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[23][5]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[22][5]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[21][0]                                                  ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[20][1]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[19][1]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[18][4]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[17][4]                                                  ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[16][4]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[15][4]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[14][4]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[13][4]                                                  ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[12][4]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[11][4]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[10][1]                                                  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[9][4]                                                   ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[8][4]                                                   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[7][4]                                                   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[6][4]                                                   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[5][4]                                                   ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[4][4]                                                   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[3][4]                                                   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[2][1]                                                   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[1][4]                                                   ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[0][2]                                                   ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[32][6]                                                  ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[28][4]                                                  ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[24][5]                                                  ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[20][3]                                                  ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[16][1]                                                  ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[12][2]                                                  ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; Yes        ; |Datapath|Memory:DM|mem[8][2]                                                   ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |Datapath|shifter:shift|ShiftLeft0                                              ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |Datapath|shifter:shift|ShiftRight0                                             ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |Datapath|shifter:shift|ShiftRight1                                             ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |Datapath|shifter:shift|ShiftLeft0                                              ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |Datapath|shifter:shift|ShiftRight0                                             ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |Datapath|Extender:extend|Mux2                                                  ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 320 LEs              ; 0 LEs                  ; No         ; |Datapath|Register_file:reg_file|Mux_16to1:mux_0|Mux29                          ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 320 LEs              ; 0 LEs                  ; No         ; |Datapath|Register_file:reg_file|Mux_16to1:mux_1|Mux25                          ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; No         ; |Datapath|ALU:alu|Add0                                                          ;
+; 8:1                ; 15 bits   ; 75 LEs        ; 60 LEs               ; 15 LEs                 ; No         ; |Datapath|shifter:shift|Mux30                                                   ;
+; 11:1               ; 32 bits   ; 224 LEs       ; 192 LEs              ; 32 LEs                 ; No         ; |Datapath|ALU:alu|Mux29                                                         ;
+; 36:1               ; 8 bits    ; 192 LEs       ; 192 LEs              ; 0 LEs                  ; No         ; |Datapath|Memory:DM|Mux13                                                       ;
+; 36:1               ; 8 bits    ; 192 LEs       ; 192 LEs              ; 0 LEs                  ; No         ; |Datapath|Memory:DM|Mux24                                                       ;
+; 9:1                ; 11 bits   ; 66 LEs        ; 66 LEs               ; 0 LEs                  ; No         ; |Datapath|shifter:shift|Mux11                                                   ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |Datapath|shifter:shift|Mux2                                                    ;
+; 18:1               ; 8 bits    ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |Datapath|Memory:DM|Mux1                                                        ;
+; 18:1               ; 8 bits    ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |Datapath|Memory:DM|Mux17                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[0].Reg ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[1].Reg ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[2].Reg ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[3].Reg ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[4].Reg ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[5].Reg ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[6].Reg ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[7].Reg ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[8].Reg ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[9].Reg ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[10].Reg ;
++----------------+-------+-----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                              ;
++----------------+-------+-----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                    ;
++----------------+-------+-----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[11].Reg ;
++----------------+-------+-----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                              ;
++----------------+-------+-----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                    ;
++----------------+-------+-----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[12].Reg ;
++----------------+-------+-----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                              ;
++----------------+-------+-----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                    ;
++----------------+-------+-----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[13].Reg ;
++----------------+-------+-----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                              ;
++----------------+-------+-----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                    ;
++----------------+-------+-----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Register_sync_rw_neg:registers[14].Reg ;
++----------------+-------+-----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                              ;
++----------------+-------+-----------------------------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                                                    ;
++----------------+-------+-----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Mux_16to1:mux_0 ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_file:reg_file|Mux_16to1:mux_1 ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Mux_2to1:mux_pc ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_simple:reg_pc ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Instruction_memory:instruction_mem ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; BYTE_SIZE      ; 4     ; Signed Integer                                         ;
+; ADDR_WIDTH     ; 32    ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_instr ;
++----------------+-------+------------------------------------------------+
+; Parameter Name ; Value ; Type                                           ;
++----------------+-------+------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                 ;
++----------------+-------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Adder:add_pc_four ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_simple:reg_pc_plus_four_pcd ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Mux_2to1:mux_reg ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; WIDTH          ; 4     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Mux_2to1:mux_reg_1 ;
++----------------+-------+----------------------------------------+
+; Parameter Name ; Value ; Type                                   ;
++----------------+-------+----------------------------------------+
+; WIDTH          ; 4     ; Signed Integer                         ;
++----------------+-------+----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: shifter:shift ;
++----------------+-------+-----------------------------------+
+; Parameter Name ; Value ; Type                              ;
++----------------+-------+-----------------------------------+
+; WIDTH          ; 32    ; Signed Integer                    ;
++----------------+-------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Mux_2to1:mux_alu_bx_lr ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; WIDTH          ; 4     ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_z ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; WIDTH          ; 1     ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_simple:reg_pc_plus_four_pce ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_sel14_1 ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; WIDTH          ; 1     ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_ext ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_rd1 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_wa3 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; WIDTH          ; 4     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_rd2 ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Mux_2to1:mux_src_be ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ALU:alu ;
++----------------+-------+-----------------------------+
+; Parameter Name ; Value ; Type                        ;
++----------------+-------+-----------------------------+
+; WIDTH          ; 32    ; Signed Integer              ;
++----------------+-------+-----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_simple:reg_pc_plus_four_pcm ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_sel14_2 ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; WIDTH          ; 1     ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_alu ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_wd ;
++----------------+-------+---------------------------------------------+
+; Parameter Name ; Value ; Type                                        ;
++----------------+-------+---------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                              ;
++----------------+-------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_wa3m ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; WIDTH          ; 4     ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Memory:DM ;
++----------------+-------+-------------------------------+
+; Parameter Name ; Value ; Type                          ;
++----------------+-------+-------------------------------+
+; BYTE_SIZE      ; 4     ; Signed Integer                ;
+; ADDR_WIDTH     ; 32    ; Signed Integer                ;
++----------------+-------+-------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_simple:reg_pc_plus_four_pcw ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_sel14_3 ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; WIDTH          ; 1     ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_read_data ;
++----------------+-------+----------------------------------------------------+
+; Parameter Name ; Value ; Type                                               ;
++----------------+-------+----------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                     ;
++----------------+-------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_wa3w ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; WIDTH          ; 4     ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register_sync_rw:reg_alu_out ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Mux_2to1:mux_read_data ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Mux_2to1:mux_pc_plus_four ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; WIDTH          ; 32    ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_alu_out" ;
++------+-------+----------+--------------------------------+
+; Port ; Type  ; Severity ; Details                        ;
++------+-------+----------+--------------------------------+
+; we   ; Input ; Info     ; Stuck at VCC                   ;
++------+-------+----------+--------------------------------+
+
+
++-------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_wa3w" ;
++------+-------+----------+-----------------------------+
+; Port ; Type  ; Severity ; Details                     ;
++------+-------+----------+-----------------------------+
+; we   ; Input ; Info     ; Stuck at VCC                ;
++------+-------+----------+-----------------------------+
+
+
++------------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_read_data" ;
++------+-------+----------+----------------------------------+
+; Port ; Type  ; Severity ; Details                          ;
++------+-------+----------+----------------------------------+
+; we   ; Input ; Info     ; Stuck at VCC                     ;
++------+-------+----------+----------------------------------+
+
+
++----------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_sel14_3" ;
++------+-------+----------+--------------------------------+
+; Port ; Type  ; Severity ; Details                        ;
++------+-------+----------+--------------------------------+
+; we   ; Input ; Info     ; Stuck at VCC                   ;
++------+-------+----------+--------------------------------+
+
+
++-------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_wa3m" ;
++------+-------+----------+-----------------------------+
+; Port ; Type  ; Severity ; Details                     ;
++------+-------+----------+-----------------------------+
+; we   ; Input ; Info     ; Stuck at VCC                ;
++------+-------+----------+-----------------------------+
+
+
++-----------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_wd" ;
++------+-------+----------+---------------------------+
+; Port ; Type  ; Severity ; Details                   ;
++------+-------+----------+---------------------------+
+; we   ; Input ; Info     ; Stuck at VCC              ;
++------+-------+----------+---------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_alu" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; we   ; Input ; Info     ; Stuck at VCC               ;
++------+-------+----------+----------------------------+
+
+
++----------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_sel14_2" ;
++------+-------+----------+--------------------------------+
+; Port ; Type  ; Severity ; Details                        ;
++------+-------+----------+--------------------------------+
+; we   ; Input ; Info     ; Stuck at VCC                   ;
++------+-------+----------+--------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ALU:alu"                                                                                                                                     ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                                                      ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; CI   ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; CO   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; OVF  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; N    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_rd2" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; we   ; Input ; Info     ; Stuck at VCC               ;
++------+-------+----------+----------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_wa3" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; we   ; Input ; Info     ; Stuck at VCC               ;
++------+-------+----------+----------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_rd1" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; we   ; Input ; Info     ; Stuck at VCC               ;
++------+-------+----------+----------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_ext" ;
++------+-------+----------+----------------------------+
+; Port ; Type  ; Severity ; Details                    ;
++------+-------+----------+----------------------------+
+; we   ; Input ; Info     ; Stuck at VCC               ;
++------+-------+----------+----------------------------+
+
+
++----------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_sel14_1" ;
++------+-------+----------+--------------------------------+
+; Port ; Type  ; Severity ; Details                        ;
++------+-------+----------+--------------------------------+
+; we   ; Input ; Info     ; Stuck at VCC                   ;
++------+-------+----------+--------------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "Mux_2to1:mux_alu_bx_lr" ;
++---------------+-------+----------+-----------------+
+; Port          ; Type  ; Severity ; Details         ;
++---------------+-------+----------+-----------------+
+; input_1[3..1] ; Input ; Info     ; Stuck at VCC    ;
+; input_1[0]    ; Input ; Info     ; Stuck at GND    ;
++---------------+-------+----------+-----------------+
+
+
++------------------------------------------------+
+; Port Connectivity Checks: "Mux_2to1:mux_reg_1" ;
++---------+-------+----------+-------------------+
+; Port    ; Type  ; Severity ; Details           ;
++---------+-------+----------+-------------------+
+; input_1 ; Input ; Info     ; Stuck at VCC      ;
++---------+-------+----------+-------------------+
+
+
++-------------------------------------------------+
+; Port Connectivity Checks: "Adder:add_pc_four"   ;
++---------------+-------+----------+--------------+
+; Port          ; Type  ; Severity ; Details      ;
++---------------+-------+----------+--------------+
+; DATA_B[31..3] ; Input ; Info     ; Stuck at GND ;
+; DATA_B[1..0]  ; Input ; Info     ; Stuck at GND ;
+; DATA_B[2]     ; Input ; Info     ; Stuck at VCC ;
++---------------+-------+----------+--------------+
+
+
++--------------------------------------------------------+
+; Port Connectivity Checks: "Register_sync_rw:reg_instr" ;
++------+-------+----------+------------------------------+
+; Port ; Type  ; Severity ; Details                      ;
++------+-------+----------+------------------------------+
+; we   ; Input ; Info     ; Stuck at VCC                 ;
++------+-------+----------+------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Register_file:reg_file|Decoder_4to16:dec"                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                                    ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; OUT  ; Output ; Warning  ; Output or bidir port (16 bits) is wider than the port expression (15 bits) it drives; bit(s) "OUT[15..15]" have no fanouts ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:10     ;
++----------------+--------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Sat May 20 00:27:09 2023
+    Info: Processing started: Mon May 22 01:54:47 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off exp3 -c exp3
 Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 1 design units, including 1 entities, in source file register_sync_rw_neg.v
+    Info (12023): Found entity 1: Register_sync_rw_neg
 Info (12021): Found 1 design units, including 1 entities, in source file instruction_memory.v
     Info (12023): Found entity 1: Instruction_memory
 Info (12021): Found 1 design units, including 1 entities, in source file datapath_schematic.bdf
@@ -188,17 +1211,78 @@ Info (12021): Found 1 design units, including 1 entities, in source file decoder
     Info (12023): Found entity 1: Decoder_2to4
 Info (12021): Found 1 design units, including 1 entities, in source file datapath.v
     Info (12023): Found entity 1: Datapath
-Error (10170): Verilog HDL syntax error at Controller.v(151) near text "end"; "end" without "begin"  File: C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Controller.v Line: 151
-Error (10112): Ignored design unit "Controller" at Controller.v(1) due to previous errors File: C:/Users/Deniz/Documents/EE446/Experiment_4/Exp4/Controller.v Line: 1
-Info (12021): Found 0 design units, including 0 entities, in source file controller.v
+Info (12021): Found 1 design units, including 1 entities, in source file controller.v
+    Info (12023): Found entity 1: Controller
 Info (12021): Found 1 design units, including 1 entities, in source file alu.v
     Info (12023): Found entity 1: ALU
 Info (12021): Found 1 design units, including 1 entities, in source file adder.v
     Info (12023): Found entity 1: Adder
-Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 2 errors, 1 warning
-    Error: Peak virtual memory: 4642 megabytes
-    Error: Processing ended: Sat May 20 00:27:10 2023
-    Error: Elapsed time: 00:00:01
-    Error: Total CPU time (on all processors): 00:00:01
+Warning (10236): Verilog HDL Implicit Net warning at Datapath.v(168): created implicit net for "FlushE"
+Warning (10222): Verilog HDL Parameter Declaration warning at shifter.v(13): Parameter Declaration in module "shifter" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Warning (10222): Verilog HDL Parameter Declaration warning at ALU.v(24): Parameter Declaration in module "ALU" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List
+Info (12127): Elaborating entity "Datapath" for the top level hierarchy
+Warning (10230): Verilog HDL assignment warning at Datapath.v(117): truncated value with size 32 to match size of target (5)
+Info (12128): Elaborating entity "Register_file" for hierarchy "Register_file:reg_file"
+Info (12128): Elaborating entity "Register_sync_rw_neg" for hierarchy "Register_file:reg_file|Register_sync_rw_neg:registers[0].Reg"
+Info (12128): Elaborating entity "Decoder_4to16" for hierarchy "Register_file:reg_file|Decoder_4to16:dec"
+Info (12128): Elaborating entity "Mux_16to1" for hierarchy "Register_file:reg_file|Mux_16to1:mux_0"
+Info (12128): Elaborating entity "Mux_2to1" for hierarchy "Mux_2to1:mux_pc"
+Info (12128): Elaborating entity "Register_simple" for hierarchy "Register_simple:reg_pc"
+Info (12128): Elaborating entity "Instruction_memory" for hierarchy "Instruction_memory:instruction_mem"
+Info (12128): Elaborating entity "Register_sync_rw" for hierarchy "Register_sync_rw:reg_instr"
+Info (12128): Elaborating entity "Adder" for hierarchy "Adder:add_pc_four"
+Info (12128): Elaborating entity "Mux_2to1" for hierarchy "Mux_2to1:mux_reg"
+Info (12128): Elaborating entity "Extender" for hierarchy "Extender:extend"
+Info (12128): Elaborating entity "shifter" for hierarchy "shifter:shift"
+Warning (10230): Verilog HDL assignment warning at shifter.v(20): truncated value with size 64 to match size of target (32)
+Info (12128): Elaborating entity "Register_sync_rw" for hierarchy "Register_sync_rw:reg_z"
+Info (12128): Elaborating entity "Register_sync_rw" for hierarchy "Register_sync_rw:reg_wa3"
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:alu"
+Info (12128): Elaborating entity "Memory" for hierarchy "Memory:DM"
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "FlushE" is missing source, defaulting to GND
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 4251 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 17 input pins
+    Info (21059): Implemented 828 output pins
+    Info (21061): Implemented 3406 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 39 warnings
+    Info: Peak virtual memory: 4694 megabytes
+    Info: Processing ended: Mon May 22 01:55:01 2023
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:14
 
 

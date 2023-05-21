@@ -39,7 +39,7 @@ applicable agreement for further details.
 	(input)
 	(rect 960 520 1128 536)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "4" (rect 5 0 11 12)(font "Arial" ))
+	(text "4" (rect 5 0 10 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -55,7 +55,7 @@ applicable agreement for further details.
 	(input)
 	(rect 1696 296 1872 312)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "ALU_CONTROL" (rect 5 0 86 12)(font "Arial" ))
+	(text "ALU_CONTROL" (rect 5 0 85 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -71,7 +71,7 @@ applicable agreement for further details.
 	(input)
 	(rect -1912 0 -1744 16)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "reset" (rect 5 0 30 12)(font "Arial" ))
+	(text "reset" (rect 5 0 29 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -87,7 +87,7 @@ applicable agreement for further details.
 	(input)
 	(rect -816 336 -648 352)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "MemWrite" (rect 5 0 55 12)(font "Arial" ))
+	(text "MemWrite" (rect 5 0 54 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -103,7 +103,7 @@ applicable agreement for further details.
 	(input)
 	(rect 2464 200 2632 216)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "ResultSrc" (rect 5 0 54 12)(font "Arial" ))
+	(text "ResultSrc" (rect 5 0 53 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -119,7 +119,7 @@ applicable agreement for further details.
 	(input)
 	(rect -1856 408 -1688 424)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "PCWrite" (rect 5 0 47 12)(font "Arial" ))
+	(text "PCWrite" (rect 5 0 46 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -135,7 +135,7 @@ applicable agreement for further details.
 	(input)
 	(rect 1080 320 1248 336)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "ALUSrcB" (rect 5 0 50 12)(font "Arial" ))
+	(text "ALUSrcB" (rect 5 0 49 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -151,7 +151,7 @@ applicable agreement for further details.
 	(input)
 	(rect 1264 200 1432 216)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "ALUSrcA" (rect 5 0 52 12)(font "Arial" ))
+	(text "ALUSrcA" (rect 5 0 51 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -167,7 +167,7 @@ applicable agreement for further details.
 	(input)
 	(rect -168 -96 0 -80)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "RegWrite" (rect 5 0 52 12)(font "Arial" ))
+	(text "RegWrite" (rect 5 0 51 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -183,7 +183,7 @@ applicable agreement for further details.
 	(input)
 	(rect 800 680 968 696)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "ImmSrc" (rect 5 0 44 12)(font "Arial" ))
+	(text "ImmSrc" (rect 5 0 43 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -199,7 +199,7 @@ applicable agreement for further details.
 	(input)
 	(rect 80 -440 248 -424)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "15" (rect 5 0 17 12)(font "Arial" ))
+	(text "15" (rect 5 0 16 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -791,7 +791,7 @@ applicable agreement for further details.
 	(annotation_block (parameter)(rect -144 688 40 720))
 )
 (symbol
-	(rect -1688 352 -1432 464)
+	(rect -1688 320 -1432 432)
 	(text "Register_sync_rw" (rect 5 0 93 12)(font "Arial" ))
 	(text "inst14" (rect 8 96 37 108)(font "Arial" ))
 	(port
@@ -837,7 +837,7 @@ applicable agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 240 96))
 	)
-	(annotation_block (parameter)(rect -1648 320 -1464 352))
+	(annotation_block (parameter)(rect -1648 288 -1464 320))
 )
 (symbol
 	(rect -272 -344 -16 -232)
@@ -1045,23 +1045,8 @@ applicable agreement for further details.
 	(pt -256 8)
 )
 (connector
-	(pt -1432 384)
-	(pt -1288 384)
-	(bus)
-)
-(connector
 	(pt -1288 400)
 	(pt -1312 400)
-	(bus)
-)
-(connector
-	(pt -1688 432)
-	(pt -1736 432)
-	(bus)
-)
-(connector
-	(pt -1736 920)
-	(pt -1736 432)
 	(bus)
 )
 (connector
@@ -1070,40 +1055,12 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt -1688 384)
-	(pt -1704 384)
-)
-(connector
 	(pt -696 80)
 	(pt -696 88)
 )
 (connector
 	(pt -696 88)
 	(pt -696 328)
-)
-(connector
-	(pt -1704 80)
-	(pt -1704 384)
-)
-(connector
-	(pt -696 80)
-	(pt -1704 80)
-)
-(connector
-	(pt -1704 80)
-	(pt -1736 80)
-)
-(connector
-	(pt -1688 400)
-	(pt -1720 400)
-)
-(connector
-	(pt -1720 8)
-	(pt -1720 400)
-)
-(connector
-	(pt -1744 8)
-	(pt -1720 8)
 )
 (connector
 	(pt -176 88)
@@ -1504,10 +1461,6 @@ applicable agreement for further details.
 	(pt -640 -312)
 )
 (connector
-	(pt -1720 8)
-	(pt -576 8)
-)
-(connector
 	(pt -576 8)
 	(pt -256 8)
 )
@@ -1588,6 +1541,75 @@ applicable agreement for further details.
 (connector
 	(pt 136 -472)
 	(pt 136 -480)
+)
+(connector
+	(pt -1296 384)
+	(pt -1296 352)
+	(bus)
+)
+(connector
+	(pt -1288 384)
+	(pt -1296 384)
+	(bus)
+)
+(connector
+	(pt -1296 352)
+	(pt -1432 352)
+	(bus)
+)
+(connector
+	(pt -1680 416)
+	(pt -1680 384)
+)
+(connector
+	(pt -1688 416)
+	(pt -1680 416)
+)
+(connector
+	(pt -1680 384)
+	(pt -1688 384)
+)
+(connector
+	(pt -1736 400)
+	(pt -1688 400)
+	(bus)
+)
+(connector
+	(pt -1736 920)
+	(pt -1736 400)
+	(bus)
+)
+(connector
+	(pt -1704 352)
+	(pt -1688 352)
+)
+(connector
+	(pt -1704 80)
+	(pt -1704 352)
+)
+(connector
+	(pt -1720 368)
+	(pt -1688 368)
+)
+(connector
+	(pt -1720 8)
+	(pt -1720 368)
+)
+(connector
+	(pt -1736 80)
+	(pt -1704 80)
+)
+(connector
+	(pt -1704 80)
+	(pt -696 80)
+)
+(connector
+	(pt -1744 8)
+	(pt -1720 8)
+)
+(connector
+	(pt -1720 8)
+	(pt -576 8)
 )
 (junction (pt -176 88))
 (junction (pt 344 88))

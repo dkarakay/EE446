@@ -122,6 +122,7 @@ async def subroutine_all(dut):
     # NOP
     dut._log.info(f"4 - NOP")
     await clkedge
+    print_all(dut)
     assert dut.PCD.value == 4
     assert dut.WA3D.value == 14
     assert dut.Sel14.value == 1
@@ -397,9 +398,9 @@ async def subroutine_all(dut):
     assert dut.PCF.value == 160
     assert dut.ALUOutM.value == 14
 
-    # BEQ to 164 + 8 + 4*14 = 22
+    # BEQ to 164 + 8 + 4*14 = 228
     # 0x0A00000E
-    dut._log.info(f"164 - BEQ to 164 + 8 + 4*14 = 22")
+    dut._log.info(f"164 - BEQ to 164 + 8 + 4*14 = 228")
     await clkedge
     print_all(dut)
     assert dut.PCF.value == 164
@@ -558,9 +559,9 @@ async def subroutine_all(dut):
     assert dut.ALUResultE.value == 1
     assert dut.WA3E.value == 5
 
-    # BX LR to 4
+    # BX LR to 28
     # 0xE800000E
-    dut._log.info(f"240 - BX LR to 4")
+    dut._log.info(f"240 - BX LR to 28")
     await clkedge
     print_all(dut)
     assert dut.PCF.value == 240
@@ -899,9 +900,9 @@ async def subroutine_all(dut):
     print_all(dut)
     assert dut.PCF.value == 376
 
-    # BX LR PC = 12
+    # BX LR PC = 52
     # 0xE800000E
-    dut._log.info(f"380 - BX LR PC = 12")
+    dut._log.info(f"380 - BX LR PC = 52")
     await clkedge
     print_all(dut)
     assert dut.PCF.value == 380
@@ -937,379 +938,4 @@ async def subroutine_all(dut):
     print_all(dut)
     assert dut.PCF.value == 52
 
-    """
-    # Check BL
-    # Address 0
-    # BL 0x00000004 -> PC = 8 + 8 + 4*4 = 32 R14 = 12
-    # 0xEB000004
-    dut._log.info("Array Sum Test for 3 elements in array")
-    dut._log.info(f"(2A), (37), (5C) = 0xBD or in decimal 189")
-    dut._log.info(f"BL 0x00000006 -> PC = 0 + 8 + 6*4 = 32 R14 = 4")
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
 
-    # Cycle 3 - Branch
-
-    await clkedge
-    dut._log.info(f"Cycle 3 - Branch")
-    print_all(dut)
-    assert dut.INSTR.value == 0xEB000004
-
-    # Cycle 4 - Branch
-    await clkedge
-    dut._log.info(f"Cycle 4 - Branch")
-    print_all(dut)
-    assert dut.PC.value == 32
-
-    # Cycle 5 - Branch
-    await clkedge
-    dut._log.info(f"Cycle 5 - Branch")
-    print_all(dut)
-
-    # Check LDR
-    # Address 32
-    # LDR R1, [R0, #192] => 1
-    # 0xE41010C0
-
-    dut._log.info(f"LDR R1, [R0, #192] => 1")
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    # Cycle 3 - MemAddr
-    await clkedge
-    dut._log.info(f"Cycle 3 - MemAddr")
-    print_all(dut)
-    assert dut.INSTR.value == 0xE41010C0
-
-    # Cycle 4 - MemRead
-    await clkedge
-    dut._log.info(f"Cycle 4 - MemRead")
-    print_all(dut)
-    assert dut.ALUResult.value == 192
-
-    # Cycle 5 - WriteBack
-    await clkedge
-    dut._log.info(f"Cycle 5 - WriteBack")
-    print_all(dut)
-    assert dut.OUT.value == 1
-
-    # Check LDR
-    # Address 36
-    # LDR R3, [R0, #196] => 3 Load Array Size
-    # 0xE41030C4
-
-    dut._log.info(f"LDR R3, [R0, #196] => 3 Load Array Size")
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    # Cycle 3 - MemAddr
-    await clkedge
-    dut._log.info(f"Cycle 3 - MemAddr")
-    print_all(dut)
-    assert dut.INSTR.value == 0xE41030C4
-
-    # Cycle 4 - MemRead
-    await clkedge
-    dut._log.info(f"Cycle 4 - MemRead")
-    print_all(dut)
-    assert dut.ALUResult.value == 196
-
-    # Cycle 5 - WriteBack
-    await clkedge
-    dut._log.info(f"Cycle 5 - WriteBack")
-    print_all(dut)
-    assert dut.OUT.value == 3
-
-    # Check LDR
-    # Address 40
-    # LDR R2, [R0, #200] => 4
-    # 0xE41020C8
-
-    dut._log.info(f"LDR R2, [R0, #200] => 4")
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    # Cycle 3 - MemAddr
-    await clkedge
-    dut._log.info(f"Cycle 3 - MemAddr")
-    print_all(dut)
-    assert dut.INSTR.value == 0xE41020C8
-
-    # Cycle 4 - MemRead
-    await clkedge
-    dut._log.info(f"Cycle 4 - MemRead")
-    print_all(dut)
-    assert dut.ALUResult.value == 200
-
-    # Cycle 5 - WriteBack
-    await clkedge
-    dut._log.info(f"Cycle 5 - WriteBack")
-    print_all(dut)
-    assert dut.OUT.value == 4
-
-    # Check LDR
-    # Address 44
-    # LDR R4, [R0, #204] => 208
-    # 0xE41040CC
-
-    dut._log.info(f"LDR R4, [R0, #140] => 208")
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    # Cycle 3 - MemAddr
-    await clkedge
-    dut._log.info(f"Cycle 3 - MemAddr")
-    print_all(dut)
-    assert dut.INSTR.value == 0xE41040CC
-
-    # Cycle 4 - MemRead
-    await clkedge
-    dut._log.info(f"Cycle 4 - MemRead")
-    print_all(dut)
-    assert dut.ALUResult.value == 204
-
-    # Cycle 5 - WriteBack
-    await clkedge
-    dut._log.info(f"Cycle 5 - WriteBack")
-    print_all(dut)
-    assert dut.OUT.value == 208
-
-    # Address 48
-    # LDR R5, [R4] => 42
-    # 0xE4145000
-
-    dut._log.info(f"LDR R5, [R4] => 42")
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    # Cycle 3 - MemAddr
-    await clkedge
-    dut._log.info(f"Cycle 3 - MemAddr")
-    print_all(dut)
-    assert dut.INSTR.value == 0xE4145000
-
-    # Cycle 4 - MemRead
-    await clkedge
-    dut._log.info(f"Cycle 4 - MemRead")
-    print_all(dut)
-    assert dut.ALUResult.value == 208
-
-    # Cycle 5 - WriteBack
-    await clkedge
-    dut._log.info(f"Cycle 5 - WriteBack")
-    print_all(dut)
-    assert dut.OUT.value == 42
-
-    # Address 52
-    # ADD R4, R4, R2 => 212
-    # 0xE0844002
-
-    dut._log.info(f"ADD R4, R4, R2 => 212")
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    # Cycle 3 - Execute
-    await clkedge
-    dut._log.info(f"Cycle 3 - Execute")
-    print_all(dut)
-    assert dut.INSTR.value == 0xE0844002
-
-    # Cycle 4 - Execute
-    await clkedge
-    dut._log.info(f"Cycle 4 - Execute")
-    print_all(dut)
-    assert dut.OUT.value == 212
-
-    # Cycle 5 - WriteBack
-    await clkedge
-    dut._log.info(f"Cycle 5 - WriteBack")
-    print_all(dut)
-
-    # Address 56
-    # SUB R3, R3, R1 => 2
-    # 0xE0433001
-
-    dut._log.info(f"SUB R3, R3, R1 => 2")
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    # Cycle 3 - Execute
-    await clkedge
-    dut._log.info(f"Cycle 3 - Execute")
-    print_all(dut)
-    assert dut.INSTR.value == 0xE0433001
-
-    # Cycle 4 - Execute
-    await clkedge
-    dut._log.info(f"Cycle 4 - Execute")
-    print_all(dut)
-    assert dut.OUT.value == 2
-
-    # Cycle 5 - WriteBack
-    await clkedge
-    dut._log.info(f"Cycle 5 - WriteBack")
-    print_all(dut)
-
-    # Address 60
-    # ADD R10, R10, R5 => 42
-    # 0xE08AA005
-
-    dut._log.info(f"ADD R10, R10, R5 => 42")
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    # Cycle 3 - Execute
-    await clkedge
-    dut._log.info(f"Cycle 3 - Execute")
-    print_all(dut)
-    assert dut.INSTR.value == 0xE08AA005
-
-    # Cycle 4 - Execute
-    await clkedge
-    dut._log.info(f"Cycle 4 - Execute")
-    print_all(dut)
-    assert dut.OUT.value == 42
-
-    # Cycle 5 - WriteBack
-    await clkedge
-    dut._log.info(f"Cycle 5 - WriteBack")
-    print_all(dut)
-
-    # Address 64
-    # CMP R3, R0 => 0
-    # 0xE1430000
-
-    dut._log.info(f"CMP R3, R0 => 0")
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    # Cycle 3 - Execute
-    await clkedge
-    dut._log.info(f"Cycle 3 - Execute")
-    print_all(dut)
-    assert dut.INSTR.value == 0xE1430000
-
-    # Cycle 4 - Execute
-    await clkedge
-    dut._log.info(f"Cycle 4 - Execute")
-    print_all(dut)
-
-    # Cycle 5 - WriteBack
-    await clkedge
-    dut._log.info(f"Cycle 5 - WriteBack")
-    print_all(dut)
-
-    # Address 68
-    # BEQ to dec 68+8 + 4*1 = 80
-    # 0x0A000001
-
-    dut._log.info(f"BEQ to dec 68+8 + 4*1 = 80")
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    # Cycle 3 - Execute
-    await clkedge
-    dut._log.info(f"Cycle 3 - Execute")
-    print_all(dut)
-    assert dut.INSTR.value == 0x0A000001
-
-    # Cycle 4 - Execute
-    await clkedge
-    dut._log.info(f"Cycle 4 - Execute")
-    print_all(dut)
-
-    # Cycle 5 - WriteBack
-    await clkedge
-    dut._log.info(f"Cycle 5 - WriteBack")
-    print_all(dut)
-
-    # Address 72
-    # B to dec 72 + 8 - 4*8 = 48
-    # 0xEAFFFFF8
-
-    dut._log.info(f"B to dec 72 + 8 - 4*8 = 48")
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    # Cycle 3 - Execute
-    await clkedge
-    dut._log.info(f"Cycle 3 - Execute")
-    print_all(dut)
-    assert dut.INSTR.value == 0xEAFFFFF8
-
-    # Cycle 4 - Execute
-    await clkedge
-    dut._log.info(f"Cycle 4 - Execute")
-    print_all(dut)
-
-    # Cycle 5 - WriteBack
-    await clkedge
-    dut._log.info(f"Cycle 5 - WriteBack")
-    print_all(dut)
-
-    dut._log.info(f"Wait for 2 loops")
-    for i in range(0, 65):
-        await clkedge
-        # dut._log.info(f"Cycle {i} - Wait")
-        # if dut.CYCLE.value != 0 and dut.CYCLE.value != 1 :
-
-    print_all(dut)
-
-    # Check BX LR
-    # Address 80
-    # BX LR -> PC = 4
-    # 0xE800000E
-
-    dut._log.info(f"BX LR -> PC = 4")
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    await clkedge
-    dut._log.info(f"Cycle 3 - Execute")
-    print_all(dut)
-    assert dut.INSTR.value == 0xE800000E
-
-    await clkedge
-    dut._log.info(f"Cycle 4 - Wait")
-    print_all(dut)
-    assert dut.PC.value == 12
-
-    await clkedge
-    dut._log.info(f"Cycle 5 - Wait")
-    print_all(dut)
-
-    # Address 4
-    # ADD R10,R10,R0 => 189 (0xBD)
-    # 0xE08AA000
-
-
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    await clkedge
-    dut._log.info(f"Cycle 3 - Execute")
-    print_all(dut)
-    assert dut.INSTR.value == 0xE08AA000
-
-    await clkedge
-    dut._log.info(f"Cycle 4 - Execute")
-    print_all(dut)
-    dut._log.info(f"ADD R10,R10,R0 => {dut.OUT.value} (0xBD) Check the sum of the array")
-    assert dut.OUT.value == 189
-
-    await clkedge
-    dut._log.info(f"Cycle 5 - WriteBack")
-    print_all(dut)
-    """
