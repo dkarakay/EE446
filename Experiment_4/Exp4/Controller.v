@@ -15,6 +15,9 @@ module Controller(
 	 output reg MemWriteD, 
 	 output wire MemWriteE, MemWriteM,
 	 
+	 output reg FlagWriteD,
+	 output wire FlagWriteE,
+
 	 output reg MemtoRegD,
 	 output wire MemtoRegE, MemtoRegM, MemtoRegW,
 
@@ -61,6 +64,7 @@ always @(posedge CLK) begin
 		 MemWriteD=0;
 		 MemtoRegD=0;
 		 ALUControlD=0;
+		 FlagWriteD=0;
 		 ALUSrcD=0;
 		 RegSrcD=0;
 		 ImmSrcD=0;
@@ -111,6 +115,7 @@ always @(*) begin
 					6'b010100: begin
 						ALUControlD = 4'b0010;
 						RegWriteD = 0;
+						FlagWriteD = 1;
 					end
 
 					endcase
@@ -203,6 +208,7 @@ always @(*) begin
 		ALUControlD=4;
 		ALUSrcD=0;
 		RegSrcD=0;
+		FlagWriteD=0;
 	end
 end
 
@@ -333,6 +339,15 @@ Register_sync_rw #(4) COND2E(
 	.DATA(COND),
 	.we(1'b1),
 	.OUT(CondE)
+);
+
+// FlagWriteD to FlagWriteE
+Register_sync_rw #(1) FlagWriteD2E(
+	.clk(CLK),
+	.reset(RESET),
+	.DATA(FlagWriteD),
+	.we(1'b1),
+	.OUT(FlagWriteE)
 );
 
 

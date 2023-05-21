@@ -14,7 +14,7 @@ wire [31:0] ALUResultE, ExtImmE, ExtImmD, WD3;
 wire [3:0] WA3D, WA3E, WA3M, WA3W;
 wire [31:0] SrcBE, SrcBEIn, SrcAE, ReadDataM, ReadDataW, WriteDataM;
 
-wire CONDEX, Sel14, Sel14E, Sel14M, Sel14W;
+wire CONDEX, Sel14, Sel14E, Sel14M, Sel14W, FlagWriteE, FlagWriteD;
 wire [2:0] CYCLE;
 
 wire PCSrcD,PCSrcE,PCSrcM,PCSrcW;
@@ -56,7 +56,9 @@ Controller controller (
 	.RegSrcD(RegSrcD),
 	.ImmSrcD(ImmSrcD),
 	.CondE(CondE),
-	.Sel14(Sel14)
+	.Sel14(Sel14),
+	.FlagWriteD(FlagWriteD),
+	.FlagWriteE(FlagWriteE)
 );
 
 
@@ -102,11 +104,12 @@ Datapath dp (
 	.ReadDataM(ReadDataM),
 	.ReadDataW(ReadDataW),
 	.WriteDataM(WriteDataM),
-	.FlagZ(FlagZ),
 	.Sel14(Sel14),
 	.Sel14E(Sel14E),
 	.Sel14M(Sel14M),
-	.Sel14W(Sel14W)
+	.Sel14W(Sel14W),
+	.FlagZ(FlagZ),
+	.FlagWriteE(FlagWriteE)
 );
 
 

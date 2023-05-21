@@ -12,7 +12,7 @@ wire [14:0] Reg_enable;
 genvar i;
 generate
     for (i = 0 ; i < 15 ; i = i + 1) begin : registers
-        Register_sync_rw #(WIDTH) Reg (.clk(clk),.reset(reset),.we(Reg_enable[i]& write_enable),.DATA(DATA),.OUT(Reg_Out[i]));
+        Register_sync_rw_neg #(WIDTH) Reg (.clk(clk),.reset(reset),.we(Reg_enable[i]& write_enable),.DATA(DATA),.OUT(Reg_Out[i]));
     end
 endgenerate
 

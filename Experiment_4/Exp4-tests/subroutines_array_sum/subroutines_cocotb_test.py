@@ -4,12 +4,12 @@ from cocotb.triggers import RisingEdge
 
 
 def print_hex_dec(dut, val, name, cond=False, only_hex=False):
-    if only_hex:
-        my = int(val)
-        dut._log.info(f"{name}: H: {my:x}")
-        return
+    if not str(val).__contains__("x") and not str(val).__contains__("z"):
+        if only_hex:
+            my = int(val)
+            dut._log.info(f"{name}: H: {my:x}")
+            return
 
-    if str(val) != "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx":
         if cond or val != 0:
             my = int(val)
             dut._log.info(f"{name}: D: {my:d} H: {my:x} B: {val}")
@@ -18,57 +18,77 @@ def print_hex_dec(dut, val, name, cond=False, only_hex=False):
 ## This function prints all the signals in the DUT except the ones that are zero
 # @param dut: the DUT
 def print_all(dut):
-    dut._log.info("CYCLE: " + str(dut.CYCLE.value))
+    print_hex_dec(dut, dut.InstructionF.value, name="InstructionF", only_hex=True)
     print_hex_dec(dut, dut.INSTR.value, name="INSTR", only_hex=True)
 
+    print_hex_dec(dut, dut.PCPrime.value, name="PCPrime", cond=True)
+    print_hex_dec(dut, dut.PCF.value, name="PCF", cond=True)
+    # print_hex_dec(dut, dut.PCPlus4F.value, name="PCPlus4F")
+
     print_hex_dec(dut, dut.RESET.value, name="RESET")
-    print_hex_dec(dut, dut.PCWrite.value, name="PCWrite")
-    print_hex_dec(dut, dut.AdSrc.value, name="AdSrc")
-    print_hex_dec(dut, dut.MemWrite.value, name="MemWrite")
-    print_hex_dec(dut, dut.IRWrite.value, name="IRWrite")
-    print_hex_dec(dut, dut.ResultSrc.value, name="ResultSrc")
-    print_hex_dec(dut, dut.ALUControl.value, name="ALUControl")
-    print_hex_dec(dut, dut.ALUSrcA.value, name="ALUSrcA")
-    print_hex_dec(dut, dut.ALUSrcB.value, name="ALUSrcB")
-    print_hex_dec(dut, dut.ImmSrc.value, name="ImmSrc")
-    print_hex_dec(dut, dut.RegWrite.value, name="RegWrite")
-    print_hex_dec(dut, dut.RegSrc.value, name="RegSrc")
+
+    print_hex_dec(dut, dut.PCSrcD.value, name="PCSrcD")
+    print_hex_dec(dut, dut.PCSrcE.value, name="PCSrcE")
+    print_hex_dec(dut, dut.PCSrcM.value, name="PCSrcM")
+    print_hex_dec(dut, dut.PCSrcW.value, name="PCSrcW")
+
     print_hex_dec(dut, dut.Sel14.value, name="Sel14")
+    print_hex_dec(dut, dut.Sel14E.value, name="Sel14E")
+    print_hex_dec(dut, dut.Sel14M.value, name="Sel14M")
+    print_hex_dec(dut, dut.Sel14W.value, name="Sel14W")
 
-    print_hex_dec(dut, dut.PC.value, name="PC", cond=True)
+    print_hex_dec(dut, dut.RegWriteD.value, name="RegWriteD")
+    print_hex_dec(dut, dut.RegWriteE.value, name="RegWriteE")
+    print_hex_dec(dut, dut.RegWriteM.value, name="RegWriteM")
+    print_hex_dec(dut, dut.RegWriteW.value, name="RegWriteW")
 
-    print_hex_dec(dut, dut.FlagZ.value, name="FlagZ")
-    print_hex_dec(dut, dut.WD3.value, name="WD3")
-    print_hex_dec(dut, dut.RA1.value, name="RA1")
-    print_hex_dec(dut, dut.RA2.value, name="RA2")
-    print_hex_dec(dut, dut.RA3.value, name="RA3")
+    print_hex_dec(dut, dut.MemWriteD.value, name="MemWriteD")
+    print_hex_dec(dut, dut.MemWriteE.value, name="MemWriteE")
+    print_hex_dec(dut, dut.MemWriteM.value, name="MemWriteM")
+
+    print_hex_dec(dut, dut.MemtoRegD.value, name="MemtoRegD")
+    print_hex_dec(dut, dut.MemtoRegE.value, name="MemtoRegE")
+    print_hex_dec(dut, dut.MemtoRegM.value, name="MemtoRegM")
+    print_hex_dec(dut, dut.MemtoRegW.value, name="MemtoRegW")
+
+    print_hex_dec(dut, dut.ALUControlD.value, name="ALUControlD")
+    print_hex_dec(dut, dut.ALUControlE.value, name="ALUControlE")
+
+    print_hex_dec(dut, dut.ALUSrcD.value, name="ALUSrcD")
+    print_hex_dec(dut, dut.ALUSrcE.value, name="ALUSrcE")
+
+    print_hex_dec(dut, dut.RegSrcD.value, name="RegSrcD")
+    print_hex_dec(dut, dut.ImmSrcD.value, name="ImmSrcD")
+    print_hex_dec(dut, dut.CondE.value, name="CondE")
+
+    print_hex_dec(dut, dut.RA1D.value, name="RA1D")
+    print_hex_dec(dut, dut.RA2D.value, name="RA2D")
     print_hex_dec(dut, dut.RD1.value, name="RD1")
     print_hex_dec(dut, dut.RD2.value, name="RD2")
-    print_hex_dec(dut, dut.ALUResult.value, name="ALUResult")
-    print_hex_dec(dut, dut.ALUOut.value, name="ALUOut")
+    print_hex_dec(dut, dut.RD1_OUT.value, name="RD1_OUT")
+    print_hex_dec(dut, dut.RD2_OUT.value, name="RD2_OUT")
 
+    print_hex_dec(dut, dut.WA3E.value, name="WA3E")
+    print_hex_dec(dut, dut.WA3M.value, name="WA3M")
+    print_hex_dec(dut, dut.WA3W.value, name="WA3W")
+
+    # print_hex_dec(dut, dut.ExtImmE.value, name="ExtImmE")
+    print_hex_dec(dut, dut.SrcBE.value, name="SrcBE")
+
+    print_hex_dec(dut, dut.ReadDataM.value, name="ReadDataM")
+    print_hex_dec(dut, dut.ReadDataW.value, name="ReadDataW")
+    print_hex_dec(dut, dut.WriteDataM.value, name="WriteDataM")
+
+    print_hex_dec(dut, dut.ALUResultE.value, name="ALUResultE")
+    print_hex_dec(dut, dut.ALUOutM.value, name="ALUOutM")
+    print_hex_dec(dut, dut.ALUOutW.value, name="ALUOutW")
+
+    print_hex_dec(dut, dut.FlagWriteD.value, name="FlagWriteD", cond=True)
+    print_hex_dec(dut, dut.FlagWriteE.value, name="FlagWriteE", cond=True)
+
+    print_hex_dec(dut, dut.FlagZ.value, name="FlagZ", cond=True)
     print_hex_dec(dut, dut.OUT.value, name="OUT", cond=True)
     print("------------------")
-
-
-# Fetch and decode cycles
-async def fetch_and_decode(dut, clkedge, skip_print=True):
-    # Cycle 1 - Fetch
-
-    await clkedge
-    if not skip_print:
-        dut._log.info(f"Cycle 1 - Fetch")
-        print_all(dut)
-    # assert dut.ALUResult.value == dut.PC.value + 4
-    # assert dut.OUT.value == dut.ALUResult.value
-
-    # Cycle 2 - Decode
-    await clkedge
-    if not skip_print:
-        dut._log.info(f"Cycle 2 - Decode")
-        print_all(dut)
-    # assert dut.ALUResult.value == dut.PC.value + 4
-    # assert dut.OUT.value == dut.ALUResult.value
 
 
 @cocotb.test()
@@ -82,38 +102,100 @@ async def subroutine_2s_complement_using_branch(dut):
     # wait until the clock edge
     dut.RESET.value = 1
     await clkedge
-    dut.RESET.value = 1
-    await clkedge
     print_all(dut)
+
     dut.RESET.value = 0
 
-    # Check BL
-    # Address 0
-    # BL 0x00000006 -> PC = 0 + 8 + 6*4 = 32 R14 = 4
-    # 0xEB000006
-
-    dut._log.info(f"BL 0x00000006 -> PC = 0 + 8 + 6*4 = 32 R14 = 4")
-    # Fetch and decode
-    await fetch_and_decode(dut, clkedge)
-
-    # Cycle 3 - Branch
-
+    # BL 0x0000000F -> PC = 0 + 8 + 15*4 = 68 R14 = 4
+    # 0xEB00000F
+    dut._log.info(f"Even parity of F = 1")
+    dut._log.info(f"0 - BL 0x0000000F -> PC = 0 + 8 + 15*4 = 68 R14 = 4")
     await clkedge
-    dut._log.info(f"Cycle 3 - Branch")
     print_all(dut)
-    assert dut.INSTR.value == 0xEB000006
+    assert dut.PCPrime.value == 4
+    assert dut.InstructionF.value == 0xEB00000F
 
-    # Cycle 4 - Branch
+    # NOP
+    dut._log.info(f"4 - NOP")
     await clkedge
-    dut._log.info(f"Cycle 4 - Branch")
     print_all(dut)
-    assert dut.PC.value == 32
+    assert dut.PCD.value == 4
+    assert dut.WA3D.value == 14
+    assert dut.Sel14.value == 1
 
-    # Cycle 5 - Branch
+    # NOP
+    dut._log.info(f"8 - NOP")
     await clkedge
-    dut._log.info(f"Cycle 5 - Branch")
     print_all(dut)
+    assert dut.PCE.value == 4
+    assert dut.WA3E.value == 14
+    assert dut.Sel14E.value == 1
 
+    # NOP
+    dut._log.info(f"12 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCM.value == 4
+    assert dut.WA3M.value == 14
+    assert dut.Sel14M.value == 1
+
+    # NOP
+    dut._log.info(f"16 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCW.value == 4
+    assert dut.WA3W.value == 14
+    assert dut.WD3.value == 4
+    assert dut.OUT.value == 68
+    assert dut.PCPrime.value == 68
+    assert dut.Sel14W.value == 1
+
+    # LDR R3, [R0, #12] => F
+    # 0xE410300C
+    dut._log.info(f"68 - LDR R3, [R0, #12] => F")
+    await clkedge
+    print_all(dut)
+    assert dut.InstructionF.value == 0xE410300C
+    assert dut.PCF.value == 68
+
+    # LDR R2, [R0, #4] => 4
+    # 0xE4102004
+    dut._log.info(f"72 - LDR R2, [R0, #4] => 4")
+    await clkedge
+    print_all(dut)
+    assert dut.InstructionF.value == 0xE4102004
+    assert dut.PCF.value == 72
+
+    # LDR R1, [R0, 0] => 1
+    # 0xE4101000
+    dut._log.info(f"76 - LDR R1, [R0, 0] => 1")
+    await clkedge
+    print_all(dut)
+    assert dut.InstructionF.value == 0xE4101000
+    assert dut.PCF.value == 76
+    assert dut.ALUResultE.value == 12
+    assert dut.WA3E.value == 3
+
+    # NOP
+    dut._log.info(f"80 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 80
+    assert dut.WA3E.value == 2
+    assert dut.ALUResultE.value == 4
+    assert dut.ReadDataM.value == 14
+
+    # NOP
+    dut._log.info(f"84 - NOP")
+    await clkedge
+    print_all(dut)
+    assert dut.PCF.value == 84
+    assert dut.WA3E.value == 1
+    assert dut.ALUResultE.value == 0
+    assert dut.ReadDataM.value == 4
+    assert dut.OUT.value == 14
+
+    """
     # Check LDR
     # Address 32
     # LDR R1, [R0, #128] => 1
@@ -460,3 +542,4 @@ async def subroutine_2s_complement_using_branch(dut):
     await clkedge
     dut._log.info(f"Cycle 5 - WriteBack")
     print_all(dut)
+    """

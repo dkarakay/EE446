@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1683451900" />
-    <testcase name="subroutine_2s_complement_using_branch" classname="subroutines_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_3\Exp3-tests\subroutines_even_parity\subroutines_cocotb_test.py" lineno="70" time="0.709967851638794" sim_time_ns="1616000" ratio_time="2276159.4011191404" />
+    <property name="random_seed" value="1684674445" />
+    <testcase name="subroutine_2s_complement_using_branch" classname="subroutines_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_4\Exp4-tests\subroutines_even_parity\subroutines_cocotb_test.py" lineno="94" time="1.307551622390747" sim_time_ns="1166000" ratio_time="891742.9951010791" />
   </testsuite>
 </testsuites>

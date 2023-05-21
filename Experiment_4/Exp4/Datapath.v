@@ -1,7 +1,7 @@
 module Datapath(
 	input CLK,
 	input RESET,
-	input RegWriteW, MemWriteM, MemtoRegW, ALUSrcE,PCSrcW,
+	input RegWriteW, MemWriteM, MemtoRegW, ALUSrcE,PCSrcW,FlagWriteE,
 	input Sel14, Sel14E, Sel14M, Sel14W,
 	input [1:0] RegSrcD, ImmSrcD, 
 	input [3:0] ALUControlE,
@@ -132,6 +132,16 @@ Mux_2to1 mux_alu_bx_lr (
 
 
 // EXECUTE STAGE
+
+
+// Register for FlagZ
+Register_sync_rw #(1) reg_z(
+	.clk(CLK),
+	.we(FlagWriteE),
+	.DATA(ZIn),
+	.reset(RESET),
+	.OUT(FlagZ)
+);
 
 // Register for PCD to PCE
 Register_simple #(32) reg_pc_plus_four_pce(

@@ -509,5 +509,4 @@ async def main_cocotb_test(dut):
     assert dut.PCPrime.value == 156
     assert dut.PCF.value == 152
 
-    """
     
