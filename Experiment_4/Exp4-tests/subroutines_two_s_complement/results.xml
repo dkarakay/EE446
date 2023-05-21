@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1684629901" />
+    <testcase name="main_cocotb_test" classname="subroutines_cocotb_test" file="C:\Users\Deniz\Documents\EE446\Experiment_4\Exp4-tests\subroutines_two_s_complement\subroutines_cocotb_test.py" lineno="91" time="0.29166126251220703" sim_time_ns="196000" ratio_time="672012.4514025812" />
+  </testsuite>
+</testsuites>

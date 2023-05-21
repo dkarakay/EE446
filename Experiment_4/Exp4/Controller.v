@@ -197,6 +197,12 @@ always @(*) begin
 	else begin
 		PCSrcD = 0;
 		Sel14 = 0;
+		RegWriteD=0;
+		MemWriteD=0;
+		MemtoRegD=0;
+		ALUControlD=4;
+		ALUSrcD=0;
+		RegSrcD=0;
 	end
 end
 
