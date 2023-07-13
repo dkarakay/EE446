@@ -11,8 +11,7 @@ This repository contains codes for [EE446 Computer Architecture II](https://cata
 - [Exp 4](https://github.com/dkarakay/EE446/tree/main/Experiment_4)
 
 ## Project
-- [Project Details](https://github.com/dkarakay/EE447/blob/main/Project/project_details.pdf)
-- [Rubric](https://github.com/dkarakay/EE447/blob/main/Project/rubric.pdf)
+- [Project Details](https://github.com/dkarakay/EE446/blob/main/Project/EE446_Project.pdf)
 - [Code](https://github.com/dkarakay/EE447/tree/main/Project/Code)
 - [Preliminary Report](https://github.com/dkarakay/EE447/blob/main/Project/preliminary_report.pdf)
 - [Final Report](https://github.com/dkarakay/EE447/blob/main/Project/final_report.pdf)
