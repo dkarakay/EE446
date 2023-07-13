@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1686775381" />
+    <testcase name="branch_predict_1" classname="branch_predictor" file="C:\Users\Deniz\Documents\Pipelined-Project\project-tests\branch_predictor\branch_predictor.py" lineno="275" time="0.3399629592895508" sim_time_ns="136000" ratio_time="400043.5820543822" />
+  </testsuite>
+</testsuites>

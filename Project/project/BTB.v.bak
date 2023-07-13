@@ -1,0 +1,68 @@
+module BTB (
+  input wire clk,        // Clock signal
+  input wire reset,      // Reset signal
+  input wire [31:0] pc,  // Current program counter
+  output wire hit,       // Hit flag
+  output wire [31:0] bta // Branch target address
+);
+  // Parameters
+  parameter NUM_ENTRIES = 3;  // Number of entries in the BTB
+
+  // Internal registers
+  reg [31:0] btb_pc [NUM_ENTRIES];  // Stored PC values
+  reg [31:0] btb_bta [NUM_ENTRIES]; // Corresponding BTAs
+  reg [NUM_ENTRIES-1:0] lru;        // Least Recently Used flag for each entry
+
+  // Comparator circuit
+  wire [NUM_ENTRIES-1:0] match;
+  assign match = (btb_pc == pc);
+
+  // Find hit flag
+  assign hit = |match;
+
+  // Find BTA
+  assign bta = btb_bta[match];
+
+  // Add entry logic
+  always @(posedge clk) begin
+    if (reset) begin
+      // Reset BTB
+      btb_pc <= 0;
+      btb_bta <= 0;
+      lru <= 0;
+    end else begin
+      // Find the LRU entry
+      reg [NUM_ENTRIES-1:0] lru_count;
+      always @(posedge clk) begin
+        if (hit) begin
+          lru_count <= {lru, 1'b0};
+        end else begin
+          lru_count <= lru;
+        end
+      end
+
+      // Update BTB entries
+      reg [NUM_ENTRIES-1:0] lru_index;
+      always @(posedge clk) begin
+        if (hit) begin
+          lru_index <= match;
+        end else if (~|lru_count) begin
+          lru_index <= lru_count;
+        end
+      end
+
+      // Add entry to BTB
+      always @(posedge clk) begin
+        if (hit) begin
+          btb_pc[match] <= pc;
+          btb_bta[match] <= bta;
+        end else if (~|lru_count) begin
+          btb_pc[lru_index] <= pc;
+          btb_bta[lru_index] <= bta;
+          lru[lru_index] <= 1'b1;
+        end
+      end
+    end
+  end
+
+endmodule

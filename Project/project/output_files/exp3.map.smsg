@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at Datapath.v(10): object "ForwardAE" differs only in case from object "forwardAE" in the same scope
+Info (10281): Verilog HDL Declaration information at Datapath.v(10): object "ForwardBE" differs only in case from object "forwardBE" in the same scope

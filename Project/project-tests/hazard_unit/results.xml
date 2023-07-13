@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1686775349" />
+    <testcase name="hazard_unit" classname="hazard_unit" file="C:\Users\Deniz\Documents\Pipelined-Project\project-tests\hazard_unit\hazard_unit.py" lineno="123" time="1.405000925064087" sim_time_ns="486000" ratio_time="345907.2455613023">
+      <failure />
+    </testcase>
+  </testsuite>
+</testsuites>
